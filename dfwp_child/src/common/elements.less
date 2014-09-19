@@ -1,0 +1,654 @@
+/**
+ * Fonts
+ */
+.nctv_opensans-light{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+.nctv_opensans-regular{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.nctv_opensans-semibold{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
+.nctv_opensans-bold{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+.nctv_arial{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+
+.nctv_arial-bold{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;	
+}
+
+/**
+ * Liens
+ */
+a{
+	text-decoration: none;
+	color:@typo_green_1;
+	.nctv_arial-bold;
+
+	&:hover{
+		color:@typo_green_1;
+	}
+
+	&.nctv_link-small{
+		.nctv_arial;
+		font-size: 12px;
+		color:@typo_grey_5;
+		text-decoration: underline;
+
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+/**
+ * Paragraphes
+ */
+p{
+	line-height: 21px;
+
+	&.nctv_p-small{
+		font-size: 12px;
+		line-height: 16px;
+	}
+}
+
+/**
+ * Titres
+ */
+.nctv_h1{
+	.nctv_opensans-light;
+	font-size: 40px;
+	letter-spacing: -0.025em;
+	line-height: 44px;
+	color:@typo_grey_8;
+	margin: 0;
+}
+
+.nctv_h2{
+	.nctv_opensans-regular;
+	font-size: 24px;
+	letter-spacing: normal;
+	line-height: normal;
+	color:@typo_grey_8;
+	margin: 0;
+}
+
+.nctv_h3{
+	.nctv_opensans-regular;
+	font-size: 21px;
+	letter-spacing: normal;
+	line-height: 24px;
+	color:@typo_grey_8;
+	margin: 0;
+}
+
+.nctv_h4{
+	.nctv_opensans-semibold;
+	font-size: 18px;
+	letter-spacing: normal;
+	line-height: 24px;
+	color:@typo_grey_8;
+	margin: 0;
+}
+
+h1{
+	.nctv_h1;	
+}
+
+h2{
+	.nctv_h2;
+}
+
+h3{
+	.nctv_h3;
+}
+
+h4{
+	.nctv_h4
+}
+
+/**
+ * Boutons
+ */
+.nctv_button{
+	.nctv_opensans-semibold;
+	font-size: 15px;
+	text-align: center;
+	border-radius: 2px;
+	padding:7px 18px;
+	display: block;
+	.transition(0.3s,ease);
+	position: relative;
+	.inbl;
+
+	&[link-disabled="true"]{
+		
+		//Ne pas suivre le lien
+		//Webkit, Firefox, IE11+
+		pointer-events: none;
+ 
+		//Changer l'apparence du pointer
+		cursor: default;
+		
+		//Réduire l'opacité
+		opacity: 0.5;
+	}
+	
+	//Vert
+	&.nctv_button-green{
+		color:@typo_white_1;
+		background-color: @aplat_green_1;
+		
+
+		&:hover{
+			background-color: @aplat_green_2;			
+		}
+	}
+	
+	//Blanc
+	&.nctv_button-white{
+		color:@typo_grey_8;
+		background-color: @aplat_white_1;
+		border:1px solid @trace_grey_3;
+
+		&:hover{
+			background-color: @aplat_grey_2;
+		}
+	}
+	
+	//Width helper
+	&.nctv_button-209{
+		width: 209px;
+	}
+		
+	//Has icone
+	&.nctv_button-hasicon{
+		text-align: left;
+		padding: 7px 18px 7px 27px;
+	}
+	
+	//Bouton fermer
+	&.nctv_button-close{
+		width: 40px;
+		height: 40px;
+		padding:0;
+		border-top-right-radius: 0px;
+		border-top-left-radius: 0px;
+
+		span{
+			.place(12px,12px);
+		}
+
+		&:hover{
+			span{
+				//transition:none;
+				.place(10px,12px);
+			}
+		}
+	}
+
+	&:hover{
+		span{
+			//transition: left 0.2s ease;
+			//left:12px;
+		}
+	}
+
+	//Pour les icones
+	span{
+		.place(14px, auto, auto, 10px);
+	}
+}
+
+//Boutons de filtres dans une fiche
+.nctv_button_filter{
+	border-radius: 2px;
+	border-top:1px solid @trace_grey_3;	
+	border-bottom:1px solid @trace_grey_3;	
+	width: 185px;
+	background-color: @aplat_white_1;
+	
+	//Conteneur des liens
+	.nctv_filter_link{
+		border-left:1px solid @trace_grey_3;
+		border-right:1px solid @trace_grey_3;	
+		border-top:1px solid @trace_grey_2;
+		width: 100%;
+		height: 36px;
+		line-height: 36px;
+		.transition(0.2s,ease-out);
+		position: relative;
+
+		&:hover{
+			background-color: @aplat_grey_2;
+
+			span{
+				transition: margin-right 0.1s ease;
+				.place(14px, 8px, auto auto);
+			}
+		}
+
+		&:first-child{
+			border-top: none;
+		}
+		
+		a{
+			.inbl;
+			font-size: 13px;
+			.nctv_arial-bold;
+			width: 165px;
+			text-indent: 10px;
+			color:@typo_grey_8;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;			
+			
+			//Lien de niveau 2
+			&.nctv_button_filter-lvl2{
+				.nctv_arial;
+				text-indent: 20px;
+			}		
+		}
+
+		//Conteneur de la fleche
+		span{
+			.place(14px, 10px, auto auto);
+		}
+	}
+}
+
+/**
+ * Icônes
+ */
+
+//Fleche Right White
+.nctv_icon_arrow-right-white{
+	.sprite-sprite-hd;
+	.sprite-sd-arrow-right-white;
+}
+
+//Fleche Right Grey
+.nctv_icon_arrow-right-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-arrow-right-grey;
+}
+
+//Fleche 2 Right Grey
+.nctv_icon_arrow2-right-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-arrow-2-right-grey;
+}
+
+//Fleche Down Grey
+.nctv_icon_arrow-down-grey{
+	.sprite-sd-arrow-down-grey;
+	.sprite-sprite-hd;
+}
+
+//Star Grey
+.nctv_icon_star-grey-1{
+	.sprite-sprite-hd;
+	.sprite-sd-star-grey;
+}
+
+//Star Grey 2
+.nctv_icon_star-grey-2{
+	.sprite-sprite-hd;
+	.sprite-sd-star-grey-2;
+}
+
+//Star Green 1
+.nctv_icon_star-green-1{
+	.sprite-sprite-hd;
+	.sprite-sd-star-green-1;
+}
+
+//Star Green 2
+.nctv_icon_star-green-2{
+	.sprite-sprite-hd;
+	.sprite-sd-star-green-2;
+}
+
+//Star Pink
+.nctv_icon_star-pink{
+	.sprite-sprite-hd;
+	.sprite-sd-star-pink;
+}
+
+//Croix Blanche
+.nctv_icon_cross-white{
+	.sprite-sprite-hd;
+	.sprite-sd-cross-white;
+}
+
+//Point Blanc
+.nctv_icon_dot-white{
+	.sprite-sprite-hd;
+	.sprite-sd-dot-white;
+}
+
+//Point grey
+.nctv_icon_dot-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-puce-grey;
+}
+
+//Vod Small
+.nctv_icon_vod-small{
+	.sprite-sprite-hd;
+	.sprite-sd-vod-1;
+}
+
+//Vod big
+.nctv_icon_vod-big{
+	.sprite-sprite-hd;
+	.sprite-sd-vod-2;
+}
+
+//Replay small
+.nctv_icon_replay-small{
+	.sprite-sprite-hd;
+	.sprite-sd-replay-1;
+}
+
+//Replay bid
+.nctv_icon_replay-big{
+	.sprite-sprite-hd;
+	.sprite-sd-replay-2;
+}
+
+//Tv small
+.nctv_icon_tv-small{
+	.sprite-sprite-hd;
+	.sprite-sd-tv-1;
+}
+
+//Tv big
+.nctv_icon_tv-big{
+	.sprite-sprite-hd;
+	.sprite-sd-tv-2;
+}
+
+//Close white
+.nctv_icon_close-white{
+	.sprite-sprite-hd;
+	.sprite-sd-close-white;
+}
+
+//Close white 2
+.nctv_icon_close-white-small{
+	.sprite-sprite-hd;
+	.sprite-sd-close-white-2;
+}
+
+//Play small
+.nctv_icon_play-small{
+	.sprite-sprite-hd;
+	.sprite-sd-play-small;
+}
+
+//Play big
+.nctv_icon_play-big{
+	.sprite-sprite-hd;
+	.sprite-sd-play-big;
+}
+
+//Validate big green
+.nctv_icon_validate-big-green{
+	.sprite-sprite-hd;
+	.sprite-sd-validate-big-green;
+}
+
+//Validate big green
+.nctv_icon_validate-big-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-validate-big-grey;
+}
+
+//Validate big green
+.nctv_icon_validate-small-green{
+	.sprite-sprite-hd;
+	.sprite-sd-validate-small-green;
+}
+
+//Moins de 10 grey
+.nctv_icon_moins10-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-moins10-grey;
+}
+
+//VF grey
+.nctv_icon_vf-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-vf-grey;
+}
+
+//VOST grey
+.nctv_icon_vost-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-vost-grey;
+}
+
+//HDVOST grey
+.nctv_icon_vosthd-grey{
+	.sprite-sprite-hd;
+	.sprite-sd-hdvost-grey;
+}
+
+//Canal j
+.nctv_icon_canalj{
+	.sprite-sprite-hd;
+	.sprite-sd-canal-j;
+}
+
+//Cineplus premier
+.nctv_icon_cinepluspremier{
+	.sprite-sprite-hd;
+	.sprite-sd-cine-plus-premier;
+}
+
+//Cineplus club
+.nctv_icon_cineplusclub{
+	.sprite-sprite-hd;
+	.sprite-sd-cine-plus-club;
+}
+
+//Cineplus famiz
+.nctv_icon_cineplusfamiz{
+	.sprite-sprite-hd;
+	.sprite-sd-cine-plus-famiz;
+}
+
+//Cineplus frisson
+.nctv_icon_cineplusfrisson{
+	.sprite-sprite-hd;
+	.sprite-sd-cine-plus-frisson;
+}
+
+//Cineplus émotion
+.nctv_icon_cineplusemotion{
+	.sprite-sprite-hd;
+	.sprite-sd-cine-plus-emotions;
+}
+
+//Sundance channel
+.nctv_icon_sundance{
+	.sprite-sprite-hd;
+	.sprite-sd-sundance;
+}
+
+//Polar
+.nctv_icon_polar{
+	.sprite-sprite-hd;
+	.sprite-sd-polar;
+}
+
+//TCM cinéma
+.nctv_icon_tcmcinema{
+	.sprite-sprite-hd;
+	.sprite-sd-tcm-cinema ;
+}
+
+//Ciné FX
+.nctv_icon_cinefx{
+	.sprite-sprite-hd;
+	.sprite-sd-cinefx;
+}
+
+//Eurochannel
+.nctv_icon_eurochannel{
+	.sprite-sprite-hd;
+	.sprite-sd-eurochannel;
+}
+
+//Paramount
+.nctv_icon_paramount{
+	.sprite-sprite-hd;
+	.sprite-sd-paramount;
+}
+
+//OCS
+.nctv_icon_ocs{
+	.sprite-sprite-hd;
+	.sprite-sd-ocs;
+}
+
+//Action
+.nctv_icon_action{
+	.sprite-sprite-hd;
+	.sprite-sd-action;
+}
+
+//Disney channel
+.nctv_icon_disneychannel{
+	.sprite-sprite-hd;
+	.sprite-sd-disney-channel;
+}
+
+//Bein sport
+.nctv_icon_beinsport{
+	.sprite-sprite-hd;
+	.sprite-sd-bein-sport;
+}
+
+/**
+ * Promos
+ * (bloc orange bord arrondie, exemple : '2 mois offerts')
+ */
+.nctv_promo-big{
+	border-radius: 12px;
+	background-color: @aplat_orange_1;
+	color:@typo_white_1;
+	.nctv_arial-bold;
+	//padding:4px 15px;
+	font-size: 14px;
+	.inbl;
+	line-height: 24px;
+	padding:0 15px;
+}
+
+.nctv_promo-small{
+	border-radius: 12px;
+	background-color: @aplat_orange_1;
+	color:@typo_white_1;
+	.nctv_arial-bold;
+	//padding:3px 10px;
+	font-size: 12px;
+	.inbl;
+	line-height: 20px;
+	padding:0 10px;
+}
+
+/**
+ * Elements de formulaire
+ */
+.nctv_field{
+	font-size: 0; // White hack space
+	
+	//Label
+	label{
+		.nctv_arial;
+		font-size: 14px;
+		margin:0;
+		margin-right: 20px; 
+
+		&.nctv_label-block{
+			display: block;
+			margin:0 0 10px 0;
+		}
+	}
+
+	//Input common
+    input{
+        width:220px;
+        .nctv_arial;
+        font-size: 16px;
+        border-radius: 2px;
+        outline-color: @aplat_green_1;
+        -webkit-appearance: none;
+		
+		//Input text
+        &[type=text]{
+            border:1px solid @trace_grey_2;
+            background-color: @aplat_grey_2;
+        	color:@typo_grey_7;
+            padding:9px 15px;
+        }
+    }
+	
+	//Si il y a un bouton dans le champs
+    .nctv_button{
+		.inbl;
+		vertical-align: middle;
+		padding: 8px 12px;
+		text-transform: uppercase;
+		margin-left: 12px;
+    }
+
+    //Container d'erreur caché par défaut
+    .nctv_field_error{
+    	display: none;
+		
+		//Message d'erreur
+    	.nctv_error_msg{
+			
+			//Au cas ou ca serait du texte 
+			.nctv_opensans-regular;
+			font-size: 18px;
+			color:@aplat_pink_1;
+    	}
+    }
+
+	//Champs en erreur
+    &.nctv_field-error{
+
+		input{
+
+			&[type=text]{
+				border:1px solid @aplat_pink_1;
+			}
+		}
+		
+		//Container d'erreur
+		.nctv_field_error{
+			.inbl;
+			vertical-align: middle;
+			margin-left: 20px;
+		}
+    }
+}
