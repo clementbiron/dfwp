@@ -38,7 +38,6 @@ Class Breadcrumb extends Singleton
 			}
 		}
 	}
-	
 }
 
 Class BreadcrumbLink

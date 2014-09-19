@@ -1,3 +1,3 @@
-dfwp
+DFWP
 ====
 wordpress theme framework

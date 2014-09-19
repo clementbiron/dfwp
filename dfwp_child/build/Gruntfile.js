@@ -3,7 +3,7 @@
  */
 var inputJavascriptFiles = [
 	// Load strong dependences for frameworks
-	'../lib/dependencies/*.js'
+	'../lib/dependencies/*.js',
 
 	// Load all external libs files used by project's files
 	'../lib/external/**/*.js',
