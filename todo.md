@@ -19,6 +19,8 @@
 - Backwpup (plugin de backup, attention sur l'envoie d'email depuis OVH) : https://wordpress.org/plugins/backwpup/
 
 ## PLUGINS A TESTER ##
+- plugin d'optimisation sql : https://wordpress.org/plugins/wp-optimize/
+- plugin pour développeur : https://wordpress.org/plugins/developer/screenshots/
 - plugin de sécu : login-security-solution
 - plugin de cache : http://wordpress.org/plugins/cachify/
 - gestion de log de connexion : Simple Login Log
