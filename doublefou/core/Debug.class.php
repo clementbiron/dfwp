@@ -100,7 +100,7 @@
     }
 	
 	/**
-	 * 
+	 * Afficher des infos de debug de Wordpress
 	 */
 	public static function getWpInfo()
 	{
