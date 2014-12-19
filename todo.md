@@ -1,8 +1,10 @@
 ## TODO ##
 - CustomizeTinyMCEControl n'affiche pas de tinymce mais un textarea classique, à débugger
+- tester les méthodes de Template.php
+- mettre en forme ce document
 
 ## DIVERS A TESTER ##
-- intégrer open graff protocol http://ogp.me
+- intégrer open graff protocol http://ogp.me ?
 
 ## PLUGINS OK ##
 - retina display : WP Retina 2x (gestion retina) : https://wordpress.org/plugins/wp-retina-2x/
@@ -17,11 +19,11 @@
 - Google XML Sitemaps (gestion de sitemap.xml) : https://wordpress.org/plugins/google-sitemap-generator/
 - WordPress SEO by Yoast (gestion SEO) : https://wordpress.org/plugins/wordpress-seo/
 - Backwpup (plugin de backup, attention sur l'envoie d'email depuis OVH) : https://wordpress.org/plugins/backwpup/
+- Wordfence
 
 ## PLUGINS A TESTER ##
 - plugin d'optimisation sql : https://wordpress.org/plugins/wp-optimize/
 - plugin pour développeur : https://wordpress.org/plugins/developer/screenshots/
-- plugin de sécu : login-security-solution
 - plugin de cache : http://wordpress.org/plugins/cachify/
 - gestion de log de connexion : Simple Login Log
 - Schema creator (http://wordpress.org/plugins/schema-creator/) : Provides an easy to use form to embed properly constructed schema.org microdata into a WordPress post or page.

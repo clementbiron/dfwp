@@ -1,11 +1,16 @@
 <?php
+	/**
+	 * Post
+	 */
+	namespace Doublefou\Helper;
+	use Doublefou\Core\Singleton;
 	Class Post extends Singleton
 	{
 		
 		/**
-		 * getPostLinkBySlug
 		 * Récupérer le permalink d'un post avec son slug
-		 * @param String $pSlug
+		 * @param string $pSlug Slug
+		 * @return string|boolean
 		 */
 		public static function getPostLinkBySlug($pSlug)
 		{
@@ -14,9 +19,9 @@
 		}
 		
 		/**
-		 * getPostBySlug
-		 * Récupérer un post avec son permalink
-		 * @param unknown_type $pSlug
+		 * Récupérer un post par son slug
+		 * @param string $pSlug
+		 * @return object
 		 */
 		public static function getPostBySlug($pSlug)
 		{
@@ -24,16 +29,16 @@
 		}
 		
 		/**
-		 * getPostByTitle
 		 * Récupérer un post par son titre
-		 * @param String $pTitle
+		 * @param string $pTitle
+		 * @return object|null
 		 */
 		public static function getPostByTitle($pTitle, $output = OBJECT)
 		{
 			global $wpdb;
 		    $post = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title = %s AND post_type='post'", $page_title ), $output);
 		    
-		    if ( $post )
+		    if ($post)
 		        return $post;
 		 
 		    return null;
@@ -41,7 +46,7 @@
 		
 		/**
 		 * Récupérer le slug d'un post dans la loop
-		 * 
+		 * @return string
 		 */
 		public static function getPostSlug()
 		{
@@ -49,9 +54,9 @@
 		}
 		
 		/**
-		 * isCustomPostType
 		 * Déterminer si il sagit d'un custom post type
-		 * @param unknown_type $type
+		 * @param string $type
+		 * @return boolean
 		 */
 		public static function isCustomPostType($type = '') 
 		{
@@ -68,8 +73,7 @@
 		}
 		
 		/**
-		 * filterPTagsOnImages
-		 * remove <p> tag from images in the_content()
+		 * Remove <p> tag from images in the_content()
 		 */
 		public static function filterPTagsOnImages()
 		{
@@ -78,6 +82,5 @@
 				add_filter('the_content', 'filter_ptags_on_images');
 			}
 		}
-		
 	}
 ?>

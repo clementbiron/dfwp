@@ -1,11 +1,15 @@
 <?php
-
+	/**
+	 * Category 
+	 */
+	namespace Doublefou\Helper;
+	use Doublefou\Core\Singleton;
 	Class Category extends Singleton
 	{
 		/**
-		 * getLinkBySlug
 		 * Get a category link by slug
-		 * @param unknown_type $pCategorySlug
+		 * @param string  $pCategorySlug Slug de la catégorie
+		 * @return string Lien de la catégorie
 		 */
 		public static function getCategoryLinkBySlug($pCategorySlug){
 			$cat = get_category_by_slug($pCategorySlug);
@@ -15,8 +19,8 @@
 		}
 		
 		/**
-		 * getCurrentDescription
 		 * Get the current category description
+		 * @return string|false
 		 */
 		public static function getCurrentDescription(){
 			$currentCategory = Category::getCurrentCategory();
@@ -28,8 +32,8 @@
 		}
 		
 		/**
-		 * getCurrentCategory
 		 * Get the current category
+		 * @return object|false
 		 */
 		public static function getCurrentCategory(){
 			$queryvar = get_query_var('cat');
@@ -41,12 +45,12 @@
 		}
 		
 		/**
-		 * getCategoryLink by category object
-		 * @param Category $pCategory
+		 * Get category link by category
+		 * @param object Category
+		 * @return string
 		 */
 		public static function getCategoryLink($pCategory){
 			return get_category_link($pCategory->term_id);
 		}
 	}
-
 ?>

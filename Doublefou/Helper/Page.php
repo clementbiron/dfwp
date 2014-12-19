@@ -1,11 +1,17 @@
 <?php
+	/**
+	 * Page
+	 */
+	namespace Doublefou\Helper;
+	use Doublefou\Core\Singleton;
+	use Doublefou\Tools\StringTool as StringTool;
 
 	Class Page extends Singleton
 	{
 		/**
-		 * getLinkBySlug
-		 * get a link page with a slug
-		 * @param String $pPageSlug
+		 * Récupérer le lien d'une page à partir de son slug
+		 * @param string $pPageSlug Slug
+		 * @return string
 		 */
 		public static function getPageLinkBySlug($pPageSlug) {
 			$page = get_page_by_path($pPageSlug);
@@ -17,9 +23,9 @@
 		}
 		
 		/**
-		 * getPageBySlug
-		 * get a page by slug
-		 * @param unknown_type $pPageSlug
+		 * Récupérer une page par son slug
+		 * @param string $pPageSlug Slug de la page
+		 * @return object|false
 		 */
 		public static function getPageBySlug($pPageSlug){
 			$page = get_page_by_path($pPageSlug);
@@ -31,27 +37,28 @@
 		}
 		
 		/**
-		 * getCurrentPage
-		 * Get the current page
+		 * Récupérer la page courante
+		 * @return object
 		 */
 		public static function getCurrentPage(){
 			return  get_page(get_query_var('page'));
 		}
 		
 		/**
-		 * getCurrentPageDescription
-		 * Get current page description with max numbers of words
-		 * @param Number $pNbWords
+		 * Récupérer la description de la page courante
+		 * @param interger $pNbWords Nombre de mots de la description
+		 * @return string|null
 		 */
-		public static function getCurrentPageDescription($pNbWords){
-			$currentPage = getCurrentPage();
-			return StringTool::cut(strip_tags($currentPage->post_content),$pNbWords);
+		public static function getCurrentPageDescription($pNbWords){		
+			$currentPage = Page::getCurrentPage();
+			if($currentPage){
+				return StringTool::cutByWords(strip_tags($currentPage->post_content),$pNbWords);
+			}
+			return null;
 		}
 		
 		/**
-		 * isPageChildBySlug
-		 * Knwo is page is on the tree of another
-		 * @param String $pSlug
+		 * Savoir si la page courante est l'enfant d'une autre
 		 * @return Boolean
 		 */
 		public static function isPageChild()
@@ -59,9 +66,9 @@
 			global $post;      
 			$parentPage = get_page($post->post_parent);		
 			if(is_page() && ($parentPage->ID == $post->post_parent))
-               return true;
+	           return true;
 			else
-               return false; 
+	           return false; 
 		}
 		
 		/**
