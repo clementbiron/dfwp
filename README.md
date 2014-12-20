@@ -8,12 +8,12 @@ Se mettre dans le dossier build
 	
 Commandes disponibles :
 
-	grunt phpdocumentor
+	grunt phpdocumentor (générer la doc)
 
 ----------
 
 #### DOCUMENTATION
-A lire ici
+A lire ici après l'avoir générer
 \docs\index.html
 
 ----------

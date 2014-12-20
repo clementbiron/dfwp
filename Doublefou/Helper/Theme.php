@@ -62,6 +62,22 @@
 			
 			return ($current_theme && isset($current_theme['Version'])) ? $current_theme['Version'] : null;
 		}
+
+		/**
+		 * Supprimer le lien vers le flux rss dans le header
+		 */
+		public static function removeHeaderRssLink()
+		{
+			remove_action( 'wp_head', 'feed_links_extra', 3 );
+		}
+
+		/**
+		 * Supprimer le lien court dans le header
+		 */
+		public static function removeHeaderShortLink()
+		{
+			remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+		}
 		
 		/**
 		 * Compiler les fichiers less dans un fichier css 
