@@ -132,11 +132,10 @@
 		 */
 		public static function removeFrenchPonctuationToUploadFiles()
 		{
-			add_filter( 'sanitize_file_name_chars', 'sanitize_file_name_chars', 10, 1 );
-			function sanitize_file_name_chars( $special_chars = array() ) {
+			add_filter( 'sanitize_file_name_chars', function ($special_chars = array()){
 				$special_chars = array_merge( array( '’', '‘', '“', '”', '«', '»', '‹', '›', '—', 'æ', 'œ', '€' ), $special_chars );
 				return $special_chars;
-			}
+			} ,10, 1);
 		}
 
 		/**
