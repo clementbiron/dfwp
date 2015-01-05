@@ -12,7 +12,7 @@
 	attention si gestion custom tax et custom url == problème
 	exemple : etablissements/genre-de-letablissement/nom-d-l-etablissement
 	faire à la main dans ce cas la.
-- ACF pour la gestion des custom field (ne pas oublier les addons payants !) : http://www.advancedcustomfields.com/
+- ACF  : http://www.advancedcustomfields.com/
 - TinyMCE Advanced : https://wordpress.org/plugins/tinymce-advanced/
 - Codepress Admin Columns (gestion des colonnes dans le listing des posts / pages en admin) : https://wordpress.org/plugins/codepress-admin-columns/
 - WP super cache : https://wordpress.org/plugins/wp-super-cache/

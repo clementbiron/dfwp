@@ -15,9 +15,9 @@
 		 */
 		public static function initCategoryTemplate()
 		{
-			//Activer les template de categorie 
-			add_action('category_template', 'child_force_category_template');
-			function child_force_category_template($template) 
+			//Activer les template de categorie
+			add_action('category_template', 'childForceCategoryTemplate');
+			function childForceCategoryTemplate($template) 
 			{
 				//Récupérer la catégorie en cours
 			    $cat = get_query_var('cat');
@@ -66,8 +66,8 @@
 		public static function initSingleCategoryTemplate()
 		{
 			//Activer les template single par catégorie du post
-			add_filter('single_template', 'single_post_template_category');
-			function single_post_template_category($single)
+			add_filter('single_template', 'singlePostTemplateCategory');
+			function singlePostTemplateCategory($single)
 			{
 		
 				/**
