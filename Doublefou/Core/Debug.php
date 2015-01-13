@@ -86,7 +86,7 @@
 			ini_set('display_errors', '1');
 
 			//On inclus la librairie d'affichage d'erreur
-			require(Config::get('DF_WP_ROOT_PATH').'\\doublefou\\libs\\php_error.class.php');
+			require(Config::get('DF_WP_ROOT_PATH').'/Doublefou/libs/php_error.class.php');
 
 			//Si c'est ok
 			if (function_exists('\php_error\reportErrors')) {

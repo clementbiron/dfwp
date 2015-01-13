@@ -128,7 +128,7 @@
 				if (!class_exists('WPSEO_Frontend')){
 
 					//On utilsie la gestion Seo de DFWP
-					echo self::getTitle();			
+					echo Seo::getTitle();			
 				}
 				
 				//Sinon on utilise le titre généré par Yoast
@@ -138,14 +138,14 @@
 				}
 			});
 
-			//GEstion de la description
+			//Gestion de la description
 			add_action('wp_head', function(){
 
 				///Si Yoast n'est pas activé
 				if (!class_exists('WPSEO_Frontend')){
 
 					//On utilsie la gestion Seo de DFWP
-					echo '<meta name="description" content="'.self::getDescription().'" />';
+					echo '<meta name="description" content="'.Seo::getDescription().'" />';
 				}
 				
 				//Sinon si Yoast est actif
@@ -155,7 +155,7 @@
 					if(wpseo_get_value('metadesc') == false){
 
 						//On utilsie la gestion Seo de DFWP
-						echo '<meta name="description" content="'.self::getDescription().'" />';							
+						echo '<meta name="description" content="'.Seo::getDescription().'" />';							
 					}			
 				}
 			});
