@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * Template
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Template
+	 * @author Clément Biron
+	 */
 	Class Template extends Singleton
 	{
 		/**

@@ -1,9 +1,11 @@
 <?php
+	
+	namespace Doublefou\Core;
+
 	/**
 	 * Singleton
 	 * @author Clément Biron
 	 */
-	namespace Doublefou\Core;
 	abstract class Singleton 
 	{
 		private static $instances = array();

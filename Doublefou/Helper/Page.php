@@ -1,11 +1,13 @@
 <?php
-	/**
-	 * Page
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
 	use Doublefou\Tools\StringTool as StringTool;
 
+	/**
+	 * Page
+	 * @author Clément Biron
+	 */
 	Class Page extends Singleton
 	{
 		/**

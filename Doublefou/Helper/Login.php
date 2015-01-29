@@ -1,10 +1,12 @@
 <?php
 
-	/**
-	 * Login
-	 */
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Login
+	 * @author Clément Biron
+	 */
 	Class Login extends Singleton
 	{
 

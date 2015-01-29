@@ -1,12 +1,13 @@
 <?php
-	/**
-	 * Class de configuration
-	 * @author Clément Biron
-	 */
+	
 	namespace Doublefou\Core;
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Debug as Debug;
 
+	/**
+	 * Class de configuration
+	 * @author Clément Biron
+	 */
 	class Config extends Singleton
 	{
 		/**

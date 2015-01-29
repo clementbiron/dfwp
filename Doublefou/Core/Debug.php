@@ -1,12 +1,13 @@
 <?php
-	/**
-	* Outil de debug
-	* @author Clément Biron
-	*/
+	
 	namespace Doublefou\Core;
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Config;
 
+	/**
+	* Outil de debug
+	* @author Clément Biron
+	*/
 	class Debug extends Singleton
 	{
 		/**
@@ -32,19 +33,19 @@
 				//On le parcoure
 				foreach($pToDebug as $key => $val){
 
-				//On préapare la chaine de sortie type key : val
-					$output.= $key.' : '.json_encode($val);
+					//On préapare la chaine de sortie type key : val
+					$output.= $key.' : '.json_encode((array)$val);
 				
-				//On replace certains caractère dans l'encodage json pour la sortie
-				$output = str_replace('&nbsp;', '', $output );
-				
-				//Si c'est pas le dernière item on rajoute un saut de ligne
-				if($i < $l - 1){
-					$output.= '\n';
-				}
-				
-				//Et on incrémente
-				$i++;
+					//On replace certains caractère dans l'encodage json pour la sortie
+					$output = str_replace('&nbsp;', '', $output );
+					
+					//Si c'est pas le dernière item on rajoute un saut de ligne
+					if($i < $l - 1){
+						$output.= '\n';
+					}
+					
+					//Et on incrémente
+					$i++;
 				}
 			}
 		

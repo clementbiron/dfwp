@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * Taxonomy
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Taxonomy
+	 * @author Clément Biron
+	 */
 	Class Taxonomy extends Singleton
 	{
 		/**

@@ -1,10 +1,13 @@
 <?php
-	/*
-	 * SEO
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+	use Doublefou\Tools\StringTool;
 
+	/**
+	 * SEO
+	 * @author Clément Biron
+	 */
 	abstract Class Seo extends Singleton
 	{
 		/**

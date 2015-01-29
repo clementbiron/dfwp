@@ -1,10 +1,12 @@
 <?php 
-	/**
-	 * Theme
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
 
+	/**
+	 * Theme
+	 * @author Clément Biron
+	 */
 	Class Theme extends Singleton
 	{
 		/**

@@ -1,10 +1,11 @@
 <?php
+	
+	namespace Doublefou\Components;
+
 	/**
 	 * Gestion d'un lien de fil d'ariane
 	 * @author Clément Biron
 	 */
-	namespace Doublefou\Components;
-
 	Class BreadcrumbLink
 	{
 		/**

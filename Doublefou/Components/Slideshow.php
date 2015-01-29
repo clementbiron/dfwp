@@ -1,11 +1,11 @@
 <?php
 
+	namespace Doublefou\Components;
+
 	/**
 	 * Gestion d'un slideshow static à partir d'un dossier
 	 * @author Clément Biron
 	 */
-	namespace Doublefou\Components;
-
 	class Slideshow
 	{
 		/**

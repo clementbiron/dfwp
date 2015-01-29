@@ -1,9 +1,12 @@
 <?php
+    
+    namespace Doublefou\Helper;
+
     /**
      * CustomizeTinyMCEControl
      * @todo Finir la gestion de l'affichage du tinymce
+     * @author Clément Biron
      */
-    namespace Doublefou\Helper;
     class CustomizeTinyMCEControl extends WP_Customize_Control 
     {
         public $type = 'tinymce';

@@ -1,11 +1,11 @@
 <?php
+	
+	namespace Doublefou\Components;
 
 	/**
 	 * Définition d'un slide
 	 * @author Clément Biron
 	 */
-	namespace Doublefou\Components;
-
 	class Slide
 	{
 		/**

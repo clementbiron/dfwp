@@ -1,12 +1,13 @@
 <?php
+	
+	namespace Doublefou\Components;
+	use Doublefou\Core\Singleton;
+
 	/**
 	 * Gestion du fil d'ariane
 	 * @author Clément Biron
 	 * @todo A FINIR
 	 */
-	namespace Doublefou\Components;
-	use Doublefou\Core\Singleton;
-
 	Class Breadcrumb extends Singleton
 	{
 

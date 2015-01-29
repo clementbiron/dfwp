@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * Ping
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Ping
+	 * @author Clément Biron
+	 */
 	Class Ping extends Singleton
 	{
 

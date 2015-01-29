@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * Category 
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Category 
+	 * @author Clément Biron
+	 */
 	Class Category extends Singleton
 	{
 		/**

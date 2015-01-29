@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * Post
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Post
+	 * @author Clément Biron
+	 */
 	Class Post extends Singleton
 	{
 		

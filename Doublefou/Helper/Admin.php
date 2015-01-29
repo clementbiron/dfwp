@@ -1,10 +1,12 @@
 <?php
-	/**
-	 * Configuration de l'administration
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
 
+	/**
+	 * Configuration de l'administration
+	 * @author Clément Biron
+	 */
 	Class Admin extends Singleton
 	{
 

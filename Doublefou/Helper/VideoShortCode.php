@@ -1,9 +1,11 @@
 <?php
+	
+	namespace Doublefou\Helper;
+
 	/**
 	 * Ajouter la gestion d'un shortcode vidéo html5
 	 * @author Clément Biron
 	 */
-	namespace Doublefou\Helper;
 	Class VideoShortCode 
 	{
 		/**

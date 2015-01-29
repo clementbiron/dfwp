@@ -1,10 +1,12 @@
 <?php
-	/**
-	 * @author Clément Biron
-	 * StringTool
-	 */
+	
 	namespace Doublefou\Tools;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * StringTool
+	 * @author Clément Biron
+	 */
 	class StringTool extends Singleton
 	{
 		/**

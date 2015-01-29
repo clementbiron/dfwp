@@ -1,9 +1,12 @@
 <?php
-	/**
-	 * User
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * User
+	 * @author Clément Biron
+	 */
 	Class User extends Singleton
 	{
 		/**

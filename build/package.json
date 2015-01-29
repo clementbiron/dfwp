@@ -1,11 +1,11 @@
 {
-	"name": "df_wp",
-	"version": "0.1.0",
-	"devDependencies": {
-		"grunt": "~0.4.5",
-		"grunt-phpdocumentor": "~0.4.1"
-	},
-	"dependencies": {
-		"time-grunt": "~0.2.9"
-	}
+  "name": "df_wp",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-phpdocumentor": "~0.4.1"
+  },
+  "dependencies": {
+    "time-grunt": "~0.2.9"
+  }
 }

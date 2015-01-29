@@ -1,9 +1,12 @@
 <?php
-	/*
-	 * Transient
-	 */
+	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * Transient
+	 * @author Clément Biron
+	 */
 	Class Transient extends Singleton
 	{
 		/*

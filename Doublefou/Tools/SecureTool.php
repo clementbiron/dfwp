@@ -1,10 +1,12 @@
 <?php
-	/**
-	 * @author Clément Biron
-	 * SecureTool
-	 */
+	
 	namespace Doublefou\Tools;
 	use Doublefou\Core\Singleton;
+
+	/**
+	 * SecureTool
+	 * @author Clément Biron
+	 */
 	class SecureTool extends Singleton
 	{
 		/**
