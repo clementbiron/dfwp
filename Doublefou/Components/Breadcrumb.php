@@ -1,47 +1,95 @@
 <?php
 	
 	namespace Doublefou\Components;
-	use Doublefou\Core\Singleton;
+	use Doublefou\Helper\Category;
+	use Doublefou\Helper\Taxonomy;
+	use Doublefou\Core\Debug;
+	use Doublefou\Tools\ArrayTool;
 
 	/**
 	 * Gestion du fil d'ariane
 	 * @author Clément Biron
 	 * @todo A FINIR
 	 */
-	Class Breadcrumb extends Singleton
+	class Breadcrumb
 	{
+		/**
+		 * Array des liens 
+		 * @var Array
+		 */
+		private $_breadCrumbLinks = [];
+
+		/**
+		 * Constructeur
+		 */
+		public function __construct(){
+
+			//Pour la front page
+			$frontpage = new BreadcrumbLink(get_bloginfo('url'), 'Accueil', is_front_page());
+			$this->addLink($frontpage);
+
+			//Single
+			if (is_single() || is_page()) { 
+				$this->addLink(
+					new BreadcrumbLink(
+						get_permalink(), 
+						get_the_title(), 
+						true
+					) 
+				);
+			}
+
+			//Si c'est une catégorie on crée l'objet qui va bien
+			//avec les infos de la cat courante
+			if(is_category()){
+				$currentCat = Category::getCurrentCategory();
+				$this->addLink(
+					new BreadcrumbLink(
+						Category::getCategoryLink($currentCat), 
+						$currentCat->name, 
+						true
+					) 
+				);
+			}
+
+			//Si c'est une tax
+			//On récupère la tax courante pour construire le lien
+			if(is_tax()){
+				$currentTax = Taxonomy::getCurrentTax();
+				$this->addLink(
+					new BreadcrumbLink(
+						get_term_link($currentTax), 
+						$currentTax->name, 
+						true
+					) 
+				);
+			}
+		}
 
 		/**
 		 * Récupérer le fil d'ariane
 		 * @return [type] [description]
-		 * @todo A FINIR
 		 */
-		public static function getBreadCrumb()
+		public function getBreadCrumb()
 		{
-			//Pour stocker tous les liens
-			$breadCrumbLinks = Array();
-			
-			//Le lien de la home page
-			$homeLink = new BreadcrumbLink(get_bloginfo('url'), 'Accueil');
-			array_push($breadCrumbLinks, $homeLink);
-			
-			//Si on est pas en page d'accueil
-			if (!is_front_page()) {
-				
-				//Global wordpress vars
-				global $post, $cat;
-				
-				//Single
-				if (is_single()) { 
-					$category = get_the_category();
-					$num_cat = count($category);
-					
-					if($num_cat > 1){
-						
-					}else{
-						
-					}
-				}
+			return $this->_breadCrumbLinks;
+		}
+
+		/**
+		 * Ajouter un BreadcrumbLink à une position donnée
+		 * @param BreadcrumbLink $pBreadcrumbLink Objet BreadcrumbLink
+		 * @param integer $pPosition Null par défaut
+		 */
+		public function addLink($pBreadcrumbLink,$pPosition = null){
+			if($pPosition == null){
+				array_push(
+					$this->_breadCrumbLinks,
+					$pBreadcrumbLink
+				);
+			}else{
+				$tempArray = ArrayTool::insertInPos($this->_breadCrumbLinks,$pPosition,$pBreadcrumbLink);
+				unset($this->_breadCrumbLinks);
+				$this->_breadCrumbLinks = $tempArray;
 			}
 		}
 	}

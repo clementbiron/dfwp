@@ -19,15 +19,22 @@
 		 * @var string
 		 */
 		private $title = "";
+
+		/**
+		 * Si c'est l'item courant
+		 * @var boolean
+		 */
+		private $current = false;
 		
 		/**
 		 * Constructeur
 		 * @param string $pLink  Lien
 		 * @param string $ptitle Titre
 		 */
-		public function __construct($pLink, $ptitle){
+		public function __construct($pLink, $ptitle, $pCurrent = false){
 			$this->link = $pLink;
 			$this->title = $ptitle;
+			$this->current = $pCurrent;
 		}
 		
 		/**

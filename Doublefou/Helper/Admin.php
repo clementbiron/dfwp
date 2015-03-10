@@ -2,6 +2,7 @@
 	
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
+	use Doublefou\Core\Debug;
 
 	/**
 	 * Configuration de l'administration
@@ -146,7 +147,7 @@
 		 */
 		public static function addAllowedUploadFileType($pArray)
 		{
-			add_filter('upload_mimes', function() use ($pArray) {
+			add_filter('upload_mimes', function($mimes) use ($pArray) {
 				foreach($pArray as $key => $value){
 					$mimes[$key] = $value;
 				}
@@ -162,8 +163,23 @@
 		{
 			add_filter('tiny_mce_before_init', function($settings) use ($pBlockFormat)
 			{
-				//On enlève le h1	
 				$settings['block_formats'] = $pBlockFormat;
+				return $settings;
+			});
+		}
+
+		/**
+		 * modifyTinyMceToolbar
+		 * @param  integer $pToolbar numéro de la toolbar à modifier (1 ou 2)
+		 * @param  string $pUses la chaine de caractères déinissant les outils de la toolbar
+		 * @return array           
+		 * @see "bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv,formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help"
+		 */
+		public static function modifyTinyMceToolbar($pToolbar,$pUses)
+		{
+			add_filter('tiny_mce_before_init', function($settings) use ($pToolbar, $pUses)
+			{
+				$settings['toolbar'.strval($pToolbar)] = $pUses;
 				return $settings;
 			});
 		}

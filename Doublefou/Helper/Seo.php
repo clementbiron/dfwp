@@ -135,10 +135,10 @@
 				}
 				
 				//Sinon on utilise le titre généré par Yoast
-				else{
+				/*else{
 					global $wpseo_front;
 					$title = $wpseo_front->title('');
-				}
+				}*/
 			});
 
 			//Gestion de la description
@@ -155,34 +155,13 @@
 				else{
 					
 					//Si la description n'est pas remplie en administration
-					if(wpseo_get_value('metadesc') == false){
+					if(\WPSEO_Meta::get_value('metadesc') == false){
 
 						//On utilsie la gestion Seo de DFWP
 						echo '<meta name="description" content="'.Seo::getDescription().'" />';							
 					}			
 				}
 			});
-		}
-
-		/**
-		 * Supprimer les commentaires html injecté par Yoast dans le footer
-		 *@todo a tester
-		 */
-		public static function removeYoastFooter()
-		{
-			add_action('get_header', function (){
-				ob_start(function($output){
-					if (defined('WPSEO_VERSION')) {
-						$output = str_ireplace('<!-- This site is optimized with the Yoast WordPress SEO plugin v' . WPSEO_VERSION . ' - https://yoast.com/wordpress/plugins/seo/ -->', '', $output);
-						$output = str_ireplace('<!-- Avis pour l\'administrateur&nbsp;: cette page n\'affiche pas de méta description car elle n\'en a pas. Vous pouvez donc soit l\'ajouter spécifiquement pour cette page soit aller dans vos réglages (SEO -> Titres) pour configurer un modèle. -->', '', $output);
-						$output = str_ireplace('<!-- / Yoast WordPress SEO plugin. -->', '', $output);
-					}
-					return $output;	
-				});
-			});
-			add_action('wp_head', function(){
-				ob_end_flush();
-			}, 100);
 		}
 	}
 ?>

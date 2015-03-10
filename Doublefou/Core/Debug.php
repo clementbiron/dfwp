@@ -7,6 +7,7 @@
 	/**
 	* Outil de debug
 	* @author Clément Biron
+	* @todo finir l'affichag en console : passage en json
 	*/
 	class Debug extends Singleton
 	{
@@ -34,7 +35,7 @@
 				foreach($pToDebug as $key => $val){
 
 					//On préapare la chaine de sortie type key : val
-					$output.= $key.' : '.json_encode((array)$val);
+					$output.= $key.' : '.json_encode((array)$val, JSON_HEX_APOS | JSON_HEX_QUOT );
 				
 					//On replace certains caractère dans l'encodage json pour la sortie
 					$output = str_replace('&nbsp;', '', $output );
@@ -51,7 +52,7 @@
 		
 			//Sinon debug simple valeur
 			else{
-				$output = json_encode($pToDebug);
+				$output = json_encode($pToDebug, JSON_HEX_APOS | JSON_HEX_QUOT );
 			}
 
 			//En administration
@@ -68,6 +69,12 @@
 			//En front
 			else{
 				add_action('wp_footer', function() use ($output){
+
+					/*echo '<script type="text/javascript">';
+						echo 'var temp = JSON.parse('.$output.');';
+						echo 'console.log(temp);';
+					echo '</script>';*/
+
 					?>
 						<script type="text/javascript">
 							console.warn('**** PHP DEBUG ****\n<?php echo $output;?>\n****');		
@@ -84,22 +91,23 @@
 		{
 			//On affiche les erreurs
 			error_reporting(E_ALL);
-			ini_set('display_errors', '1');
+			ini_set('display_errors', 1);
 
-			//On inclus la librairie d'affichage d'erreur
-			require(Config::get('DF_WP_ROOT_PATH').'/Doublefou/libs/php_error.class.php');
+			//Pour le front uniquement
+			if(!is_admin()){
 
-			//Si c'est ok
-			if (function_exists('\php_error\reportErrors')) {
+				//On inclus la librairie d'affichage d'erreur
+				require(Config::get('DF_WP_ROOT_PATH').'/Doublefou/libs/php_error.class.php');
 
 				//Si on a pas configuré le error handler
 				if(self::$_errorHandler == null){
 
 					//We do it
-					self::$_errorHandler = \php_error\reportErrors(array(
+					self::$_errorHandler = new \php_error\ErrorHandler(array(
 						'wordpress' => true,
 						'enable_saving' => false
 					));
+					self::$_errorHandler->turnOn();
 				}
 			}
 		}
@@ -143,7 +151,7 @@
 			Debug::add(array(
 					'Permalink structure' => get_option('permalink_structure'),
 					'ABSPATH' => ABSPATH,
-					'File' => basename($template),
+					//'File' => basename($template),
 					'Number of database queries' => get_num_queries(),
 					'Memory (mb)' => round( memory_get_peak_usage()/( 1024*1024 ), 3 ),
 					'Queries time (seconds)' => timer_stop(0)
