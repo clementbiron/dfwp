@@ -13,7 +13,7 @@
 
 		/**
 		 * Cacher des menu de l'administration pour une capacité d'utilisateur
-		 * @paraml string $pCapability Capacité d'un rôle utilisateur
+		 * @param string $pCapability Capacité du rôle utilisateur que le rôle cible n'a pas
 		 * @param array $pArray Liste des menus
 		 * index.php //Dashboard
 		 * edit.php //Posts
@@ -39,6 +39,39 @@
 			}
 		}
 
+
+		/**
+		 * Cacher des sous menus
+		 * @paraml string Capacité du rôle utilisateur que le rôle cible n'a pas
+		 * @param  string Menu parent 
+		 * @param  array Liste des sous menus
+		 */
+		public static function hideSubMenu($pCapability,$pPage,$pArray)
+		{
+			if(!current_user_can($pCapability)){
+				add_action('admin_menu', function() use ($pArray,$pPage)
+				{
+					$l = count($pArray);
+					for($i = 0; $i < $l ; $i++){
+						remove_submenu_page($pPage,$pArray[$i]);
+						
+						//Si on veut masque le menu customize == personnaliser
+						if($pArray[$i] == 'customize.php'){
+
+							//On récupere les sous menus
+							global $submenu;
+
+							//On masque le sous menu par index
+							//mais c'est pas terrible si changement d'index !
+							unset($submenu['themes.php'][6]);
+						}
+					}										
+				});
+			}	
+		}
+
+		
+
 		/**
 		 * Cacher des élements du menu du haut dans l'administration
 		 * @param  string $pCapability Capacité d'un rôle utilisateur
@@ -61,6 +94,45 @@
 					}							
 				});
 			}
+		}
+
+		/**
+		 * Ajouter des capacités à un role
+		 * @param string Le nom du rôle utilisateur
+		 * @param array $pArray les capacités à lui ajouter
+		 */
+		public static function addCapabilitysToRole($pRoleName,$pArray)
+		{
+			add_action('admin_menu', function() use ($pRoleName,$pArray)
+			{
+				//On récupère l'objet role
+				$roleObject = get_role($pRoleName);
+
+				//Et les capacitées associées en array
+				$roleCapabilitys = $roleObject->capabilities;
+
+				//On récupère la premiere capacité, sous forme de string
+				$i=0;
+				$roleCapability = '';
+				foreach ($roleCapabilitys as $key => $value) {
+					if($i == 0){
+						$roleCapability = $key;
+						break;
+					}
+				}
+
+				//Si l'utilisateur a cette capacité
+				if(current_user_can($roleCapability)){
+
+					//On parcoure les capacités à ajouter
+					$l = count($pArray);
+					for($i = 0; $i < $l ; $i++){
+
+						//Et on ajoute au role en cours			
+						$roleObject->add_cap($pArray[$i]);
+					}		
+				}
+			});
 		}
 
 		/**
