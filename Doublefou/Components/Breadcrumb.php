@@ -30,13 +30,21 @@
 
 			//Single
 			if (is_single() || is_page()) { 
-				$this->addLink(
-					new BreadcrumbLink(
-						get_permalink(), 
-						get_the_title(), 
-						true
-					) 
-				);
+
+				//Récupération des données
+				$permalink = get_permalink();
+				$title = get_the_title();
+
+				//Si on en dispose, on ajoute le lien au Breadcrumnb
+				if(($permalink != '') && ($title != '')){
+					$this->addLink(									
+						new BreadcrumbLink(
+							get_permalink(), 
+							get_the_title(), 
+							true
+						)											 
+					);
+				}
 			}
 
 			//Si c'est une catégorie on crée l'objet qui va bien

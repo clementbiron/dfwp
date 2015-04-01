@@ -1,8 +1,8 @@
 <?php
 	
-	namespace Doublefou\Helper;
+	namespace Doublefou\Components;
 	use Doublefou\Core\Debug;
-	use Doublefou\Helper\CustomMenuCollection;
+	use Doublefou\Components\CustomMenuCollection;
 
 	/**
 	 * Configuration de l'administration

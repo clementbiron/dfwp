@@ -94,5 +94,32 @@
 				endforeach;
 			}
 		}
+
+		/**
+		 * Definir le template de page courant
+		 * @return [type] 
+		 */
+		public static function defineCurrentTemplate()
+		{
+			add_action('template_include', function($template)
+			{
+				$GLOBALS['dfwp_current_theme_template'] = basename($template);
+	    		return $template;
+			},1000);
+		}
+
+		/**
+		 * Récupérer le template courant
+		 * Il faut impérativement utiliser Template::defineCurrentTemplate() avant
+		 * @return string template courant
+		 */
+		public static function getCurrentTemplate(){
+			if (!isset( $GLOBALS['dfwp_current_theme_template'])) {
+		        trigger_error('$dfwp_current_theme_template has not been defined yet', E_USER_WARNING);
+		        return false;
+		    } else {
+		        return $GLOBALS['dfwp_current_theme_template'];
+		    }
+		}
 	}
 ?>

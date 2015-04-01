@@ -12,12 +12,13 @@
 
 		private $_pattern = "/<h([2-4])(.*?)>(.*?)<\/h([2-4])>/i";
 		private $_summary = array();
+		private $_content;
 
 		/**
 		 * Constructeur
 		 * @param string $pHLevel niveaux des titres à cibler, chaine de type from-to, exemple : '2-4'
 		 */
-		public function __construct($pHLevel = null){
+		public function __construct($pHLevel = null, $pContent = null){
 
 			if ($pHLevel != null){
 				$this->_pattern = "/<h([".$pHLevel."])(.*?)>(.*?)<\/h([".$pHLevel."])>/i";
@@ -25,6 +26,10 @@
 
 			global $post;
 
+			if ($pContent != null){
+				$post->post_content = $pContent;
+			}
+			
 			//On cherche dans le contenu avec la regex 
 			$post->post_content = preg_replace_callback($this->_pattern,function($pMatches){
 
@@ -39,6 +44,7 @@
 
 			}, $post->post_content);
 			
+			$this->_content = $post->post_content;			
 		}
 
 		/**
@@ -47,6 +53,10 @@
 		 */
 		public function getSummary(){
 			return $this->_summary;
+		}
+
+		public function getContent(){
+			return $this->_content;
 		}
 	}
 

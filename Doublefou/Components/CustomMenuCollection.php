@@ -1,7 +1,7 @@
 <?php
 	
-	namespace Doublefou\Helper;
-	use Doublefou\Helper\CustomMenuItem;
+	namespace Doublefou\Components;
+	use Doublefou\Components\CustomMenuItem;
 	use Doublefou\Core\Debug;
 
 	/**
