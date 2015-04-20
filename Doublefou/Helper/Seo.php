@@ -4,6 +4,9 @@
 	use Doublefou\Core\Singleton;
 	use Doublefou\Tools\StringTool;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * SEO
 	 * @author Clément Biron

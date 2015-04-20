@@ -2,6 +2,9 @@
 	
 	namespace Doublefou\Components;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	* Element d'un objet Summary
 	* @author Clément Biron

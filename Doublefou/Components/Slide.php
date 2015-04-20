@@ -2,6 +2,9 @@
 	
 	namespace Doublefou\Components;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Définition d'un slide
 	 * @author Clément Biron

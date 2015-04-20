@@ -3,6 +3,9 @@
 	namespace Doublefou\Helper;
 	use Doublefou\Core\Singleton;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Category 
 	 * @author Clément Biron

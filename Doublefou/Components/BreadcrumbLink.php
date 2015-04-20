@@ -2,6 +2,9 @@
 	
 	namespace Doublefou\Components;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Gestion d'un lien de fil d'ariane
 	 * @author Clément Biron

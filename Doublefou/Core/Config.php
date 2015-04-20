@@ -4,6 +4,9 @@
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Debug as Debug;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Class de configuration
 	 * @author Clément Biron

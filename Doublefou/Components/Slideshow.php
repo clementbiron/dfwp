@@ -2,6 +2,9 @@
 
 	namespace Doublefou\Components;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Gestion d'un slideshow static à partir d'un dossier
 	 * @author Clément Biron

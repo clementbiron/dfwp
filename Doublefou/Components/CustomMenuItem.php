@@ -4,6 +4,9 @@
 	use Doublefou\Core\Debug;
 	use Doublefou\Components\CustomMenuCollection;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Configuration de l'administration
 	 * @author Clément Biron

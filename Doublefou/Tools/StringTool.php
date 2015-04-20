@@ -3,6 +3,9 @@
 	namespace Doublefou\Tools;
 	use Doublefou\Core\Singleton;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * StringTool
 	 * @author Clément Biron

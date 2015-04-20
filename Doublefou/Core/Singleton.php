@@ -2,6 +2,9 @@
 	
 	namespace Doublefou\Core;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Singleton
 	 * @author Clément Biron

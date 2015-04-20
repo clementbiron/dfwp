@@ -2,6 +2,9 @@
     
     namespace Doublefou\Helper;
 
+    //Exit si accès direct
+    if (!defined('ABSPATH')) exit; 
+
     /**
      * CustomizeTinyMCEControl
      * @todo Finir la gestion de l'affichage du tinymce

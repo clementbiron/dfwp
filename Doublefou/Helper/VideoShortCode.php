@@ -2,6 +2,9 @@
 	
 	namespace Doublefou\Helper;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Ajouter la gestion d'un shortcode vidéo html5
 	 * @author Clément Biron

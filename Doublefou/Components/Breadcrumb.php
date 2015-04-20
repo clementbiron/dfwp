@@ -6,6 +6,9 @@
 	use Doublefou\Core\Debug;
 	use Doublefou\Tools\ArrayTool;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Gestion du fil d'ariane
 	 * @author Clément Biron

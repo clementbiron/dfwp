@@ -4,6 +4,9 @@
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Debug;
 
+	//Exit si accès direct
+	if (!defined('ABSPATH')) exit; 
+
 	/**
 	 * Configuration de l'administration
 	 * @author Clément Biron
