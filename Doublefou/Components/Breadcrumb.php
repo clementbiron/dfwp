@@ -20,7 +20,7 @@
 		 * Array des liens 
 		 * @var Array
 		 */
-		private $_breadCrumbLinks = [];
+		private $_breadCrumbLinks = array();
 
 		/**
 		 * Constructeur
@@ -34,21 +34,27 @@
 			//Single
 			if (is_single() || is_page()) { 
 
-				//Récupération des données
-				$permalink = get_permalink();
-				$title = get_the_title();
+				//Mais pas la front page
+				if(!is_front_page()){
 
-				//Si on en dispose, on ajoute le lien au Breadcrumnb
-				if(($permalink != '') && ($title != '')){
-					$this->addLink(									
-						new BreadcrumbLink(
-							get_permalink(), 
-							get_the_title(), 
-							true
-						)											 
-					);
+					//Récupération des données
+					$permalink = get_permalink();
+					$title = get_the_title();
+
+					//Si on en dispose, on ajoute le lien au Breadcrumnb
+					if(($permalink != '') && ($title != '')){
+						$this->addLink(									
+							new BreadcrumbLink(
+								get_permalink(), 
+								get_the_title(), 
+								true
+							)											 
+						);
+					}
+					
 				}
 			}
+
 
 			//Si c'est une catégorie on crée l'objet qui va bien
 			//avec les infos de la cat courante
@@ -65,7 +71,7 @@
 
 			//Si c'est une tax
 			//On récupère la tax courante pour construire le lien
-			if(is_tax()){
+			if(is_tax() || is_tag()){
 				$currentTax = Taxonomy::getCurrentTax();
 				$this->addLink(
 					new BreadcrumbLink(
