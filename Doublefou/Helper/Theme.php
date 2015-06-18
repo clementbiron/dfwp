@@ -83,97 +83,16 @@
 		{
 			remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 		}
-		
+
 		/**
-		 * Compiler les fichiers less dans un fichier css 
-		 * @param string $pLessFiles Dossier des fichiers less
-		 * @param string $pCssFile Fichier css de destination
-		 * @deprecated N'est plus utilisé depuis la mise en place de grunt
+		 * Buffer pour la fonction language_attributes()
+		 * @param  string $doctype
+		 * @return string
 		 */
-		public static function compileLess($pLessDirectory,$pCssFile)
-		{
-			//Init var
-			$content = '';
-			
-			//Récupérer tous les fichiers less
-			$lessFiles = glob($pLessDirectory.'*.less');
-
-			//Trier les fichiers par ordre alphabétique
-			usort($lessFiles, "strcasecmp");
-
-			//Less object
-			$less = new lessc;
-			
-			//Si on veut du compréssé
-			if(get_option('debug_mode') == 'prod'){
-				$less->setFormatter("compressed");
-			}
-			
-			//Sinon on préserve les commentaires
-			else{
-				$less->setPreserveComments(true);
-			}
-			
-			//Variables de stockage
-			$tempString = '';
-			
-			//On parcoure tous les fichiers less
-			for($i = 0; $i < count($lessFiles); $i++)
-			{
-				//Et on les assemble dans une chaine
-				$tempContent = file_get_contents($lessFiles[$i]);
-				$tempString .= $tempContent;
-			}
-		
-			//Maintenant on tente la comilation
-			try {
-			    $content .= $less->compile($tempString);
-			} catch (Exception $ex) {
-			    echo "lessphp fatal error: ".$ex->getMessage();
-			}
-			
-			//Si on veut du minifié
-			if(get_option('debug_mode') == 'prod'){
-				$content = CssMinifer::min($content);
-			}
-			
-			//Et on écrit le contenu
-			file_put_contents($pCssFile,$content);
+		public static function getLanguageAttributes($doctype='html'){
+			ob_start();
+			language_attributes($doctype);
+			return ob_get_clean();
 		}
-		
-		/**
-		 * Combiner et minifier les fichiers js
-		 * @param string $pJsDirectory Dossier des fichier javascript
-		 * @param string $pJsFile Fichier js de destination
-		 * @deprecated N'est plus utilisé depuis la mise en place de grunt
-		 */
-		public static function compileJs($pJsDirectory,$pJsFile)
-		{
-			//Init var
-			$content = "";
-			
-			//Récupérer tous les fichiers js
-			$jsFiles = glob($pJsDirectory.'*.js');
-			
-			//Trier les fichiers par ordre alphabétique
-			usort($jsFiles, "strcasecmp");
-
-			//On parcoure tous les fichiers js
-			for($i = 0; $i < count($jsFiles); $i++)
-			{
-				//On compile
-				if(get_option('debug_mode') == 'prod'){
-					$content .=  JSMIN::minify(file_get_contents($jsFiles[$i]));
-				}else{
-					$content .=  file_get_contents($jsFiles[$i]);
-				}
-						
-			}
-			
-			//Et on écrit le contenu
-			file_put_contents($pJsFile,$content);
-		}
-		
-		
 	}
 ?>
