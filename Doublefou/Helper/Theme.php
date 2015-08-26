@@ -96,7 +96,7 @@
 		}
 
 		/**
-		 * Désaticver les EMOJI
+		 * Désactiver les EMOJI
 		 */
 		public static function disableEmoji(){
 			add_action( 'init',function(){			
