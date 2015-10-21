@@ -1,7 +1,6 @@
 <?php
 
 	namespace Doublefou\Components;
-	use Doublefou\Core\Debug;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
@@ -84,6 +83,4 @@
 			return $this->_content;
 		}
 	}
-
-
 ?>
