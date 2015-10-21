@@ -8,7 +8,7 @@
 	if (!defined('ABSPATH')) exit; 
 
 	/**
-	 * Configuration de l'administration
+	 * Custom menu item
 	 * @author Clément Biron
 	 */
 	Class CustomMenuItem
