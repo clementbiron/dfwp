@@ -53,7 +53,7 @@
 
 			//On ajoute un filtre sur l'affichage du contenu
 			//Pour retourner le contenu modifié
-			add_filter('the_content', array($this,'getContent'));
+			add_filter('the_content', array($this,'getContent'),0);
 	
 		}
 		
