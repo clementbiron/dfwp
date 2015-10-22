@@ -49,26 +49,27 @@
 			}
 
 			//On cherche dans le contenu avec la regex 
-			$this->_content = preg_replace_callback($this->_pattern,function($pMatches){
-
-				//On créer l'id avec le titre et un nombre aléatoire
-				$id = sanitize_title($pMatches[3]).'-'.$this->_guid;
-
-				//Pour chaque résultat, on créer un objet SummaryElement et on le stocke
-				array_push($this->_summary,new SummaryElement($pMatches[1],$pMatches[3], $id));
-
-				//Et on retourne la chaine modifiée avec l'ancre pour le contenu
-				return '<h'.$pMatches[1].$pMatches[2].' id="'.$id.'">'.$pMatches[3].'</h'.$pMatches[4].'>';
-
-			}, $this->_content);
+			$this->_content = preg_replace_callback($this->_pattern, array($this, 'replace'), $this->_content);
 
 			//On ajoute un filtre sur l'affichage du contenu
 			//Pour retourner le contenu modifié
-			add_filter('the_content', function($content)
-			{
-				return $this->_content;
-			});
+			add_filter('the_content', array($this,'getContent'));
 	
+		}
+		
+		/**
+		 * Replace
+		 */
+		private function replace($pMatches){
+			
+			//On créer l'id avec le titre et un nombre aléatoire
+			$id = sanitize_title($pMatches[3]).'-'.$this->_guid;
+
+			//Pour chaque résultat, on créer un objet SummaryElement et on le stocke
+			array_push($this->_summary,new SummaryElement($pMatches[1],$pMatches[3], $id));
+
+			//Et on retourne la chaine modifiée avec l'ancre pour le contenu
+			return '<h'.$pMatches[1].$pMatches[2].' id="'.$id.'">'.$pMatches[3].'</h'.$pMatches[4].'>';
 		}
 
 		/**
@@ -83,4 +84,6 @@
 			return $this->_content;
 		}
 	}
+
+
 ?>
