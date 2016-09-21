@@ -6,6 +6,10 @@ build/node_modules/
 ###################
 docs/
 
+# IDE #
+###################
+.idea/
+
 # Compiled source #
 ###################
 *.dll
