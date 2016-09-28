@@ -9,6 +9,8 @@ docs/
 # IDE #
 ###################
 .idea/
+.idea/codeStyleSettings.xml
+.idea/workspace.xml
 
 # Compiled source #
 ###################
