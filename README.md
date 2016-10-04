@@ -21,4 +21,8 @@ A lire ici après l'avoir générer
 
 ----------
 
+#### TODO
+- Supprimer grunt -> go gulp
+- Utiliser l'autoload de Composer
+
 
