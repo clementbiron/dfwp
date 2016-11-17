@@ -3,6 +3,7 @@
 	namespace Doublefou\Core;
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Config;
+	use php_error\ErrorHandler;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
@@ -21,7 +22,7 @@
 		private static $_errorHandler = null;
 
 		/**
-		 * Afficher la valeur d'une variable dans la console de debuggage
+		 * Afficher la valeur d'une variable dans la console de debug
 		 * @param * $pToDebug
 		 */
 		public static function add($pToDebug)
@@ -72,12 +73,6 @@
 			//En front
 			else{
 				add_action('wp_footer', function() use ($output){
-
-					/*echo '<script type="text/javascript">';
-						echo 'var temp = JSON.parse('.$output.');';
-						echo 'console.log(temp);';
-					echo '</script>';*/
-
 					?>
 						<script type="text/javascript">
 							console.warn('**** PHP DEBUG ****\n<?php echo $output;?>\n****');		
@@ -99,19 +94,26 @@
 			//Pour le front uniquement
 			if(!is_admin()){
 
-				//On inclus la librairie d'affichage d'erreur
-				require(Config::get('DF_WP_ROOT_PATH').'/Doublefou/libs/php_error.class.php');
-
 				//Si on a pas configuré le error handler
-				if(self::$_errorHandler == null){
+				self::initErrorHandler();
 
-					//We do it
-					self::$_errorHandler = new \php_error\ErrorHandler(array(
-						'wordpress' => true,
-						'enable_saving' => false
-					));
-					self::$_errorHandler->turnOn();
-				}
+				//On active
+				self::$_errorHandler->turnOn();
+			}
+		}
+
+		/**
+		 * Activer le gestionnaire d'erreurs
+		 */
+		private static function initErrorHandler()
+		{
+			if(self::$_errorHandler == null){
+
+				//We do it
+				self::$_errorHandler = new ErrorHandler(array(
+					'wordpress' => true,
+					'enable_saving' => false
+				));
 			}
 		}
 
@@ -123,6 +125,9 @@
 			//On masque les erreurs
 			error_reporting(0);
 			ini_set("display_errors",0);
+
+			//Si on a pas configuré le error handler
+			self::initErrorHandler();
 
 			//Si on a un error handler configuré
 			if(self::$_errorHandler !== null){
@@ -147,14 +152,13 @@
 		}
 
 		/**
-		 * Afficher des infos de debug de Wordpress dans la console
+		 * Afficher des infos de debug de WordPress dans la console
 		 */
 		public static function getWpInfo()
 		{	
 			Debug::add(array(
 					'Permalink structure' => get_option('permalink_structure'),
 					'ABSPATH' => ABSPATH,
-					//'File' => basename($template),
 					'Number of database queries' => get_num_queries(),
 					'Memory (mb)' => round( memory_get_peak_usage()/( 1024*1024 ), 3 ),
 					'Queries time (seconds)' => timer_stop(0)

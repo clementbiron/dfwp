@@ -2,9 +2,11 @@
 	/**
 	 * Autoloader
 	 */
-	require_once('autoload.php');
-	$dfwpAutoloader = new Autoloader();	
-	
+	//require_once('autoload.php');
+	//$dfwpAutoloader = new Autoloader();
+
+	$loader = require __DIR__ . '/vendor/autoload.php';
+
 	/**
 	 * Configuration
 	 */

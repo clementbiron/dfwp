@@ -1,0 +1,20 @@
+{
+    "name": "dfwp/babar",
+    "authors": [
+        {
+            "name": "Clément Biron",
+            "email": "clement.biron@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "../vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Doublefou\\": "../vendor/Doublefou"
+        }
+    },
+    "require": {
+		"joseph-lenton/php-error": "dev-master"
+	}
+}
