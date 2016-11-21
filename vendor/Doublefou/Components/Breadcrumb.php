@@ -55,7 +55,6 @@
 				}
 			}
 
-
 			//Si c'est une catégorie on crée l'objet qui va bien
 			//avec les infos de la cat courante
 			if(is_category()){

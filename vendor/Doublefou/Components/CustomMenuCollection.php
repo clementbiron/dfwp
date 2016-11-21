@@ -55,7 +55,7 @@
 		private function buildItems($pMenuItems){
 
 			//Parcourire les items
-			foreach((array) $pMenuItems as $key => $menuItem){	
+			foreach((array) $pMenuItems as $key => $menuItem){
 
 				//Data
 				$id = (int) $menuItem->ID;

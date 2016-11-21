@@ -42,7 +42,6 @@
 			}
 		}
 
-
 		/**
 		 * Cacher des sous menus
 		 * @paraml string Capacité du rôle utilisateur que le rôle cible n'a pas
@@ -73,7 +72,6 @@
 			}	
 		}
 
-		
 
 		/**
 		 * Cacher des élements du menu du haut dans l'administration

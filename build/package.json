@@ -2,10 +2,10 @@
   "name": "dfwp",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-phpdocumentor": "~0.4.1"
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2"
   },
   "dependencies": {
-    "time-grunt": "~0.2.9"
+    "time-grunt": "lastest"
   }
 }

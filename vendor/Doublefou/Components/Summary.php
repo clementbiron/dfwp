@@ -9,7 +9,6 @@
 	* Composant de sommaire automatique
 	* @author Clément Biron
 	* @example $summary = new Summary('2-4');
-	* @todo tester l'implémentation en front
 	*/
 	class Summary{
 

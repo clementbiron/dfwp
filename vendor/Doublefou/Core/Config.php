@@ -31,7 +31,6 @@
 		 */
 		private static $_appModes = Array(
 			'debug',
-			'test',
 			'prod'
 		);
 
@@ -43,9 +42,8 @@
 
 
 		/**
-		 * Parametrer le niveau de debug : debug / test / prod
+		 * Parametrer le niveau de debug
 		 * @param integer $pDebugLevel
-		 * @todo intégrer le niveau test
 		 */
 		public static function setMode($pDebugLevel)
 		{
@@ -60,10 +58,10 @@
 				}
 
 				if(self::$_debug == 'prod'){
-					//self::activeProd();
+					self::activeProd();
 				}
 			}else{
-				throw new Exception("Application mode not allowed, please use debug / test / prod");			
+				throw new Exception("Application mode is not allowed");
 			}
 		}
 
@@ -163,11 +161,11 @@
 		}
 		
 		/**
-		 * Afficher les constantes Wordpress disponibles dans la console de debug
+		 * Afficher les constantes WordPress disponibles dans la console de debug
 		 */
 		public static function getWpConstants()
 		{
-			Debug::add(get_defined_constants());	
+			Debug::add(get_defined_constants());
 		}
 	}
 ?>

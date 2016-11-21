@@ -81,6 +81,12 @@
 		public function getCustomMenuCollection(){
 			return $this->childrenCollection;
 		}
+
+		public function hasChildren()
+		{
+			if(count($this->childrenCollection->getItems()) > 0) return true;
+			else return false;
+		}
 	}
 
 ?>

@@ -22,16 +22,26 @@
 		private static $_errorHandler = null;
 
 		/**
+		 * Simple debug
+		 */
+		public static function add($pToDebug)
+		{
+			echo '<pre>';
+			print_r($pToDebug);
+			echo '</pre>';
+		}
+
+		/**
 		 * Afficher la valeur d'une variable dans la console de debug
 		 * @param * $pToDebug
 		 */
-		public static function add($pToDebug)
+		public static function addToConsole($pToDebug)
 		{
 			//Vars
 			$output = '';
 			$l =  count($pToDebug);
 			$i = 0;
-			
+
 			//Si on veut débugger un array
 			if(is_array($pToDebug) && $l > 0){
 				
@@ -126,9 +136,6 @@
 			error_reporting(0);
 			ini_set("display_errors",0);
 
-			//Si on a pas configuré le error handler
-			self::initErrorHandler();
-
 			//Si on a un error handler configuré
 			if(self::$_errorHandler !== null){
 
@@ -154,15 +161,22 @@
 		/**
 		 * Afficher des infos de debug de WordPress dans la console
 		 */
-		public static function getWpInfo()
+		public static function addWpInfoToConsole()
 		{	
-			Debug::add(array(
-					'Permalink structure' => get_option('permalink_structure'),
-					'ABSPATH' => ABSPATH,
-					'Number of database queries' => get_num_queries(),
-					'Memory (mb)' => round( memory_get_peak_usage()/( 1024*1024 ), 3 ),
-					'Queries time (seconds)' => timer_stop(0)
-				)
+			Debug::addToConsole(self::addWpInfoToConsole());
+		}
+
+		/**
+		 * Récupérer des infos générales sur WP
+		 */
+		public static function getWpInfo()
+		{
+			return array(
+				'Permalink structure' => get_option('permalink_structure'),
+				'ABSPATH' => ABSPATH,
+				'Number of database queries' => get_num_queries(),
+				'Memory (mb)' => round( memory_get_peak_usage()/( 1024*1024 ), 3 ),
+				'Queries time (seconds)' => timer_stop(0)
 			);
 		}
 	}
