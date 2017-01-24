@@ -4,59 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "32458a94a7625f6b39e176914a09e9b5",
-    "content-hash": "419d5e14a46eb0f8e95f40d1d1617747",
+    "content-hash": "ff673aa0414551b4b4593dba39b3b755",
     "packages": [
         {
-            "name": "joseph-lenton/php-error",
-            "version": "dev-master",
+            "name": "filp/whoops",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/JosephLenton/PHP-Error.git",
-                "reference": "9918dd5eeec527846d43c92a4c9880bfcdd0de14"
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "2abce9d956589122c6443d6265f01cf7e9388e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JosephLenton/PHP-Error/zipball/9918dd5eeec527846d43c92a4c9880bfcdd0de14",
-                "reference": "9918dd5eeec527846d43c92a4c9880bfcdd0de14",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/2abce9d956589122c6443d6265f01cf7e9388e3c",
+                "reference": "2abce9d956589122c6443d6265f01cf7e9388e3c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^5.5.9 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "symfony/var-dumper": "^2.6 || ^3.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
             "autoload": {
-                "files": [
-                    "src/php_error.php"
-                ]
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Joseph Lenton",
-                    "homepage": "http://www.playmycode.com",
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
                     "role": "Developer"
                 }
             ],
-            "description": "Better error reporting for PHP, and prettier too!",
-            "homepage": "https://github.com/JosephLenton/PHP-Error",
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
             "keywords": [
                 "error",
-                "php",
-                "reporting"
+                "exception",
+                "handling",
+                "library",
+                "whoops",
+                "zf2"
             ],
-            "time": "2013-08-05 19:13:00"
+            "time": "2016-12-26T16:13:31+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "joseph-lenton/php-error": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

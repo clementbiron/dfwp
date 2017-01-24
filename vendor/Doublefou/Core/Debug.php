@@ -108,7 +108,7 @@
 				self::initErrorHandler();
 
 				//On active
-				self::$_errorHandler->turnOn();
+				self::$_errorHandler->register();
 			}
 		}
 
@@ -120,10 +120,14 @@
 			if(self::$_errorHandler == null){
 
 				//We do it
-				self::$_errorHandler = new ErrorHandler(array(
+				/*self::$_errorHandler = new ErrorHandler(array(
 					'wordpress' => true,
 					'enable_saving' => false
-				));
+				));*/
+
+				self::$_errorHandler = new \Whoops\Run;
+				self::$_errorHandler->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+
 			}
 		}
 
@@ -140,7 +144,7 @@
 			if(self::$_errorHandler !== null){
 
 				//On le turn off
-				self::$_errorHandler->turnOff();
+				self::$_errorHandler->unregister();
 			}
 		}
 
