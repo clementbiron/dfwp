@@ -15,6 +15,7 @@
         }
     },
     "require": {
-		"joseph-lenton/php-error": "dev-master"
+		"joseph-lenton/php-error": "dev-master",
+        "filp/whoops": "^2.1"
 	}
 }
