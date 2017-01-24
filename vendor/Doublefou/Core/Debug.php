@@ -3,7 +3,6 @@
 	namespace Doublefou\Core;
 	use Doublefou\Core\Singleton;
 	use Doublefou\Core\Config;
-	use php_error\ErrorHandler;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
@@ -119,15 +118,8 @@
 		{
 			if(self::$_errorHandler == null){
 
-				//We do it
-				/*self::$_errorHandler = new ErrorHandler(array(
-					'wordpress' => true,
-					'enable_saving' => false
-				));*/
-
 				self::$_errorHandler = new \Whoops\Run;
 				self::$_errorHandler->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-
 			}
 		}
 
