@@ -2,9 +2,7 @@
 WordPress theme framework
 
 #### INSTALL
-cd build
-npm install --save-dev
-composer install
+cd build && composer install
 
 #### PHP COMPONENTS
 
