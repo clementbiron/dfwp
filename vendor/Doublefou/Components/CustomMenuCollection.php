@@ -93,6 +93,14 @@
 		}
 
 		/**
+		 * Ajouter nun enfant dans la collection en premier position
+		 * @param CustomMenuItem $pChildren
+		 */
+		public function addChildrenFirst(CustomMenuItem $pChildren){
+			array_unshift($this->items, $pChildren);
+		}
+
+		/**
 		 * Ajouter dans la collection du parent
 		 * @param integer $pParentId 
 		 * @param CustomMenuItem $pItem 
