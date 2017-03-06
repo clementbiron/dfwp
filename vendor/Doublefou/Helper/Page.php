@@ -126,6 +126,41 @@
 		}
 
 		/**
+		 * hideInAdminBySlug
+		 * @param  integer $pId ID de la page à masquer
+		 * @param  string $pRole Rôle à partir duquel la page apparait
+		 * @return object
+		 */
+		public static function hideInAdminBySlug($pSlug, $pRole = 'activate_plugins')
+		{
+			//Après la création de la query mais avant son lancement
+			add_action('pre_get_posts', function($query) use ($pSlug,$pRole)
+			{
+				//Si on est pas en admin -> go out
+				if(!is_admin())
+					return $query;
+
+				global $pagenow;
+
+				//Si l'utilisateur n'a pas le role
+				if(!current_user_can($pRole)){
+
+					//Et que l'on est sur la bonne page de l'admin
+					if('edit.php' == $pagenow && ( get_query_var('post_type') && 'page' == get_query_var('post_type') ) ){
+
+						//On recupere la page par son slug
+						$targetPage = Page::getPageBySlug($pSlug);
+
+						//On modifie la query
+						$query->set('post__not_in', array($targetPage->ID));
+					}
+				}
+
+				return $query;
+			});
+		}
+
+		/**
 		 * hideInAdminByPageTemplate
 		 * @param  string $pPageTemplate nom du page template, exemple : page-pattern.php
 		 * @param  string $pRole Rôle à partir duquel la page apparait
