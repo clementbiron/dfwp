@@ -3,6 +3,7 @@
 	namespace Doublefou\Components;
 	use Doublefou\Components\CustomMenuItem;
 	use Doublefou\Core\Debug;
+	use Exception;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
