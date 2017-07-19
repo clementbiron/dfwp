@@ -72,7 +72,6 @@
 			}	
 		}
 
-
 		/**
 		 * Cacher des élements du menu du haut dans l'administration
 		 * @param  string $pCapability Capacité d'un rôle utilisateur
@@ -258,6 +257,7 @@
 		}
 
 		/**
+		 * makeTinyMceTwoLines
 		 * Passer TinyMce sur 2 lignes
 		 */
 		public static function makeTinyMceTwoLines()
@@ -270,6 +270,22 @@
 		}
 
 		/**
+		* removeMediaButton
+		* @param string $pCapability Capacité du rôle utilisateur que le rôle cible n'a pas
+		*/
+		public static function removeMediaButton($pCapability = null)
+		{
+			if($pCapability != null){
+				if ( !current_user_can( pCapability) ) {
+					remove_action( 'media_buttons', 'media_buttons' );
+				}
+			}else{
+				remove_action( 'media_buttons', 'media_buttons' );
+			}
+		}
+
+		/**
+		 * deleteShortLinkBtn
 		 * Supprimer le bouton pour obtenir le lien court
 		 */
 		public static function deleteShortLinkBtn()
