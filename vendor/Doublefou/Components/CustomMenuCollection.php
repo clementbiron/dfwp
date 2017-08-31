@@ -3,6 +3,7 @@
 	namespace Doublefou\Components;
 	use Doublefou\Components\CustomMenuItem;
 	use Doublefou\Core\Debug;
+	use Exception;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
@@ -90,6 +91,14 @@
 		 */
 		public function addChildren(CustomMenuItem $pChildren){
 			array_push($this->items, $pChildren);
+		}
+
+		/**
+		 * Ajouter nun enfant dans la collection en premier position
+		 * @param CustomMenuItem $pChildren
+		 */
+		public function addChildrenFirst(CustomMenuItem $pChildren){
+			array_unshift($this->items, $pChildren);
 		}
 
 		/**

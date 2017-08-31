@@ -100,6 +100,7 @@
 		 * Ajouter des capacités à un role
 		 * @param string Le nom du rôle utilisateur
 		 * @param array $pArray les capacités à lui ajouter
+		 * @deprecated
 		 */
 		public static function addCapabilitysToRole($pRoleName,$pArray)
 		{

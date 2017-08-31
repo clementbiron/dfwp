@@ -37,6 +37,7 @@
 		/**
 		 * Permettre à Yoast d'analyser les champs ACF
 		 * @todo à compléter, finaliser
+		 * @deprecated
 		 */
 		public static function makeACFFriendly()
 		{
