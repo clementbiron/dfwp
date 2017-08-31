@@ -24,7 +24,6 @@
 		public static function getPostLinkBySlug($pSlug)
 		{
 			$query = self::getPostBySlug($pSlug);
-
 			return get_permalink($query->post->ID);
 		}
 		

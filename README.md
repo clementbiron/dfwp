@@ -4,13 +4,6 @@ WordPress theme framework
 #### INSTALL
 cd build && composer install
 
-#### TODO 
-- tester les méthodes de Template.php
-- mettre en forme ce document
-
-#### BUGS
-- CustomizeTinyMCEControl n'affiche pas de tinymce mais un textarea classique
-
 #### PHP COMPONENTS
 
 ##### Breadcrumb
