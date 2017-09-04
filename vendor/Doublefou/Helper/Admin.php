@@ -83,14 +83,17 @@
 		 */
 		public static function hideMenuTop($pCapability,$pArray)
 		{
-			if(!current_user_can($pCapability)){
+			if(!current_user_can($pCapability))
+			{				
 				add_action('wp_before_admin_bar_render', function() use ($pArray)
 				{
 					global $wp_admin_bar;
 					$l = count($pArray);
-					for($i = 0; $i < $l ; $i++){				
-						remove_menu_page($pArray[$i]);
-						$wp_admin_bar->remove_node($pArray[$i]);
+					for($i = 0; $i < $l ; $i++){		
+						$menuNode = $wp_admin_bar->get_node($pArray[$i]);
+						if($menuNode){
+							$wp_admin_bar->remove_node($pArray[$i]);
+						}						
 					}							
 				});
 			}
@@ -100,6 +103,7 @@
 		 * Ajouter des capacités à un role
 		 * @param string Le nom du rôle utilisateur
 		 * @param array $pArray les capacités à lui ajouter
+		 * @deprecated
 		 */
 		public static function addCapabilitysToRole($pRoleName,$pArray)
 		{
