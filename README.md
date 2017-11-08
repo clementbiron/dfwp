@@ -1,10 +1,38 @@
 ### DFWP 
 WordPress theme framework
 
-#### INSTALL
-cd build && composer install
+#### Requirements
+Choco (Windows) ou Brew (macOS)
+Yarn
+Composer
+Plugins : Advanced custo fields pro : https://www.advancedcustomfields.com
 
-#### PHP COMPONENTS
+#### Install
+1. `cd build && composer install`
+2. `choco install yarn` (Windows) ou `brew install yarn` (macOS)
+3. `yarn install`
+3. configurer le projet : src/bootstrap/config.scss 
+4. configurer le styleguide styleguide/config.md
+
+#### Build
+
+Commandes gulp disponibles :
+`gulp styles`
+`gulp scripts` 
+`gulp sprites` 
+`gulp styleguide` 
+`gulp` (tâches par défaut + watch de gulp sprites, scripts et styles)
+
+#### MAINTENANCE
+Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.
+Le fichier maintenance.css est chargé uniquement pour cette page.
+
+#### STYLEGUIDE
+En administration, créer une page nommée styleguide et l'associé au template styleguide.
+Le styleguide est accessible via www.exemple.com/styleguide.
+Le fichier styleguide.css est chargé uniquement pour cette page.
+
+#### PHP components
 
 ##### Breadcrumb
 ```php
@@ -73,3 +101,6 @@ if(count($summaryItems) > 0)
 	}
 }
 ```
+
+#### CHANGELOG
+Consultable ici : [Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md)

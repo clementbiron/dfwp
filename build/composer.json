@@ -7,11 +7,12 @@
         }
     ],
     "config": {
-        "vendor-dir": "../vendor"
+        "vendor-dir": "../src/vendor",
+        "disable-tls": true
     },
     "autoload": {
         "psr-4": {
-            "Doublefou\\": "../vendor/Doublefou"
+            "Doublefou\\": "../src/vendor/Doublefou"
         }
     },
     "require": {

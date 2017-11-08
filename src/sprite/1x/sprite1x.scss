@@ -1,0 +1,14 @@
+.sprite1x{
+	display:inline-block;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-image: url('../img/1x/sprite1x.png');
+}
+
+.sprite1x-apple-touch{
+	@extend .sprite1x;
+	width: 114px; 
+	height: 114px; 
+	background-position: 0px 0px;
+}
+

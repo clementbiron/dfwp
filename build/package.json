@@ -1,0 +1,23 @@
+{
+  "name": "dfwp",
+  "version": "3.0.0",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "latest",
+    "gulp-csso": "latest",
+    "gulp-livereload": "latest",
+    "gulp-notify": "latest",
+    "gulp-plumber": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-styledown": "latest",
+    "gulp-uglify": "latest",
+    "gulp-foreach": "latest",
+    "gulp.spritesmith": "latest",
+    "gulp-foreach": "latest"
+  },
+  "dependencies": {
+  },
+  "main": "gulpfile.js"
+}
