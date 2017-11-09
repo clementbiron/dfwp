@@ -36,18 +36,6 @@ h2.sg{
 }
 
 //Pour l'affichage des composants
-.dfwp_StyleGuide-isComposant{
-	#dfwp_MenuComposant,
-	#dfwp_MenuElement,
-	#dfwp_TitleStyleGuide{
-		display: none;
-	}
-
-	.sg-canvas,
-	.sg-block:last-of-type,
-	.sg-block{
-		margin: 0;
-		padding: 0;
-	}
+.dfwp_styleguide-iscomposant{
 
 }

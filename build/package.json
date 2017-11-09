@@ -6,18 +6,15 @@
     "gulp-autoprefixer": "latest",
     "gulp-concat": "latest",
     "gulp-csso": "latest",
+    "gulp-foreach": "latest",
     "gulp-livereload": "latest",
     "gulp-notify": "latest",
     "gulp-plumber": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
     "gulp-styledown": "latest",
-    "gulp-uglify": "latest",
-    "gulp-foreach": "latest",
-    "gulp.spritesmith": "latest",
-    "gulp-foreach": "latest"
+    "gulp-uglify": "latest"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "main": "gulpfile.js"
 }

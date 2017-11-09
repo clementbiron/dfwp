@@ -12,7 +12,6 @@ var uglify       = require('gulp-uglify');
 var livereload   = require('gulp-livereload');
 var plumber      = require('gulp-plumber');
 var notify       = require('gulp-notify');
-var spritesmith  = require('gulp.spritesmith');
 var rename       = require('gulp-rename');
 var styledown    = require('gulp-styledown');
 var foreach = require('gulp-foreach');
@@ -38,21 +37,6 @@ gulp.task('sprites', function ()
             name: "2x"
         }
     ];
-
-    sprites.forEach(function (el)
-    {
-        var spriteData = gulp.src('../src/sprites/' + el.name + '/*.png')
-            .pipe(plumber({
-                errorHandler: notify.onError(notifyError)
-            }))
-            .pipe(spritesmith({
-                imgName    : 'sprite' + el.name + '.png',
-                cssName    : 'sprite' + el.name + '.scss',
-                cssTemplate: 'sprites-templates/sprite' + el.name + '.scss.handlebars'
-            }));
-        var imgStream  = spriteData.img.pipe(gulp.dest('../dist/img/' + el.name + '/'));
-        var cssStream  = spriteData.css.pipe(gulp.dest('../src/sprites/' + el.name + '/'));
-    });
 });
 
 /**

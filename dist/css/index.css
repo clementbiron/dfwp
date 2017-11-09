@@ -1,0 +1,62 @@
+/***
+ * Fonts:
+ */
+/**
+ * Font 1:
+ * `.Font1`
+ *
+ *     @example
+ *     div.Font1 Lorem
+ */
+/***
+ * Icons:
+ */
+/***
+ * Inline style:
+ */
+/**
+ * Paragraphe:
+ * `<p>`
+ *
+ *     @example
+ *     p lorem ispum
+ *
+ */
+/***
+ * Links:
+ */
+/**
+ * Lien 1:
+ * `<a href="http://www.google.com">lorem</a>`
+ *
+ *     @example
+ *     a(href='google.com') lorem
+ */
+/***
+ * Title:
+ */
+/**
+ * H1:
+ * `<h1>` `.H1-like`
+ *
+ *     @example
+ *     h1.H1-like Lorem
+ */
+/***
+ * Buttons:
+ */
+/**
+ * Button exemple:
+ * `.exemple`
+ *
+ *     @example
+ *     div.button1 lorem
+ */
+/***
+ * Form:
+ */
+body {
+  font-size: 15px; }
+
+.Component1 {
+  border: 1px solid red; }

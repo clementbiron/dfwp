@@ -9,7 +9,7 @@ var Bootstrap = new (function()
 		console.log('Bootstrap init() ');
 
 		//Initialiser les élements d'interface communs
-		CommonGUI.init();
+		CommonGUI.init(); 
 
 		//Initialisation du template matcher
 		TemplateMatcher.init();

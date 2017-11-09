@@ -2,11 +2,11 @@
 
 ### Head
 
-    link(rel="stylesheet" href="../wp-content/themes/dfwp_child/dist/css/index.css")
-    link(rel="stylesheet" href="../wp-content/themes/dfwp_child/dist/css/styleguide.css")
+    link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css")
+    link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.css")
     link(rel='stylesheet' href='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css')
     script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
-    script(src='../wp-content/themes/dfwp_child/dist/js/index.js')
+    script(src='../wp-content/themes/dfwp/dist/js/index.js')
     script(type='text/javascript') Bootstrap.init();
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="https://fonts.googleapis.com/css?family=..." rel="stylesheet")
@@ -18,11 +18,11 @@
     div(style="margin:20px;" id="dfwp_MenuComposant")
      p
       strong Composants
-     a(href="?components=header") Header
+     a(href="?component=header") Header
      br
-     a(href="?components=footer") Footer
+     a(href="?component=footer") Footer
      br
-     a(href="?components=exemple") Exemple
+     a(href="?components=header,exemple,footer&bodyclass=home") Exemple avec multiple chargement de components + body class
     div(style="margin:20px;" id="dfwp_MenuElement")
      p
       strong Elements

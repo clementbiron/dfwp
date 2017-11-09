@@ -1,6 +1,6 @@
 ###Components    
     
     @example
-    <div class="Exemple">
-        Lorem ipsum isset dolor.
+    <div class="exemple">
+        Exemple component text.
     </div>

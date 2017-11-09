@@ -4,32 +4,51 @@
 <head>
   <meta charset="utf-8">
   <title>Styledown</title>
-  <link rel="stylesheet" href="../wp-content/themes/dfwp_child/dist/css/index.min.css">
-  <link rel="stylesheet" href="../wp-content/themes/dfwp_child/dist/css/pattern.min.css">
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css">
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css">
   <script src="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js"></script>
+  <script src="../wp-content/themes/dfwp/dist/js/index.js"></script>
+  <script type="text/javascript">
+    Bootstrap.init();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=..." rel="stylesheet">
 </head>
 
 <body class="sg">
-  <h1>Styleguide</h1>
+  <h1 id="dfwp_TitleStyleGuide">Styleguide</h1>
+  <div style="margin:20px;" id="dfwp_MenuComposant">
+    <p>
+      <strong>Composants</strong>
+    </p>
+    <a href="?component=header">Header</a>
+    <br>
+    <a href="?component=footer">Footer</a>
+    <br>
+    <a href="?components=header,exemple,footer&amp;bodyclass=home">Exemple avec multiple chargement de components + body class</a>
+  </div>
+  <div style="margin:20px;" id="dfwp_MenuElement">
+    <p>
+      <strong>Elements</strong>
+    </p>
+    <a href="#colors">Colors</a>
+    <br>
+    <a href="#fonts">Fonts</a>
+    <br>
+    <a href="#icons">Icons</a>
+    <br>
+    <a href="#inline-style">Inline</a>
+    <br>
+    <a href="#links">Links</a>
+    <br>
+    <a href="#title">Title</a>
+    <br>
+    <a href="#buttons">Buttons</a>
+    <br>
+    <a href="#form">Form elements</a>
+  </div>
   <div id="styleguides">
-    <section class="sg-section sg-section-buttons">
-      <h2 id="buttons" class="sg">Buttons</h2>
-      <section class="sg-block sg-section-button-exemple">
-        <div class="sg-text">
-          <h3 id="button-exemple" class="sg">Button exemple</h3>
-          <p class="sg">
-            <code class="sg">.exemple</code>
-          </p>
-        </div>
-        <div class="sg-example">
-          <div class="sg-canvas">
-            <div class="button1">lorem</div>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button1&quot;</span>&gt;</span>lorem<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
-        </div>
-      </section>
-    </section>
-
     <section class="sg-section sg-section-fonts">
       <h2 id="fonts" class="sg">Fonts</h2>
       <section class="sg-block sg-section-font-1">
@@ -47,9 +66,6 @@
       </section>
     </section>
 
-    <section class="sg-section sg-section-form">
-      <h2 id="form" class="sg">Form</h2>
-    </section>
     <section class="sg-section sg-section-icons">
       <h2 id="icons" class="sg">Icons</h2>
     </section>
@@ -70,8 +86,8 @@
       </section>
     </section>
 
-    <section class="sg-section sg-section-liens">
-      <h2 id="liens" class="sg">Liens</h2>
+    <section class="sg-section sg-section-links">
+      <h2 id="links" class="sg">Links</h2>
       <section class="sg-block sg-section-lien-1">
         <div class="sg-text">
           <h3 id="lien-1" class="sg">Lien 1</h3>
@@ -105,20 +121,25 @@
       </section>
     </section>
 
-    <section class="sg-section sg-section-components">
-      <h2 id="components" class="sg">Components</h2>
-      <section class="sg-block sg-section-component1">
+    <section class="sg-section sg-section-buttons">
+      <h2 id="buttons" class="sg">Buttons</h2>
+      <section class="sg-block sg-section-button-exemple">
         <div class="sg-text">
-          <h3 id="component1" class="sg">Component1</h3>
+          <h3 id="button-exemple" class="sg">Button exemple</h3>
           <p class="sg">
-            <code class="sg">.Component1</code>- documentation on what your component is goes here. Markdown is encouraged.</p>
+            <code class="sg">.exemple</code>
+          </p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <div class="Component1">lorem ispum</div>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;Component1&quot;</span>&gt;</span>lorem ispum<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+            <div class="button1">lorem</div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button1&quot;</span>&gt;</span>lorem<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
       </section>
+    </section>
+
+    <section class="sg-section sg-section-form">
+      <h2 id="form" class="sg">Form</h2>
     </section>
 
   </div>
