@@ -59,4 +59,5 @@ body {
   font-size: 15px; }
 
 .exemple {
-  border: 1px solid green; }
+  border: 1px solid orange;
+  margin: 1rem 0; }

@@ -16,6 +16,7 @@ var rename       = require('gulp-rename');
 var styledown    = require('gulp-styledown');
 var foreach = require('gulp-foreach');
 var browserSync = require('browser-sync').create();
+var svgSprite = require('gulp-svg-sprite');
 
 //Config des erreurs
 var notifyError = {
@@ -23,11 +24,16 @@ var notifyError = {
     message: "<%= error.message %>"
 }
 
-gulp.task('browser-sync', function () {
+//Browser sync task
+gulp.task('browser-sync', function () 
+{
+    console.log("----------- Brower sync -----------");
+
     browserSync.init({
         proxy: "http://192.168.0.27/_lab/dfwp",
         host: "192.168.0.27",
-        open: "external",
+        open: "external",        
+        //notify: false,
         injectChanges: true
     });
 });
@@ -79,7 +85,6 @@ gulp.task('styles', function ()
 
     //On relance la génération du styleguide
     gulp.start('styleguide');
-
 });
 
 /**
@@ -88,6 +93,8 @@ gulp.task('styles', function ()
 gulp.task('styleguide', function ()
 {
     console.log("----------- Styleguide -----------");
+
+    //Pour les common (éléments, layout, ...)
     gulp.src([
             '../src/bootstrap/*.scss',
             '../src/common/**.scss',
@@ -97,22 +104,22 @@ gulp.task('styleguide', function ()
             config  : '../styleguide/config.md',
             filename: 'styleguide.html'
         }))
-        .pipe(gulp.dest('../styleguide'));
+        .pipe(gulp.dest('../styleguide'))
+        .pipe(browserSync.stream());
 
+    //Pour les composants
     gulp.src('../src/components/**/*.md')
         .pipe(foreach(function(stream, file){
-            var filePath = file.path;
-            var filename = filePath.replace(/^.*[\\\/]/, '').replace('.md','');
+            var filename = file.path.replace(/^.*[\\\/]/, '').replace('.md','');
             return stream
                 .pipe(styledown({
                     config  : '../styleguide/config.md',
                     filename: filename+'.html'
                 }))
         }))
-        .pipe(gulp.dest('../styleguide/components'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(gulp.dest('../styleguide/components'));
+        browserSync.reload();
+        //.pipe(browserSync.reload);
 });
 
 /**
@@ -149,10 +156,50 @@ gulp.task('scripts', function ()
                 drop_console: true // drop console
             }
         }))
-        .pipe(gulp.dest('../dist/js/'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(gulp.dest('../dist/js/'));
+        browserSync.reload();
+        //.pipe(browserSync.reload);
+});
+
+gulp.task('svg-sprite', function () 
+{
+    console.log("----------- SVG SPRITE -----------");
+
+    var config = {
+        log: 'info',
+        shape: {
+            transform: [
+                {
+                    svgo: {
+                        plugins: [
+                            { removeXMLNS: true }
+                        ]
+                    }
+                }
+            ]
+        },
+        svg: {
+            xmlDeclaration: false,
+            doctypeDeclaration: false,
+            dimensionAttributes: false,       
+            rootAttributes: {
+                style: "display:none;"
+            }     
+        },
+        mode: {
+            symbol: {
+                dest: "generated",
+                sprite: "sprite.svg",
+                render: {
+                    scss: true
+                }
+            }
+        }
+    };
+
+    gulp.src('../src/assets/svg/src/*.svg')
+        .pipe(svgSprite(config))
+        .pipe(gulp.dest('../src/assets/svg/'));
 });
 
 /**
@@ -182,6 +229,12 @@ gulp.task('default', ['styles', 'scripts','browser-sync'], function ()
         '../styleguide/config.md',
         '../src/components/**/*.md'
     ], ['styleguide']);
+
+    //Sprite svg
+    gulp.watch([
+        '../src/assets/svg/src/*.svg',
+        '../src/assets/svg/src'
+    ], ['svg-sprite',browserSync.reload]);
 
     //PHP files browser sync reload
     gulp.watch([
