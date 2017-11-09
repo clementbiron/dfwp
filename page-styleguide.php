@@ -5,14 +5,14 @@
 	
 	use Doublefou\Core\Debug;
 
-	//Le chemin vers le fichier du styleguide généré
-	$htmlPath = __DIR__.'/styleguide/styleguide.html';
+	//On désactive les erreurs DomDocument pour le chargement HTML 5
+	$internalErrors = libxml_use_internal_errors(true);
 
-	$queryComponents = explode(',',get_query_var('components'));	
-	if(!empty($queryComponents))
+	//Si on veut afficher des composants
+	if(get_query_var('components', false) != false)
 	{
-		//On désactive les erreurs DomDocument pour le chargement HTML 5
-		$internalErrors = libxml_use_internal_errors(true);
+		//On récupère un tableau qui les listes
+		$queryComponents = explode(',',get_query_var('components', false));	
 
 		$domComponents = array();
 		$i = 1;
@@ -88,6 +88,17 @@
 			$i++;
 		}
 	}
+
+	else{
+		//Le chemin vers le fichier du styleguide généré
+		$htmlPath = __DIR__.'/styleguide/styleguide.html';
+		$dom = new DOMDocument();
+		$html = file_get_contents($htmlPath);
+		$dom->loadHTML($html);
+	}
+
+	//On réactive les erreurs
+	libxml_use_internal_errors($internalErrors);
 
 	echo $dom->saveHTML();
 ?>

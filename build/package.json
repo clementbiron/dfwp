@@ -2,7 +2,8 @@
   "name": "dfwp",
   "version": "3.0.0",
   "devDependencies": {
-    "gulp": "latest",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "latest",
     "gulp-concat": "latest",
     "gulp-csso": "latest",

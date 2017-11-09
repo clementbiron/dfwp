@@ -1,5 +1,12 @@
-h2.sg:after {
-  display: none; }
+h2.sg {
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold; }
+  h2.sg:after {
+    display: none; }
+
+.sg-section {
+  margin: 2rem 0; }
 
 .sg-section-components #components {
   display: none; }
@@ -15,3 +22,29 @@ h2.sg:after {
   .sg-section-components .sg-text + .sg-example, .sg-section-components .sg-text + .sg-code {
     width: inherit;
     float: none; } }
+
+#dfwp_styleguide_title {
+  margin: 1rem; }
+
+#dfwp_styleguide_menucomponents,
+#dfwp_styleguide_menuelements {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  width: 40%;
+  display: inline-block;
+  vertical-align: top; }
+  #dfwp_styleguide_menucomponents > p,
+  #dfwp_styleguide_menuelements > p {
+    margin: 0 0 10px 0; }
+  #dfwp_styleguide_menucomponents > a,
+  #dfwp_styleguide_menuelements > a {
+    display: inline-block;
+    vertical-align: top;
+    margin: 2px 0; }
+
+@media (max-width: 768px) {
+  #dfwp_styleguide_menucomponents,
+  #dfwp_styleguide_menuelements {
+    display: block;
+    width: auto; } }

@@ -15,6 +15,7 @@ var notify       = require('gulp-notify');
 var rename       = require('gulp-rename');
 var styledown    = require('gulp-styledown');
 var foreach = require('gulp-foreach');
+var browserSync = require('browser-sync').create();
 
 //Config des erreurs
 var notifyError = {
@@ -22,21 +23,13 @@ var notifyError = {
     message: "<%= error.message %>"
 }
 
-/**
- * Sprites
- */
-gulp.task('sprites', function ()
-{
-    console.log("----------- Sprites -----------");
-
-    var sprites = [
-        {
-            name: "1x"
-        },
-        {
-            name: "2x"
-        }
-    ];
+gulp.task('browser-sync', function () {
+    browserSync.init({
+        proxy: "http://192.168.0.27/_lab/dfwp",
+        host: "192.168.0.27",
+        open: "external",
+        injectChanges: true
+    });
 });
 
 /**
@@ -79,7 +72,9 @@ gulp.task('styles', function ()
             .pipe(csso())
             .pipe(concat(el.name + '.min.css'))
             .pipe(gulp.dest('../dist/css/'))
-            .pipe(livereload());
+            .pipe(browserSync.reload({
+                stream: true
+            }));
     });
 
     //On relance la génération du styleguide
@@ -115,7 +110,9 @@ gulp.task('styleguide', function ()
                 }))
         }))
         .pipe(gulp.dest('../styleguide/components'))
-        .pipe(livereload());
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
 /**
@@ -153,21 +150,16 @@ gulp.task('scripts', function ()
             }
         }))
         .pipe(gulp.dest('../dist/js/'))
-        .pipe(livereload());
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
 /**
  * Default task
  */
-gulp.task('default', ['sprites', 'styles', 'scripts'], function ()
+gulp.task('default', ['styles', 'scripts','browser-sync'], function ()
 {
-    livereload.listen();
-
-    //Sprite
-    gulp.watch([
-        '../src/sprites/**/*.png',
-    ], ['sprites']);
-
     //Sass
     gulp.watch([
         '../src/*.scss',
@@ -190,4 +182,10 @@ gulp.task('default', ['sprites', 'styles', 'scripts'], function ()
         '../styleguide/config.md',
         '../src/components/**/*.md'
     ], ['styleguide']);
+
+    //PHP files browser sync reload
+    gulp.watch([
+        '../*.php',
+        '../src/components/**/*.php'
+    ], browserSync.reload);
 });
