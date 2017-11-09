@@ -78,9 +78,7 @@ gulp.task('styles', function ()
             .pipe(csso())
             .pipe(concat(el.name + '.min.css'))
             .pipe(gulp.dest('../dist/css/'))
-            .pipe(browserSync.reload({
-                stream: true
-            }));
+            .pipe(browserSync.stream());
     });
 
     //On relance la génération du styleguide

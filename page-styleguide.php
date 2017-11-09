@@ -60,20 +60,8 @@
 				//On ajoute aussi une class pour dire que c'est un composant
 				$body->setAttribute('class', $body->getAttribute('class').' '.'dfwp_styleguide-iscomposant');
 
-				//Si on a la présence d'un sprite SVG
-				$svgpath = __DIR__.'/src/assets/sprite/sprite.svg';
-				if(is_file($svgpath))
-				{
-					//On charge le svg
-					$svg = file_get_contents($svgpath);
-					if($svg != false)
-					{
-						//On l'insère tout de suite après <body>
-						$fragment = $dom->createDocumentFragment();
-						$fragment->appendXML($svg);
-						$body->appendChild($fragment);
-					}
-				}
+				//On ajoute le sprite svg au dom
+				appendSVGToBody($body,$dom);
 
 				//On parcoure les composants que l'on a stocké
 				foreach($domComponents as $component)
@@ -95,6 +83,28 @@
 		$dom = new DOMDocument();
 		$html = file_get_contents($htmlPath);
 		$dom->loadHTML($html);
+		$body= $dom->getElementsByTagName('body')->item(0);
+
+		//On ajoute le sprite svg au dom
+		appendSVGToBody($body,$dom);
+	}
+
+	function appendSVGToBody($body,$dom)
+	{
+		//Si on a la présence d'un sprite SVG
+		$svgpath = __DIR__.'/src/assets/svg/generated/sprite.svg';
+		if(is_file($svgpath))
+		{
+			//On charge le svg
+			$svg = file_get_contents($svgpath);
+			if($svg != false)
+			{
+				//On l'insère tout de suite après <body>
+				$fragment = $dom->createDocumentFragment();
+				$fragment->appendXML($svg);
+				$body->appendChild($fragment);
+			}
+		}
 	}
 
 	//On réactive les erreurs

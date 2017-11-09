@@ -2,5 +2,5 @@
     
     @example
     <div class="exemple">
-        Exemple component text.
+        Exemple component text...
     </div>

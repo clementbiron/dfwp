@@ -1,3 +1,12 @@
-/***
- * Icons:
+/**
+ * Icon 1:
+ * `.icon_1`
+ *
+ *     @example
+ *     div(style="background-color:gray; padding: 1rem;")
+ *      svg(class="icon_1")
+ *       use(xlink:href="#icon_close")
  */
+ .icon_1{
+    @extend .svg-icon_close-dims;
+ }

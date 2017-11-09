@@ -1,15 +1,30 @@
-/***
- * Fonts:
- */
+.svg-icon_behance-dims {
+  width: 39px;
+  height: 39px; }
+
+.svg-icon_burger-dims {
+  width: 27px;
+  height: 22px; }
+
+.svg-icon_close-dims, .icon_1 {
+  width: 24px;
+  height: 23px; }
+
 /**
  * Font 1:
- * `.Font1`
+ * `.font_1`
  *
  *     @example
- *     div.Font1 Lorem
+ *     div.font_1 lorem
  */
-/***
- * Icons:
+/**
+ * Icon 1:
+ * `.icon_1`
+ *
+ *     @example
+ *     div(style="background-color:gray; padding: 1rem;")
+ *      svg(class="icon_1")
+ *       use(xlink:href="#icon_close")
  */
 /***
  * Inline style:

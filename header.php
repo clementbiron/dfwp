@@ -20,7 +20,7 @@
 
 <?php
 	//Chargement du svg
-	//include(__DIR__.'/src/sprite/sprite.svg');
+	include(__DIR__.'/src/assets/svg/generated/sprite.svg');
 	
 	//Chargement du header
 	get_template_part('src/components/header/header');
