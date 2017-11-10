@@ -15,7 +15,8 @@
     "gulp-sass": "latest",
     "gulp-styledown": "latest",
     "gulp-svg-sprite": "^1.3.7",
-    "gulp-uglify": "latest"
+    "gulp-uglify": "latest",
+    "gulp-uglify-es": "^0.1.3"
   },
   "dependencies": {},
   "main": "gulpfile.js"

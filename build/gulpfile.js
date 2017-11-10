@@ -8,7 +8,7 @@ var sass         = require('gulp-sass');
 var csso         = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
 var concat       = require('gulp-concat');
-var uglify       = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var livereload   = require('gulp-livereload');
 var plumber      = require('gulp-plumber');
 var notify       = require('gulp-notify');
@@ -32,8 +32,7 @@ gulp.task('browser-sync', function ()
     browserSync.init({
         proxy: "http://192.168.0.27/_lab/dfwp",
         host: "192.168.0.27",
-        open: "external",        
-        //notify: false,
+        open: "external",
         injectChanges: true
     });
 });
@@ -50,7 +49,7 @@ gulp.task('styles', function ()
     var stylesBootstrap = [
         {
             name: "index",
-            src : '../src/bootstrap/index.scss'
+            src: '../src/bootstrap/bootstrap.scss'
         },
         {
             name: "styleguide",
@@ -92,11 +91,12 @@ gulp.task('styleguide', function ()
 {
     console.log("----------- Styleguide -----------");
 
-    //Pour les common (éléments, layout, ...)
+    //Pour les common (éléments, layout, config)
     gulp.src([
             '../src/bootstrap/*.scss',
             '../src/common/**.scss',
-            '../src/common/**/*.scss'
+            '../src/common/**/*.scss',
+            '../styleguide/config.md'
         ])
         .pipe(styledown({
             config  : '../styleguide/config.md',
@@ -128,12 +128,11 @@ gulp.task('scripts', function ()
     console.log("----------- Scripts -----------");
 
     gulp.src([
-            //'../src/libs/*.js', //Libs
-            '../src/common/*.js', //Project files
-            '../src/common/**/*.js', //Project files
+            //'../src/vendor/..', //Libs
+            '../src/common/utils/*.js', //utils files
+            '../src/common/layout/*.js', //layout files
             '../src/components/**/*.js', //Components js
             '../src/pages/**/*.js', //Pages js
-            '../src/bootstrap/bootstrap.js' //Project bootstrap
         ])
         .pipe(plumber({
             errorHandler: notify.onError(notifyError)

@@ -2,19 +2,25 @@
 # changelog v3.0.0 (09/11/2017)
 - fusion de DFWP et DFWP_CHILD : le framework est intégré dans le thème.
 - le dossier 'vendor' de composer est maintenant dans 'src'
-- les sprite sont dans le dossier 'src/assets/sprite'
+- ajouter du dossier 'src/assets'
 - dump de l'autoload
 - les groupes de champs ACF sont sauvegardés dans le dossier 'functions/admin/acf-json', cela accelère le chargement et permet le versionning
 - l'activation de la maintenance passe maintenant par la page d'options gérée avec ACF
 - l'activiation du mode debug passe maintenant par la page d'options gérée avec ACF
 - refactoring de Debug::addToConsole();
 - mise à jour du readme et du semblant de doc
-- suppression de la dépendance bower
-- mise en place de yarn
-- supression de la gestion des sprite png
 - les node modules sont maintenant versionnés
-- possibilité d'afficher plusieurs composants en passant les noms en urls : components=exemple,footer
-- possibilité d'utiliser plusieurs class sur le body en passant urls : bodyclass=red,blue
+- possibilité d'afficher plusieurs composants en passant les noms en urls : 'components=exemple,footer'
+- possibilité d'utiliser plusieurs class sur le body en passant urls : 'bodyclass=red,blue'
+- mise en place de yarn
+- mise en place de browsersync
+- mise en place de svgSprite
+- mise en place de gulp-uglify-es
+- suppression de bower
+- supression de la gestion des sprite png
+- suppresion de gulp-uglify
+- suppression du template matcher
+- refacto des fichiers JS
 
 # changelog v2.6.0 (31 août 2016)
 - nombres modifications mineurs sur les fichiers php

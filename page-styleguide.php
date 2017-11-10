@@ -5,6 +5,11 @@
 	
 	use Doublefou\Core\Debug;
 
+	//Config
+	$svgPath = __DIR__.'/src/assets/svg/generated/sprite.svg';
+	$styleguidePath = __DIR__.'/styleguide/styleguide.html';
+	$componentsPath = __DIR__.'/styleguide/components/';
+
 	//On désactive les erreurs DomDocument pour le chargement HTML 5
 	$internalErrors = libxml_use_internal_errors(true);
 
@@ -21,7 +26,7 @@
 		//On parcoure les composants à afficher
 		foreach($queryComponents as $queryComponent)
 		{
-			$componentPath = __DIR__.'/styleguide/components/'.$queryComponent.'.html';
+			$componentPath = $componentsPath.$queryComponent.'.html';
 			if(is_file($componentPath)){
 				$file = file_get_contents($componentPath);
 			}else{
@@ -61,7 +66,7 @@
 				$body->setAttribute('class', $body->getAttribute('class').' '.'dfwp_styleguide-iscomposant');
 
 				//On ajoute le sprite svg au dom
-				appendSVGToBody($body,$dom);
+				appendSVGToBody($body,$dom,$svgPath);
 
 				//On parcoure les composants que l'on a stocké
 				foreach($domComponents as $component)
@@ -79,24 +84,22 @@
 
 	else{
 		//Le chemin vers le fichier du styleguide généré
-		$htmlPath = __DIR__.'/styleguide/styleguide.html';
 		$dom = new DOMDocument();
-		$html = file_get_contents($htmlPath);
+		$html = file_get_contents($styleguidePath);
 		$dom->loadHTML($html);
 		$body= $dom->getElementsByTagName('body')->item(0);
 
 		//On ajoute le sprite svg au dom
-		appendSVGToBody($body,$dom);
+		appendSVGToBody($body,$dom,$svgPath);
 	}
 
-	function appendSVGToBody($body,$dom)
+	function appendSVGToBody($body,$dom,$svgPath)
 	{
 		//Si on a la présence d'un sprite SVG
-		$svgpath = __DIR__.'/src/assets/svg/generated/sprite.svg';
-		if(is_file($svgpath))
+		if(is_file($svgPath))
 		{
 			//On charge le svg
-			$svg = file_get_contents($svgpath);
+			$svg = file_get_contents($svgPath);
 			if($svg != false)
 			{
 				//On l'insère tout de suite après <body>

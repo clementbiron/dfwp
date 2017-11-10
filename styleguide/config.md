@@ -7,7 +7,6 @@
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.css")
     script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
     script(src='../wp-content/themes/dfwp/dist/js/index.js')
-    script(type='text/javascript') Bootstrap.init();
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     #link(href="https://fonts.googleapis.com/css?family=..." rel="stylesheet")
 

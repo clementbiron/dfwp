@@ -1,98 +1,83 @@
-var CommonGUI = new (function() 
-{
-	// Accès à l'objet
-	var that = this;
-
-	//Init
-	this.init = function() 
-	{
-		console.log('CommonGUI init() ');
-	};
-});
-var TemplateMatcher = new (function()
-{
-	// Accès à l'objet
-	var that = this;
-
-	//Init
-	this.init = function() 
-	{
-		console.log('TemplateMatcher init() ');
-
-		//Appel d'objets JS en fonction du template hierarchy
-		if(document.readyState !== 'loading' ) {
-            that.matchTemplate();
-        } else {
-            document.addEventListener('DOMContentLoaded', function () {
-                that.matchTemplate();
-            });
-        }  
-	},
-	
-	//Appel d'objets JS en fonction du template hierarchy
-	this.matchTemplate = function ()
-	{
-		//On récupéere le noeud dom <body>
-		var bodyDom = document.querySelector('body')
-
-		//On récupère les class sur le body
-		var htmlClass = bodyDom.className;
-		
-		//On camelize
-		//htmlClass = DFWP_Helper.camelize(htmlClass);
-		htmlClass = (htmlClass + "").replace(/-\D/g, function(match) {
-			return match.charAt(1).toUpperCase();
-		});
-
-		//On coupe au niveau des ' '
-		htmlClass = htmlClass.split(' ');
-		
-		//Pour chaque valeur
-		htmlClass.forEach(function(entry)
-		{
-			//On capitalize la première lettre
-			var value = entry.charAt(0).toUpperCase() + entry.slice(1);
-			
-			//On instancie un objet avec la string
-			var currentObject = window[value];
-			
-			//Si cet objet existe
-			if(currentObject != undefined)
-			{
-				//Alors on l'initialie
-				currentObject.init();
-			}
-		});
-	};
-});
 /**
- * Exemple Js component
+ * DOMReadyObject
+ * abstract class
  */
-var Exemple = new(function() 
-{
-	// Accès à l'objet
-	var that = this;
+class DOMReadyObject{
 
-	//Init
-	this.init = function() 
-	{
-		console.log('Exemple init() ');
-	};
-});
-var Bootstrap = new (function()
-{
-	// Accès à l'objet
-	var that = this;
+    constructor(){
 
-	//Init
-	this.init = function() 
-	{
-		console.log('Bootstrap init() ');
+        //On ne peut pas instancier la class directement
+        if (new.target === DOMReadyObject) {
+            throw new TypeError("Cannot construct DOMReadyObject instances directly");
+        }
 
-		//Initialiser les élements d'interface communs
-		CommonGUI.init(); 
+        //Dom ready
+        if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+            this.isDOMReady();
+        } else {
+            document.addEventListener("DOMContentLoaded", this.isDOMReady.bind(this));
+        }
+    }
+    
+    isDOMReady(){}
+}
+/**
+ * Layout general
+ */
+class General extends DOMReadyObject{
 
-		//Initialisation du template matcher
-		TemplateMatcher.init();
-	};
-});
+    constructor() {
+        console.log('General.constructor()');
+        super();
+    }
+
+    isDOMReady(){
+        console.log('General.isDOMReady()');
+        super.isDOMReady();
+    }
+}
+
+const general = new General();
+/**
+ * Exemple compoenent
+ */
+class Exemple extends DOMReadyObject {
+	constructor() {
+		console.log('Exemple.constructor()');
+		super();
+		this.$domTargetClass = '.exemple';
+	}
+
+	isDOMReady() {
+		console.log('Exemple.isDOMReady()');
+		super.isDOMReady();
+		this.$domTarget = document.querySelector(this.$domTargetClass);
+		if (this.$domTarget != null) {
+			//console.log(this.$domTarget);
+		}
+	}
+}
+const exemple = new Exemple();
+
+/**
+ * Pour la page d'accueil
+ */
+class Home extends DOMReadyObject{
+
+    constructor(){
+        console.log('Home.constructor()');
+        super();
+        this.$domTargetClass = '.home';
+    }
+
+    isDOMReady(){
+        console.log('Home.isDOMReady()');
+        super.isDOMReady();
+        this.$domTarget = document.querySelector(this.$domTargetClass);
+        if (this.$domTarget != null){
+            //console.log(this.$domTarget);
+        }
+    }
+}
+
+const home = new Home();

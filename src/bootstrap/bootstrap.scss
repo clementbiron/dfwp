@@ -1,0 +1,33 @@
+// ****
+//Config
+// ****
+@import 'config.scss';
+
+//utils DFWP
+@import '../common/utils/mixins.scss';
+@import '../common/utils/ease.scss';
+@import '../common/utils/wordpress.scss';
+
+//Sprite svg
+@import '../assets/svg/generated/sprite.scss';
+
+//Importer les élements
+@import '../common/elements/0_colors.scss';
+@import '../common/elements/1_fonts.scss';
+@import '../common/elements/2_icons.scss';
+@import '../common/elements/3_inline.scss';
+@import '../common/elements/4_links.scss';
+@import '../common/elements/5_title.scss';
+@import '../common/elements/6_buttons.scss';
+@import '../common/elements/7_form.scss';
+
+//Importer le layout general du projet
+@import '../common/layout/general.scss';
+
+//Importer les composants
+@import '../components/header/header.scss';
+@import '../components/footer/footer.scss';
+@import '../components/exemple/exemple.scss';
+
+//Importer les styles de pages
+@import '../pages/home/home.scss';
