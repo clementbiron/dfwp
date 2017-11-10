@@ -17,9 +17,9 @@
     div(id="dfwp_styleguide_menucomponents")
      p
       strong Composants
-     a(href="?component=header") Header
+     a(href="?components=header") Header
      br
-     a(href="?component=footer") Footer
+     a(href="?components=footer") Footer
      br
      a(href="?components=header,exemple,footer&bodyclass=home") Exemple avec multiple chargement de components + body class
     div(id="dfwp_styleguide_menuelements")
@@ -31,7 +31,7 @@
      br
      a(href="#icons") Icons
      br
-     a(href="#inline-style") Inline
+     a(href="#inline") Inline
      br
      a(href="#links") Links
      br

@@ -1,6 +1,6 @@
 ###Components    
     
     @example
-    <div class="footer">
-        Lorem ipsum isset dolor.
-    </div>
+    <footer class="footer">
+        Footer lorem ipsum
+    </footer>

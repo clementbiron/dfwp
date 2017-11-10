@@ -1,6 +1,6 @@
 ###Components    
     
     @example
-    <div class="header">
-        Lorem ipsum isset dolor.
-    </div>
+    <header class="header">
+        Header lorem ipsum
+    </header>
