@@ -43,7 +43,8 @@
 		wp_register_script(
 			'dfwp_index',
 			get_stylesheet_directory_uri().'/dist/js/'.$projectJsName,
-			array(),
+			array(
+			),
 			1,
 			true
 		);

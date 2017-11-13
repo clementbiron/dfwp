@@ -1,83 +1,116 @@
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /**
  * DOMReadyObject
  * abstract class
  */
-class DOMReadyObject{
-
-    constructor(){
+var DOMReadyFactory = function () {
+    function DOMReadyFactory() {
+        _classCallCheck(this, DOMReadyFactory);
 
         //On ne peut pas instancier la class directement
-        if (new.target === DOMReadyObject) {
-            throw new TypeError("Cannot construct DOMReadyObject instances directly");
+        if (this.constructor === DOMReadyFactory) {
+            throw new TypeError("Cannot construct DOMReadyFactory instances directly");
         }
 
         //Dom ready
-        if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+        if (document.readyState === "complete" || document.readyState !== "loading" && !document.documentElement.doScroll) {
             this.isDOMReady();
         } else {
             document.addEventListener("DOMContentLoaded", this.isDOMReady.bind(this));
         }
     }
-    
-    isDOMReady(){}
-}
+
+    _createClass(DOMReadyFactory, [{
+        key: "isDOMReady",
+        value: function isDOMReady() {}
+    }]);
+
+    return DOMReadyFactory;
+}();
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 /**
  * Layout general
  */
-class General extends DOMReadyObject{
+var General = function (_DOMReadyFactory) {
+    _inherits(General, _DOMReadyFactory);
 
-    constructor() {
+    function General() {
+        _classCallCheck(this, General);
+
         console.log('General.constructor()');
-        super();
+        return _possibleConstructorReturn(this, (General.__proto__ || Object.getPrototypeOf(General)).call(this));
     }
 
-    isDOMReady(){
-        console.log('General.isDOMReady()');
-        super.isDOMReady();
-    }
-}
+    _createClass(General, [{
+        key: 'isDOMReady',
+        value: function isDOMReady() {
+            console.log('General.isDOMReady()');
+            _get(General.prototype.__proto__ || Object.getPrototypeOf(General.prototype), 'isDOMReady', this).call(this);
+        }
+    }]);
 
-const general = new General();
+    return General;
+}(DOMReadyFactory);
+
+var generalLayout = new General();
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 /**
  * Exemple compoenent
  */
-class Exemple extends DOMReadyObject {
-	constructor() {
+var Exemple = function (_DOMReadyFactory) {
+	_inherits(Exemple, _DOMReadyFactory);
+
+	function Exemple() {
+		_classCallCheck(this, Exemple);
+
 		console.log('Exemple.constructor()');
-		super();
-		this.$domTargetClass = '.exemple';
+
+		var _this = _possibleConstructorReturn(this, (Exemple.__proto__ || Object.getPrototypeOf(Exemple)).call(this));
+
+		_this.domTargetClass = '.exemple';
+		return _this;
 	}
 
-	isDOMReady() {
-		console.log('Exemple.isDOMReady()');
-		super.isDOMReady();
-		this.$domTarget = document.querySelector(this.$domTargetClass);
-		if (this.$domTarget != null) {
-			//console.log(this.$domTarget);
+	_createClass(Exemple, [{
+		key: 'isDOMReady',
+		value: function isDOMReady() {
+			console.log('Exemple.isDOMReady()');
+			_get(Exemple.prototype.__proto__ || Object.getPrototypeOf(Exemple.prototype), 'isDOMReady', this).call(this);
+			this.$domTarget = document.querySelector(this.domTargetClass);
+			if (this.$domTarget != null) {
+				//console.log(this.$domTarget);
+			}
 		}
-	}
-}
-const exemple = new Exemple();
+	}]);
 
-/**
- * Pour la page d'accueil
- */
-class Home extends DOMReadyObject{
+	return Exemple;
+}(DOMReadyFactory);
 
-    constructor(){
-        console.log('Home.constructor()');
-        super();
-        this.$domTargetClass = '.home';
-    }
-
-    isDOMReady(){
-        console.log('Home.isDOMReady()');
-        super.isDOMReady();
-        this.$domTarget = document.querySelector(this.$domTargetClass);
-        if (this.$domTarget != null){
-            //console.log(this.$domTarget);
-        }
-    }
-}
-
-const home = new Home();
+var exempleComponent = new Exemple();

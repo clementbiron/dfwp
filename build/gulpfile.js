@@ -9,7 +9,6 @@ var csso         = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
 var concat       = require('gulp-concat');
 var uglify = require('gulp-uglify-es').default;
-var livereload   = require('gulp-livereload');
 var plumber      = require('gulp-plumber');
 var notify       = require('gulp-notify');
 var rename       = require('gulp-rename');
@@ -17,6 +16,8 @@ var styledown    = require('gulp-styledown');
 var foreach = require('gulp-foreach');
 var browserSync = require('browser-sync').create();
 var svgSprite = require('gulp-svg-sprite');
+var babel = require("gulp-babel");
+var babelpresetenv = require("babel-preset-env");
 
 //Config des erreurs
 var notifyError = {
@@ -128,7 +129,6 @@ gulp.task('scripts', function ()
     console.log("----------- Scripts -----------");
 
     gulp.src([
-            //'../src/vendor/..', //Libs
             '../src/common/utils/*.js', //utils files
             '../src/common/layout/*.js', //layout files
             '../src/components/**/*.js', //Components js
@@ -136,6 +136,9 @@ gulp.task('scripts', function ()
         ])
         .pipe(plumber({
             errorHandler: notify.onError(notifyError)
+        }))
+        .pipe(babel({
+            presets: [babelpresetenv]
         }))
         .pipe(concat('index.js'))
         .pipe(gulp.dest('../dist/js/'))
@@ -155,7 +158,6 @@ gulp.task('scripts', function ()
         }))
         .pipe(gulp.dest('../dist/js/'));
         browserSync.reload();
-        //.pipe(browserSync.reload);
 });
 
 gulp.task('svg-sprite', function () 

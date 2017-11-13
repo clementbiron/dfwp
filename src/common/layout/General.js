@@ -1,7 +1,7 @@
 /**
  * Layout general
  */
-class General extends DOMReadyObject{
+class General extends DOMReadyFactory{
 
     constructor() {
         console.log('General.constructor()');
@@ -14,4 +14,4 @@ class General extends DOMReadyObject{
     }
 }
 
-const general = new General();
+const generalLayout = new General();
