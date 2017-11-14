@@ -70,10 +70,10 @@
 			get_stylesheet_directory_uri().'/dist/css/'.$projectCssName
 		);
 
-		//Enregistrer la css de la pattern
+		//Enregistrer la css de la styleguide
 		wp_register_style( 
-			'dfwp_pattern',
-			get_stylesheet_directory_uri().'/dist/css/pattern.min.css'
+			'dfwp_styleguide',
+			get_stylesheet_directory_uri().'/dist/css/styleguide.min.css'
 		);
 
 		//Enregistrer la css de la maintenance
@@ -86,11 +86,10 @@
 		wp_enqueue_style('dfwp_index');
 		
 		//Pour la page pattern uniquement
-		if(is_page_Template('page-pattern.php'))
+		if(is_page_Template('page-styleguide.php'))
 		{
 			//On charge la css qui va bien
-			wp_dequeue_style('dfwp_index');
-			wp_enqueue_style('dfwp_pattern');
+			wp_enqueue_style('dfwp_styleguide');
 		}
 
 		//Si la maintenance est activée

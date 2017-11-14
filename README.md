@@ -13,15 +13,17 @@ Plugins : Advanced custo fields pro : https://www.advancedcustomfields.com
 3. `yarn install`
 3. configurer le projet : src/bootstrap/config.scss 
 4. configurer le styleguide styleguide/config.md
+5. configuer browserSync pour gulp dans le fichier : `build/gulpfile.js`
 
 #### Build
 
 Commandes gulp disponibles :
 `gulp styles`
 `gulp scripts` 
-`gulp sprites` 
+`gulp svg-sprite` 
 `gulp styleguide` 
-`gulp` (tâches par défaut + watch de gulp sprites, scripts et styles)
+`gulp browser-sync` 
+`gulp` -> ['styles', 'scripts', 'browser-sync', 'styleguide','svg-sprite']
 
 #### MAINTENANCE
 Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.

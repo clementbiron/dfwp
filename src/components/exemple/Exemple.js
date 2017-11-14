@@ -1,21 +1,12 @@
 /**
  * Exemple compoenent
  */
-class Exemple extends DOMReadyFactory {
-
-	constructor() {
+class Exemple {
+	constructor($dom) {
 		console.log('Exemple.constructor()');
-		super();
-		this.domTargetClass = '.exemple';
-	}
-
-	isDOMReady() {
-		console.log('Exemple.isDOMReady()');
-		super.isDOMReady();
-		this.$domTarget = document.querySelector(this.domTargetClass);
-		if (this.$domTarget != null) {
-			//console.log(this.$domTarget);
-		}
+		this.$dom = $dom;
+		if (this.$dom != null) {
+			//console.log(this.$dom);
+		} 
 	}
 }
-const exempleComponent = new Exemple();

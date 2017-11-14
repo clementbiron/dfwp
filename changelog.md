@@ -16,6 +16,7 @@
 - mise en place de browsersync
 - mise en place de svgSprite
 - mise en place de gulp-uglify-es
+- mise en place de babel (babel-polyfill n'est chargé à cause de son poids : 100 ko)
 - suppression de bower
 - supression de la gestion des sprite png
 - suppresion de gulp-uglify

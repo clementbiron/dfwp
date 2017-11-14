@@ -8,29 +8,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * DOMReadyObject
  * abstract class
  */
-var DOMReadyFactory = function () {
-    function DOMReadyFactory() {
-        _classCallCheck(this, DOMReadyFactory);
+var DOMReadyObject = function () {
+    function DOMReadyObject() {
+        var _this = this;
+
+        _classCallCheck(this, DOMReadyObject);
 
         //On ne peut pas instancier la class directement
-        if (this.constructor === DOMReadyFactory) {
-            throw new TypeError("Cannot construct DOMReadyFactory instances directly");
+        if (this.constructor === DOMReadyObject) {
+            throw new Error("Cannot construct DOMReadyObject instances directly");
         }
 
         //Dom ready
         if (document.readyState === "complete" || document.readyState !== "loading" && !document.documentElement.doScroll) {
             this.isDOMReady();
         } else {
-            document.addEventListener("DOMContentLoaded", this.isDOMReady.bind(this));
+            document.addEventListener("DOMContentLoaded", function () {
+                _this.isDOMReady();
+            });
         }
     }
 
-    _createClass(DOMReadyFactory, [{
+    _createClass(DOMReadyObject, [{
         key: "isDOMReady",
         value: function isDOMReady() {}
     }]);
 
-    return DOMReadyFactory;
+    return DOMReadyObject;
 }();
 'use strict';
 
@@ -47,8 +51,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Layout general
  */
-var General = function (_DOMReadyFactory) {
-    _inherits(General, _DOMReadyFactory);
+var General = function (_DOMReadyObject) {
+    _inherits(General, _DOMReadyObject);
 
     function General() {
         _classCallCheck(this, General);
@@ -66,9 +70,25 @@ var General = function (_DOMReadyFactory) {
     }]);
 
     return General;
-}(DOMReadyFactory);
+}(DOMReadyObject);
 
 var generalLayout = new General();
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Exemple compoenent
+ */
+var Exemple = function Exemple($dom) {
+	_classCallCheck(this, Exemple);
+
+	console.log('Exemple.constructor()');
+	this.$dom = $dom;
+	if (this.$dom != null) {
+		//console.log(this.$dom);
+	}
+};
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -82,35 +102,62 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Exemple compoenent
+ * Exemple collections
  */
-var Exemple = function (_DOMReadyFactory) {
-	_inherits(Exemple, _DOMReadyFactory);
+var ExempleCollection = function (_DOMReadyObject) {
+    _inherits(ExempleCollection, _DOMReadyObject);
 
-	function Exemple() {
-		_classCallCheck(this, Exemple);
+    function ExempleCollection() {
+        _classCallCheck(this, ExempleCollection);
 
-		console.log('Exemple.constructor()');
+        console.log('ExempleCollection.constructor()');
 
-		var _this = _possibleConstructorReturn(this, (Exemple.__proto__ || Object.getPrototypeOf(Exemple)).call(this));
+        var _this = _possibleConstructorReturn(this, (ExempleCollection.__proto__ || Object.getPrototypeOf(ExempleCollection)).call(this));
 
-		_this.domTargetClass = '.exemple';
-		return _this;
-	}
+        _this.class = '.exemple';
+        _this.exemples = new Set();
+        return _this;
+    }
 
-	_createClass(Exemple, [{
-		key: 'isDOMReady',
-		value: function isDOMReady() {
-			console.log('Exemple.isDOMReady()');
-			_get(Exemple.prototype.__proto__ || Object.getPrototypeOf(Exemple.prototype), 'isDOMReady', this).call(this);
-			this.$domTarget = document.querySelector(this.domTargetClass);
-			if (this.$domTarget != null) {
-				//console.log(this.$domTarget);
-			}
-		}
-	}]);
+    _createClass(ExempleCollection, [{
+        key: 'isDOMReady',
+        value: function isDOMReady() {
+            console.log('ExempleCollection.isDOMReady()');
+            _get(ExempleCollection.prototype.__proto__ || Object.getPrototypeOf(ExempleCollection.prototype), 'isDOMReady', this).call(this);
+            this.$exemples = document.querySelectorAll(this.class);
+            if (this.$exemples.length > 0) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
 
-	return Exemple;
-}(DOMReadyFactory);
+                try {
+                    for (var _iterator = this.$exemples[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var $exemple = _step.value;
+                        ;
+                        this.exemples.add(new Exemple($exemple));
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
 
-var exempleComponent = new Exemple();
+                console.log('ExempleCollection exemples', this.exemples);
+            }
+        }
+    }]);
+
+    return ExempleCollection;
+}(DOMReadyObject);
+
+var exempleCollection = new ExempleCollection();
+//# sourceMappingURL=index.js.map
