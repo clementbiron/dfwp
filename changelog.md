@@ -17,11 +17,14 @@
 - mise en place de svgSprite
 - mise en place de gulp-uglify-es
 - mise en place de babel (babel-polyfill n'est chargé à cause de son poids : 100 ko)
+- mise en place de svg4everybody (le sprite svg est maintenant externe)
 - suppression de bower
 - supression de la gestion des sprite png
 - suppresion de gulp-uglify
 - suppression du template matcher
 - refacto des fichiers JS
+- refacto du fichier gulpfile
+- mise en plage des sourcemaps pour fichiers css et js
 
 # changelog v2.6.0 (31 août 2016)
 - nombres modifications mineurs sur les fichiers php

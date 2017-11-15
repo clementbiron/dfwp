@@ -6,7 +6,6 @@
 	use Doublefou\Core\Debug;
 
 	//Config
-	$svgPath = __DIR__.'/src/assets/svg/generated/sprite.svg';
 	$styleguidePath = __DIR__.'/styleguide/styleguide.html';
 	$componentsPath = __DIR__.'/styleguide/components/';
 
@@ -65,9 +64,6 @@
 				//On ajoute aussi une class pour dire que c'est un composant
 				$body->setAttribute('class', $body->getAttribute('class').' '.'dfwp_styleguide-iscomposant');
 
-				//On ajoute le sprite svg au dom
-				appendSVGToBody($body,$dom,$svgPath);
-
 				//On parcoure les composants que l'on a stocké
 				foreach($domComponents as $component)
 				{
@@ -88,26 +84,6 @@
 		$html = file_get_contents($styleguidePath);
 		$dom->loadHTML($html);
 		$body= $dom->getElementsByTagName('body')->item(0);
-
-		//On ajoute le sprite svg au dom
-		appendSVGToBody($body,$dom,$svgPath);
-	}
-
-	function appendSVGToBody($body,$dom,$svgPath)
-	{
-		//Si on a la présence d'un sprite SVG
-		if(is_file($svgPath))
-		{
-			//On charge le svg
-			$svg = file_get_contents($svgPath);
-			if($svg != false)
-			{
-				//On l'insère tout de suite après <body>
-				$fragment = $dom->createDocumentFragment();
-				$fragment->appendXML($svg);
-				$body->appendChild($fragment);
-			}
-		}
 	}
 
 	//On réactive les erreurs

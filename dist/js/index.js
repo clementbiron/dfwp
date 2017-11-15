@@ -58,7 +58,11 @@ var General = function (_DOMReadyObject) {
         _classCallCheck(this, General);
 
         console.log('General.constructor()');
-        return _possibleConstructorReturn(this, (General.__proto__ || Object.getPrototypeOf(General)).call(this));
+
+        var _this = _possibleConstructorReturn(this, (General.__proto__ || Object.getPrototypeOf(General)).call(this));
+
+        svg4everybody();
+        return _this;
     }
 
     _createClass(General, [{

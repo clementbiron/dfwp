@@ -18,12 +18,14 @@ Plugins : Advanced custo fields pro : https://www.advancedcustomfields.com
 #### Build
 
 Commandes gulp disponibles :
-`gulp styles`
+`gulp styles-project`
+`gulp styles-styleguide`
+`gulp styles-maintenance`
 `gulp scripts` 
 `gulp svg-sprite` 
 `gulp styleguide` 
 `gulp browser-sync` 
-`gulp` -> ['styles', 'scripts', 'browser-sync', 'styleguide','svg-sprite']
+`gulp` 
 
 #### MAINTENANCE
 Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.

@@ -3,6 +3,7 @@
 	namespace Doublefou\Components;
 	use Doublefou\Components\CustomMenuItem;
 	use Doublefou\Core\Debug;
+	use Exception;
 
 	//Exit si accès direct
 	if (!defined('ABSPATH')) exit; 
@@ -27,10 +28,12 @@
 
 			//Si on construit l'objet à partir du slug du menu
 			if($pMenuSlug != false){
+				
+				//On recupère les menu locations
+				$locations = get_nav_menu_locations();
 
 				//Si le menu existe bien 
-				if (($locations = get_nav_menu_locations()) 
-					&& isset($locations[$pMenuSlug])){
+				if (!empty($locations[$pMenuSlug])){
 
 					//Alors on récupère l'objet wp
 					$menuObject =  wp_get_nav_menu_object($locations[$pMenuSlug]);

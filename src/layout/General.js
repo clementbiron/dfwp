@@ -6,6 +6,7 @@ class General extends DOMReadyObject{
     constructor() {
         console.log('General.constructor()');
         super();
+        svg4everybody();
     }
 
     isDOMReady(){

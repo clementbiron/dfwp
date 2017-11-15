@@ -44,12 +44,24 @@
 			'dfwp_index',
 			get_stylesheet_directory_uri().'/dist/js/'.$projectJsName,
 			array(
+				'svg4everybody'
 			),
 			1,
 			true
 		);
 
-		//Charger le fichier js du projet
+		//svg4everybody
+		wp_register_script(
+			'svg4everybody',
+			get_stylesheet_directory_uri().'/build/node_modules/svg4everybody/dist/svg4everybody.min.js',
+			array(
+			),
+			1,
+			true
+		);
+
+		//Charger des fichiers js du projet
+		wp_enqueue_script('svg4everybody');
 		wp_enqueue_script('dfwp_index');
 
 		//Décharger les scripts non nécéssaires

@@ -1,23 +1,22 @@
 /**
  * Charger les dépendances
  */
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var csso = require('gulp-csso');
-var autoprefixer = require('gulp-autoprefixer');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify-es').default;
-var plumber = require('gulp-plumber');
-var rename = require('gulp-rename');
-var styledown = require('gulp-styledown');
-var foreachFiles = require('gulp-foreach');
-var browserSync = require('browser-sync').create();
-var svgSprite = require('gulp-svg-sprite');
-var babel = require("gulp-babel");
-var babelpresetenv = require("babel-preset-env");
-var sourcemaps = require('gulp-sourcemaps');
-var minify = require("gulp-babel-minify");
-
+const gulp           = require('gulp');
+const sass           = require('gulp-sass');
+const csso           = require('gulp-csso');
+const autoprefixer   = require('gulp-autoprefixer');
+const concat         = require('gulp-concat');
+const uglify         = require('gulp-uglify-es').default;
+const plumber        = require('gulp-plumber');
+const rename         = require('gulp-rename');
+const styledown      = require('gulp-styledown');
+const foreachFiles   = require('gulp-foreach');
+const browserSync    = require('browser-sync').create();
+const svgSprite      = require('gulp-svg-sprite');
+const babel          = require("gulp-babel");
+const babelpresetenv = require("babel-preset-env");
+const sourcemaps     = require('gulp-sourcemaps');
+const minify         = require("gulp-babel-minify");
 
 /**
  * Configuration 
@@ -32,19 +31,24 @@ appStyles.set(3, { name: 'maintenance', src: '../src/layout/maintenance.scss' })
 
 //Configuration de Browsersync
 const browserSyncConf = {
-    proxy: "http://192.168.0.27/_lab/dfwp",
-    host: "192.168.0.27",
-    open: "external",
+    proxy        : "http://192.168.0.27/_lab/dfwp",
+    host         : "192.168.0.27",
+    open         : "external",
     injectChanges: true
 }
 
 //Configuration des sources nécessaire pour la génération du styleguide.html
 const styleguideConf = {
-    filename: 'styleguide.html',
-    configPath: '../styleguide/config.md',
-    componentsPath:'../src/components/**/*.md',
-    primaryDest: '../styleguide', //Dossier de destination du fichier styleguide.html
-    componentsDest: '../styleguide/components' //Dossier de destination des composants
+    filename      : 'styleguide.html', //Nom du fichier généré
+    configPath    : '../styleguide/config.md', //Chemin du fichier de config markdown
+    primarySrc : [
+        '../src/config/*.scss',
+        '../src/elements/*.scss',
+        '../src/utils/*.scss'
+    ], // Tableau des fichiers 
+    componentsPath: '../src/components/**/*.md',   //Chemin des fichiers markdown des composants
+    primaryDest   : '../styleguide',               //Dossier de destination du fichier styleguide.html
+    componentsDest: '../styleguide/components'     //Dossier de destination des composants
 }
 
 //Config scripts
@@ -56,15 +60,28 @@ const scriptsConf = {
         '../src/pages/**/*.js', //Pages js
     ],
     filename: 'index',
-    destPath: '../dist/js'
+    destPath: '../dist/js',
+    uglify  : {
+        mangle  : true,
+        compress: {
+            sequences   : true,   // join consecutive statemets with the “comma operator”
+            dead_code   : true,   // discard unreachable code
+            conditionals: true,   // optimize if-s and conditional expressions
+            booleans    : true,   // optimize boolean expressions
+            unused      : true,   // drop unused variables/functions
+            if_return   : true,   // optimize if-s followed by return/continue
+            join_vars   : true,   // join var declarations
+            drop_console: true    // drop console
+        }
+    }
 }
 
 //Config svg
 const svgConfig = {
-    src: '../src/assets/svg/src/*.svg',
-    dest: '../src/assets/svg/',
+    src      : '../src/assets/svg/src/*.svg',
+    dest     : '../src/assets/svg/',
     svgSprite: {
-        log: 'info',
+        log  : 'info',
         shape: {
             transform: [{
                 svgo: {
@@ -75,16 +92,13 @@ const svgConfig = {
             }]
         },
         svg: {
-            xmlDeclaration: false,
-            doctypeDeclaration: false,
-            dimensionAttributes: false,
-            rootAttributes: {
-                style: "display:none;"
-            }
+            xmlDeclaration     : false,
+            doctypeDeclaration : false,
+            dimensionAttributes: false
         },
         mode: {
             symbol: {
-                dest: "generated",
+                dest  : "generated",
                 sprite: "sprite.svg",
                 render: {
                     scss: true
@@ -110,8 +124,10 @@ gulp.task('styles-project', function ()
 {
     console.log("----------- Styles du projet -----------");
     return gulp.src(appStyles.get(1).src)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer("> 4%"))
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))    
+    .pipe(autoprefixer({ browsers: ['last 2 versions', 'ie 11', 'Android 4', '>= 4%']}))
+    .pipe(sourcemaps.write())
     .pipe(concat(appStyles.get(1).name + '.css'))
     .pipe(gulp.dest('../dist/css/'))
     .pipe(browserSync.stream())
@@ -156,7 +172,7 @@ gulp.task('styleguide', function ()
 {
     console.log("----------- Styleguide -----------");
     console.log("--> création du fichier styleguide.html");
-    return gulp.src(styleguideConf.configPath)        
+    return gulp.src(styleguideConf.primarySrc)        
     .pipe(styledown({
         config: styleguideConf.configPath,
         filename: styleguideConf.filename
@@ -199,22 +215,11 @@ gulp.task('scripts', function ()
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(scriptsConf.destPath))
     .on('finish', function () {
+        
         console.log('--> création de ' + scriptsConf.filename + '.min.js ');
         gulp.src(scriptsConf.destPath + '/' + scriptsConf.filename + '.js')
         .pipe(rename({ extname: '.min.js' }))
-        .pipe(uglify({
-            mangle: true,
-            compress: {
-                sequences: true, // join consecutive statemets with the “comma operator”
-                dead_code: true, // discard unreachable code
-                conditionals: true, // optimize if-s and conditional expressions
-                booleans: true, // optimize boolean expressions
-                unused: true, // drop unused variables/functions
-                if_return: true, // optimize if-s followed by return/continue
-                join_vars: true, // join var declarations
-                drop_console: true // drop console
-            }
-        }))
+        .pipe(uglify(scriptsConf.uglify))
         .pipe(gulp.dest(scriptsConf.destPath));
         browserSync.reload();
     });
@@ -257,12 +262,12 @@ gulp.task('default',
             '../src/pages/**/*.scss',
         ], ['styles-project']);
 
-        //Sass maintenance
+        //Sass maintenance layout
         gulp.watch([
             '../src/layout/maintenance.scss',
         ], ['styles-maintenance']);
 
-        //Sass styleguide
+        //Sass styleguide layout
         gulp.watch([
             '../src/layout/styleguide.scss',
         ], ['styles-styleguide']);
@@ -277,7 +282,10 @@ gulp.task('default',
         //Styleguide
         gulp.watch([
             '../styleguide/config.md',
-            '../src/components/**/*.md'
+            '../src/components/**/*.md',
+            '../src/config/*.scss',
+            '../src/elements/*.scss',
+            '../src/utils/*.scss'
         ], ['styleguide']);
 
         //Sprite svg
@@ -290,7 +298,7 @@ gulp.task('default',
         gulp.watch([
             '../*.php',
             '../template/*.php',
-            '../template/**/*.php',
+            '../template/*.php',
             '../src/components/**/*.php'
         ], browserSync.reload);
 });

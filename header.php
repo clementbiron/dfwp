@@ -19,9 +19,6 @@
 <body class="<?php echo join(' ', get_body_class()); ?>">
 
 <?php
-	//Chargement du svg
-	include(__DIR__.'/src/assets/svg/generated/sprite.svg');
-	
 	//Chargement du header
 	get_template_part('src/components/header/header');
 ?>
