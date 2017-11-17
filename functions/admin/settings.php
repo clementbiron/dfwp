@@ -67,4 +67,12 @@
 
 	//On masque le styleguide pour les roles à partir de editor
 	Page::hideInAdminByPageTemplate('page-styleguide.php','install_plugins');
+
+	use Doublefou\Helper\CustomPostColumnsManager;
+	$test = new CustomPostColumnsManager('recette');
+	$test->addACFColumn('Type','taxonomy','recette_type',true,'15%');
+	$test->addACFColumn('Note','select','recette_stars',true,'10%');
+	$test->addACFColumn('Date de parution','default','recette_date',true,'10%');
+	$test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
+	$test->removeColumn('date');
 ?>

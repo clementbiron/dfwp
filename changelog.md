@@ -23,6 +23,7 @@
 - `wp_deregister_script('wp-embed')` par défaut
 - refacto des fichiers JavaScript
 - un exemple de fichier `wp-config.php` multi-environnements ici https://gist.github.com/posykrat/1d8123075b2820085a0f7aa5ab99c2c5
+- ajout de la class Helper `CustomPostColumnsManager` qui permet de gérer des colonnes de champs ACF dans le listing de CPT en admin
 
 **Styleguide :**
 - afficher plusieurs composants en passant les noms en url : `?components=exemple,footer`
