@@ -32,10 +32,12 @@ yarn install
 - `gulp` 
 
 **MAINTENANCE**
+
 Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.
 Le fichier maintenance.css est chargé uniquement pour cette page.
 
 **STYLEGUIDE**
+
 En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide.
 Le fichier styleguide.css est chargé uniquement pour cette page.
 
@@ -90,7 +92,8 @@ foreach($menuItems as $menuItem){
 }
 ```
 
-****Summary*****
+****Summary****
+
 Construction d'un sommaire automatique à partir des titres <hx> d'un post content
 ```php
 use Doublefou\Components\Summary;
@@ -111,7 +114,8 @@ if(count($summaryItems) > 0)
 
 **PHP Helpers**
 
-****CustomPostColumnsManager*****
+****CustomPostColumnsManager****
+
 Gestion des colonnes de la liste d'un CPT en administration. 
 ```php
 use Doublefou\Helper\CustomPostColumnsManager;
