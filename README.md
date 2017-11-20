@@ -108,3 +108,17 @@ if(count($summaryItems) > 0)
 	}
 }
 ```
+
+**PHP Helpers**
+
+****CustomPostColumnsManager*****
+Gestion des colonnes de la liste d'un CPT en administration. 
+```php
+use Doublefou\Helper\CustomPostColumnsManager;
+$test = new CustomPostColumnsManager('recette');
+$test->addACFColumn('Type','taxonomy','recette_type',true,'15%');
+$test->addACFColumn('Note','select','recette_stars',true,'10%');
+$test->addACFColumn('Date de parution','default','recette_date',true,'10%');
+$test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
+$test->removeColumn('date');
+```
