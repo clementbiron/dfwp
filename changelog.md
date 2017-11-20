@@ -1,5 +1,5 @@
 
-# changelog v3.0.0 (09/11/2017)
+# changelog v3.0.0 (20/11/2017)
 **ACF :**
 - les groupes de champs sont sauvegardés dans le dossier `functions/admin/acf-json`, cela accelère le chargement et permet le versionning
 - l'activation de la maintenance et du mode debug passe maintenant par la page d'options gérée avec ACF
