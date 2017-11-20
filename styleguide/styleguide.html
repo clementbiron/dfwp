@@ -1,0 +1,192 @@
+<!doctype html>
+<html class="sg">
+
+<head>
+  <meta charset="utf-8">
+  <title>Styledown</title>
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css">
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css">
+  <script src="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js"></script>
+  <script src="../wp-content/themes/dfwp//build/node_modules/svg4everybody/dist/svg4everybody.min.js"></script>
+  <script src="../wp-content/themes/dfwp/dist/js/index.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div id="link" href="https://fonts.googleapis.com/css?family=..." rel="stylesheet"></div>
+</head>
+
+<body class="sg">
+  <h1 id="dfwp_styleguide_title">Styleguide</h1>
+  <div id="dfwp_styleguide_menucomponents">
+    <p>
+      <strong>Composants</strong>
+    </p>
+    <a href="?components=header">Header</a>
+    <br>
+    <a href="?components=footer">Footer</a>
+    <br>
+    <a href="?components=header,exemple,footer&amp;bodyclass=home">Exemple avec multiple chargement de components + body class</a>
+  </div>
+  <div id="dfwp_styleguide_menuelements">
+    <p>
+      <strong>Elements</strong>
+    </p>
+    <a href="#colors">Colors</a>
+    <br>
+    <a href="#fonts">Fonts</a>
+    <br>
+    <a href="#icons">Icons</a>
+    <br>
+    <a href="#inline">Inline</a>
+    <br>
+    <a href="#links">Links</a>
+    <br>
+    <a href="#title">Title</a>
+    <br>
+    <a href="#buttons">Buttons</a>
+    <br>
+    <a href="#form">Form elements</a>
+  </div>
+  <div id="styleguides">
+    <section class="sg-section sg-section-colors">
+      <h2 id="colors" class="sg">Colors</h2>
+    </section>
+    <section class="sg-section sg-section-fonts">
+      <h2 id="fonts" class="sg">Fonts</h2>
+      <section class="sg-block sg-section-font-1">
+        <div class="sg-text">
+          <h3 id="font-1" class="sg">Font 1</h3>
+          <p class="sg">
+            <code class="sg">.font_1</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="font_1">lorem</div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;font_1&quot;</span>&gt;</span>lorem<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-icons">
+      <h2 id="icons" class="sg">Icons</h2>
+      <section class="sg-block sg-section-icon-1">
+        <div class="sg-text">
+          <h3 id="icon-1" class="sg">Icon 1</h3>
+          <p class="sg">
+            <code class="sg">.icon_1</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div style="background-color:gray; padding: 1rem;">
+              <svg class="icon_1">
+                <use xlink:href="../wp-content/themes/dfwp/src/assets/svg/generated/sprite.svg#icon_close">
+              </svg>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:gray; padding: 1rem;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">svg</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;icon_1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">use</span> <span class="hljs-attribute">xlink:href</span>=<span class="hljs-value">&quot;../wp-content/themes/dfwp/src/assets/svg/generated/sprite.svg#icon_close&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">use</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-icon-2">
+        <div class="sg-text">
+          <h3 id="icon-2" class="sg">Icon 2</h3>
+          <p class="sg">
+            <code class="sg">.icon_2</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div style="background-color:gray; padding: 1rem;">
+              <svg class="icon_2">
+                <use xlink:href="../wp-content/themes/dfwp/src/assets/svg/generated/sprite.svg#icon_behance">
+              </svg>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:gray; padding: 1rem;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">svg</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;icon_2&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">use</span> <span class="hljs-attribute">xlink:href</span>=<span class="hljs-value">&quot;../wp-content/themes/dfwp/src/assets/svg/generated/sprite.svg#icon_behance&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">use</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">svg</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-inline">
+      <h2 id="inline" class="sg">Inline</h2>
+      <section class="sg-block sg-section-paragraphe">
+        <div class="sg-text">
+          <h3 id="paragraphe" class="sg">Paragraphe</h3>
+          <p class="sg">
+            <code class="sg">&lt;p&gt;</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <p>lorem ispum</p>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>lorem ispum<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-links">
+      <h2 id="links" class="sg">Links</h2>
+      <section class="sg-block sg-section-lien-1">
+        <div class="sg-text">
+          <h3 id="lien-1" class="sg">Lien 1</h3>
+          <p class="sg">
+            <code class="sg">&lt;a href=&quot;http://www.google.com&quot;&gt;lorem&lt;/a&gt;</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <a href="google.com">lorem</a>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;google.com&quot;</span>&gt;</span>lorem<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-title">
+      <h2 id="title" class="sg">Title</h2>
+      <section class="sg-block sg-section-h1">
+        <div class="sg-text">
+          <h3 id="h1" class="sg">H1</h3>
+          <p class="sg">
+            <code class="sg">&lt;h1&gt;</code>
+            <code class="sg">.H1-like</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <h1 class="H1-like">Lorem</h1>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;H1-like&quot;</span>&gt;</span>Lorem<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-buttons">
+      <h2 id="buttons" class="sg">Buttons</h2>
+      <section class="sg-block sg-section-button-exemple">
+        <div class="sg-text">
+          <h3 id="button-exemple" class="sg">Button exemple</h3>
+          <p class="sg">
+            <code class="sg">.exemple</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="button1">lorem</div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button1&quot;</span>&gt;</span>lorem<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-form">
+      <h2 id="form" class="sg">Form</h2>
+    </section>
+
+  </div>
+</body>
+
+</html>

@@ -1,12 +1,49 @@
-### DFWP 
-WordPress theme framework
+# DFWP 
+WordPress theme framework ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
 
-#### INSTALL
-cd build && composer install
+**Requirements**
+- Choco (https://chocolatey.org/)
+- Yarn (https://yarnpkg.com/fr/)
+- Composer (https://getcomposer.org/)
+- Advanced Custom Fileds Pro (https://www.advancedcustomfields.com)
 
-#### PHP COMPONENTS
+**Install**
+```
+cd build
+composer install
+choco install yarn
+yarn install
+```
 
-##### Breadcrumb
+**Configuration**
+- Sass : `src/config/config.scss`
+- Sass import : `src/config/loader.scss`
+- Styleguide : `styleguide/config.md`
+- Build : `build/gulpfile.js`
+
+**Build**
+- `gulp styles-project`
+- `gulp styles-styleguide`
+- `gulp styles-maintenance`
+- `gulp scripts` 
+- `gulp svg-sprite` 
+- `gulp styleguide` 
+- `gulp browser-sync` 
+- `gulp` 
+
+**MAINTENANCE**
+
+Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.
+Le fichier maintenance.css est chargé uniquement pour cette page.
+
+**STYLEGUIDE**
+
+En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide.
+Le fichier styleguide.css est chargé uniquement pour cette page.
+
+**PHP components**
+
+****Breadcrumb****
 ```php
 use Doublefou\Components\Breadcrumb;
 use Doublefou\Components\BreadcrumbLink;
@@ -28,7 +65,7 @@ foreach ($breadcrumbLinks as $breadcrumbLink) {
 }
 ```
 
-##### CustomMenuCollection
+****CustomMenuCollection****
 ```php
 use Doublefou\Components\CustomMenuCollection;
 use Doublefou\Components\CustomMenuItem;
@@ -55,7 +92,8 @@ foreach($menuItems as $menuItem){
 }
 ```
 
-##### Summary
+****Summary****
+
 Construction d'un sommaire automatique à partir des titres <hx> d'un post content
 ```php
 use Doublefou\Components\Summary;
@@ -72,4 +110,19 @@ if(count($summaryItems) > 0)
 		echo $summaryItem->getTitle();
 	}
 }
+```
+
+**PHP Helpers**
+
+****CustomPostColumnsManager****
+
+Gestion des colonnes de la liste d'un CPT en administration. 
+```php
+use Doublefou\Helper\CustomPostColumnsManager;
+$test = new CustomPostColumnsManager('recette');
+$test->addACFColumn('Type','taxonomy','recette_type',true,'15%');
+$test->addACFColumn('Note','select','recette_stars',true,'10%');
+$test->addACFColumn('Date de parution','default','recette_date',true,'10%');
+$test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
+$test->removeColumn('date');
 ```

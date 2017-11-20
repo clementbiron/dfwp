@@ -1,0 +1,33 @@
+Basic generation:
+	- Template @done(2014-02-13)
+	- Bin @done(2014-02-13)
+
+Basic styleguide:
+	- Wrap h2 sections into .sg-section blocks @done(2014-02-18)
+	- Wrap h3 sections into .sg-block blocks @done(2014-02-18)
+	- Adding `options.body` for body template @done(2014-02-18)
+	- proper head declarations @done(2014-02-22)
+
+For project:
+	- Wrapping
+		- `.sg-text` - Wrap text elements of an .sg-block (!) @done(2014-02-24)
+		- `.sg-example` - rename code-block to this @done(2014-02-24)
+	- Tags
+		- `@example` @done(2014-02-24)
+		- `@example.light` (classnames) @done(2014-02-24)
+		- `@example.padded` (bordered) @done(2014-02-24)
+		- `@example.full`
+		- `@specimen weight=100 font="proxima nova" headline=1.5em paragraph=1em`
+		- `@colors`
+	- Trimming
+		- trim to ellipsis (sg:snip)
+		- remove current element (sg:omit)
+	- Refactor
+		- Remove bare:true in favor of head:false
+	- Bootstrapping
+		- styledown --css @done(2014-02-24)
+		- styledown --new
+
+Later features:
+	- jade-less mode @done(2014-02-24)
+	- `@input @result` (for sass examples)

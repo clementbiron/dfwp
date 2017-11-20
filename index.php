@@ -2,14 +2,11 @@
 	get_header();
 ?>
 
+index dfwp themes
 
-index df_wp 
-
-<?php 
-
-	get_sidebar(); 
-
-?>
+<p>
+	<a href="<?php echo get_site_url().'/styleguide'; ?>">accèder au styleguide</a>
+</p>
 
 <?php 
 

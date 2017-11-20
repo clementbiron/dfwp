@@ -1,0 +1,28 @@
+{
+  "name": "dfwp",
+  "version": "3.0.0",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "latest",
+    "gulp-babel": "^7.0.0",
+    "gulp-babel-minify": "^0.2.0",
+    "gulp-concat": "latest",
+    "gulp-csso": "latest",
+    "gulp-foreach": "latest",
+    "gulp-plumber": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-styledown": "latest",
+    "gulp-svg-sprite": "^1.3.7",
+    "gulp-uglify-es": "^0.1.3",
+    "svg4everybody": "^2.1.9"
+  },
+  "dependencies": {
+    "gulp-pipe": "^1.0.4"
+  },
+  "main": "gulpfile.js"
+}

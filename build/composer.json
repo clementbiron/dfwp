@@ -7,14 +7,17 @@
         }
     ],
     "config": {
-        "vendor-dir": "../vendor"
+        "vendor-dir": "../src/vendor",
+        "disable-tls": true,
+        "secure-http": false
     },
     "autoload": {
         "psr-4": {
-            "Doublefou\\": "../vendor/Doublefou"
+            "Doublefou\\": "../src/vendor/Doublefou"
         }
     },
     "require": {
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "php-ds/php-ds": "^1.2"
 	}
 }
