@@ -13,10 +13,12 @@ const styledown      = require('gulp-styledown');
 const foreachFiles   = require('gulp-foreach');
 const browserSync    = require('browser-sync').create();
 const svgSprite      = require('gulp-svg-sprite');
-const babel          = require("gulp-babel");
+const browserify     = require('browserify');
+const babelify       = require('babelify');
 const babelpresetenv = require("babel-preset-env");
+const buffer         = require('vinyl-buffer');
+const source         = require('vinyl-source-stream');
 const sourcemaps     = require('gulp-sourcemaps');
-const minify         = require("gulp-babel-minify");
 
 /**
  * Configuration 
@@ -59,7 +61,7 @@ const scriptsConf = {
         '../src/components/**/*.js', //Components js
         '../src/pages/**/*.js', //Pages js
     ],
-    filename: 'index',
+    filename: 'bundle',
     destPath: '../dist/js',
     uglify  : {
         mangle  : true,
@@ -94,7 +96,8 @@ const svgConfig = {
         svg: {
             xmlDeclaration     : false,
             doctypeDeclaration : false,
-            dimensionAttributes: false
+            dimensionAttributes: false,
+            namespaceClassnames: false
         },
         mode: {
             symbol: {
@@ -202,16 +205,23 @@ gulp.task('styleguide', function ()
 /**
  * JS
  */
-gulp.task('scripts', function () 
-{
+gulp.task('scripts', function () {
     console.log("----------- Scripts -----------");
-    console.log('--> création de '+scriptsConf.filename+'.js + sourcemaps');
-    return gulp.src(scriptsConf.src)
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-        presets: [babelpresetenv]
-    }))
-    .pipe(concat(scriptsConf.filename+'.js'))
+    
+    console.log('--> création de ' + scriptsConf.filename + '.js + sourcemaps');
+    return browserify({
+        'entries': '../src/config/main.js',
+        'debug': true,
+        'transform': [
+            babelify.configure({
+                'presets': [babelpresetenv]
+            })
+        ]
+    })
+    .bundle()
+    .pipe(source(scriptsConf.filename+'.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(scriptsConf.destPath))
     .on('finish', function () {
@@ -220,9 +230,9 @@ gulp.task('scripts', function ()
         gulp.src(scriptsConf.destPath + '/' + scriptsConf.filename + '.js')
         .pipe(rename({ extname: '.min.js' }))
         .pipe(uglify(scriptsConf.uglify))
-        .pipe(gulp.dest(scriptsConf.destPath));
-        browserSync.reload();
-    });
+        .pipe(gulp.dest(scriptsConf.destPath))
+        .pipe(browserSync.stream());
+    })
 });
 
 /**
