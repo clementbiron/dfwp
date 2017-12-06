@@ -37,7 +37,7 @@
 	function dfwp_enqueueScripts()
 	{
 		//Le nom du fichier js du projet
-		$projectJsName = (Config::getDebug() === false) ? 'index.min.js' :  'index.js';
+		$projectJsName = (Config::getDebug() === false) ? 'bundle.min.js' :  'bundle.js';
 
 		//Enregistrer le script dans la pile
 		wp_register_script(

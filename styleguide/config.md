@@ -7,7 +7,7 @@
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css")
     script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
     script(src='../wp-content/themes/dfwp//build/node_modules/svg4everybody/dist/svg4everybody.min.js')
-    script(src='../wp-content/themes/dfwp/dist/js/index.js')
+    script(src='../wp-content/themes/dfwp/dist/js/bundle.js')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     #link(href="https://fonts.googleapis.com/css?family=..." rel="stylesheet")
 

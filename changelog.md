@@ -1,4 +1,14 @@
 
+# changelog v3.1.0 (06/12/2017)
+**Gulpfile**
+Mise en place des modules js avec Browserify et Babelify
+- uninstall gulp-babel
+- uninstall gulp-minify
+- install babelify
+- install browserify
+- install vinyl-buffer
+- install vinyl-source-stream
+
 # changelog v3.0.0 (20/11/2017)
 **ACF :**
 - les groupes de champs sont sauvegardés dans le dossier `functions/admin/acf-json`, cela accelère le chargement et permet le versionning

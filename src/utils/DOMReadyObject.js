@@ -2,7 +2,7 @@
  * DOMReadyObject
  * abstract class
  */
-class DOMReadyObject{
+export class DOMReadyObject{
 
     constructor(){
 

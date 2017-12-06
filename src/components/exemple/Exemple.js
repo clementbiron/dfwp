@@ -1,7 +1,7 @@
 /**
- * Exemple compoenent
+ * Exemple component
  */
-class Exemple {
+export class Exemple {
 	constructor($dom) {
 		console.log('Exemple.constructor()');
 		this.$dom = $dom;

@@ -1,6 +1,9 @@
 /**
  * Exemple collections
  */
+import {DOMReadyObject} from "../../utils/DOMReadyObject.js";
+import {Exemple} from "./Exemple.js";
+
 class ExempleCollection extends DOMReadyObject {
 
     constructor() {
@@ -23,4 +26,4 @@ class ExempleCollection extends DOMReadyObject {
     }
 }
 
-const exempleCollection = new ExempleCollection();
+export const exempleCollection = new ExempleCollection();

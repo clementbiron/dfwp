@@ -1,3 +1,6 @@
+import {DOMReadyObject} from "../utils/DOMReadyObject.js";
+import {exempleCollection} from "../components/exemple/ExempleCollection.js";
+
 /**
  * Layout general
  */
@@ -7,6 +10,7 @@ class General extends DOMReadyObject{
         console.log('General.constructor()');
         super();
         svg4everybody();
+        console.log('exempleCollection : ',exempleCollection);
     }
 
     isDOMReady(){
@@ -15,4 +19,5 @@ class General extends DOMReadyObject{
     }
 }
 
-const generalLayout = new General();
+export const generalLayout = new General();
+

@@ -11,7 +11,9 @@
 	use Doublefou\Core\Config;
 	use Doublefou\Helper\Login;
 
-	//Et on configure le debug
+	if(!function_exists('get_field')) return;
+
+	//On configure le debug
 	Config::setDebug(get_field('dfwp_options_is_debug','option'));
 
 	//Template include filter
