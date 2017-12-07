@@ -43,8 +43,8 @@ Le fichier maintenance.css est chargé uniquement pour cette page.
 
 **STYLEGUIDE**
 
-En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide.
-Le fichier styleguide.css est chargé uniquement pour cette page.
+En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide. Le fichier styleguide.css est chargé uniquement pour cette page.
+Variables disponibles dans les fichiers .md de composants : {svg-path}
 
 **PHP components**
 

@@ -42,6 +42,11 @@
 			//Pour trouver et récupérer le composant dans la DOM
 			$nodes = $finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $queryComponent ')]");
 			$componentDom = $nodes->item(0)->ownerDocument->saveHTML( $nodes->item(0));
+
+			//On remplace les '{}' qui vont bien
+			$componentDom = str_replace('{svg-path}',Config::get('svg-path'),$componentDom);
+
+			//On stocke
 			array_push($domComponents, $componentDom);
 			
 			//Si c'est le dernier composant chargé
