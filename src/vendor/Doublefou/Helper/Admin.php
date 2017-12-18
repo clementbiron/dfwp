@@ -296,6 +296,16 @@
 		{
 			add_filter('pre_get_shortlink','__return_empty_string');
 		}
+
+		/**
+		 * disableJPEGCompression
+		 * @return void
+		 */
+		public static function disableJPEGCompression()
+		{
+			add_filter('jpeg_quality', create_function('', 'return 100;'));
+			add_filter('wp_editor_set_quality', create_function('', 'return 100;'));	
+		}
 	}
 
 ?>

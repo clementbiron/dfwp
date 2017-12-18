@@ -29,6 +29,9 @@
 
 	//Supprimer le bouton pour obtenir le lien court
 	Admin::deleteShortLinkBtn();	
+
+	//On supprime la compression des jpeg par défaut
+	Admin::disableJPEGCompression();
 	
 	//Cacher certains menus de gauche pour l'éditeur
 	Admin::hideMenu(
