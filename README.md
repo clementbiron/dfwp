@@ -21,6 +21,9 @@ yarn install
 - Styleguide : `styleguide/config.md`
 - Build : `build/gulpfile.js`
 - Javascript build entrie point : `src/config/main.js` 
+```
+git remote set-url origin git://new.url.here
+```
 
 **Build tasks**
 - `gulp styles-project`
@@ -33,6 +36,7 @@ yarn install
 - `gulp` 
 
 **ACF**
+
 Les champs sont sauvegarder sous forme de fichiers `json` dans le dossier `functions/admin/acf-json`, cela permet de les ré-importer au besoin. Il est recommandé d'exporter les champs en PHP et de copier le code génré dans le fichier `functions/admin/settings.php`
 
 

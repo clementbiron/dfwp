@@ -1,4 +1,7 @@
 
+# changelog  (18/12/2017)
+- désactivation de la compression JPEG par défaut
+
 # changelog v3.1.0 (06/12/2017)
 **Gulpfile**
 Mise en place des modules js avec Browserify et Babelify
