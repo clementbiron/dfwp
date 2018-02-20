@@ -1,3 +1,13 @@
 /***
  * Colors:
  */
+
+ /**
+ * White to black :
+ *  `$color1-100 | $color1-1000`
+ *
+ *     @example
+ *     div(style='background-color:#ffffff;') $color1-100 | #ffffff 
+ *     div(style='background-color:#000000; color:white;') $color1-1000 | #000000 
+ *
+ */

@@ -2,31 +2,32 @@
 $imageBase: "../dist/img/";
 
 //Taille par défaut des fonts
-$default-font-size: 15px;
+$defaultFontSize: 15px;
 
 //Grid cols
 $gridColsNumber: 6;
-$gridColWidth: 180px;
+$gridColWidth  : 180px;
 
 //Grid gutter
 $gridGuttersNumber: 5;
-$gridGutterWidth: 20px;
+$gridGutterWidth  : 20px;
 
 //Largeur de la grille (1180px)
 $gridWidth: (($gridGuttersNumber * $gridGutterWidth) + ($gridColsNumber * $gridColWidth));
 
 //Breakpoints
-$breakpointMobileSmall: 320px;
-$breakpointMobileLarge: 480px;
+$breakpointMobileSmall     : 320px;
+$breakpointMobileLarge     : 480px;
 $breakpointMobileExtraLarge: 620px;
-$breakpointTabletSmall: 768px;
-$breakpointTabletLarge: 1024px;
+$breakpointTabletSmall     : 768px;
+$breakpointTabletLarge     : 1024px;
 
 // Colors
-$color1-100: #ffffff;
-$color1-200: #e2e2e2;
+$color1-100 : #ffffff;
 $color1-1000: #000000;
-$color2-100:#2b437c;
-$color3-100:#e74070;
-$color4-100:#fcbd16;
 
+$color2-100 : #2b437c;
+
+$color3-100 : #e74070;
+
+$color4-100 : #fcbd16;

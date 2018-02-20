@@ -4,6 +4,7 @@
 	*/
 	
 	use Doublefou\Core\Debug;
+	use Doublefou\Core\Config;
 
 	//Config
 	$styleguidePath = __DIR__.'/styleguide/styleguide.html';
@@ -24,7 +25,7 @@
 
 		//On parcoure les composants à afficher
 		foreach($queryComponents as $queryComponent)
-		{
+		{			
 			$componentPath = $componentsPath.$queryComponent.'.html';
 			if(is_file($componentPath)){
 				$file = file_get_contents($componentPath);
@@ -58,10 +59,8 @@
 
 				//Si on veut ajouter des class sur le body
 				$queryBodyClass = explode(',',get_query_var('bodyclass'));	
-				if(!empty($queryBodyClass))
-				{
-					foreach($queryBodyClass as $bodyclass)
-					{
+				if(!empty($queryBodyClass)){
+					foreach($queryBodyClass as $bodyclass){
 						$body->setAttribute('class', $body->getAttribute('class').' '.$bodyclass);
 					}
 				}
@@ -73,8 +72,8 @@
 				foreach($domComponents as $component)
 				{
 					//Et on la ajoute au body
-					$fragment = $dom->createDocumentFragment();
-					$fragment->appendXML($component);
+					$fragment = $dom->createDocumentFragment();	
+					$fragment->appendXML(htmlspecialchars($component));
 					$body->appendChild($fragment);
 				}
 			}
@@ -94,5 +93,5 @@
 	//On réactive les erreurs
 	libxml_use_internal_errors($internalErrors);
 
-	echo $dom->saveHTML();
+	echo html_entity_decode($dom->saveHTML());
 ?>

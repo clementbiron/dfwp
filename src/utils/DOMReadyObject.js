@@ -1,25 +1,31 @@
+//Document ready Promise
+document.ready = () => {
+    return new Promise(resolve => {
+        if (document.readyState === 'complete') {
+            resolve();
+        } else {
+            document.addEventListener('DOMContentLoaded', resolve);
+        }
+    });
+};
+
 /**
  * DOMReadyObject
  * abstract class
  */
-export class DOMReadyObject{
-
-    constructor(){
-
+export class DOMReadyObject {
+    constructor() {
         //On ne peut pas instancier la class directement
         if (this.constructor === DOMReadyObject) {
-            throw new Error("Cannot construct DOMReadyObject instances directly");
+            throw new Error(
+                'Cannot construct DOMReadyObject instances directly'
+            );
         }
 
-        //Dom ready
-        if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+        document.ready().then(() => {
             this.isDOMReady();
-        } else {
-            document.addEventListener("DOMContentLoaded", () => { 
-                this.isDOMReady() 
-            });
-        }
+        });
     }
-    
-    isDOMReady(){}
+
+    isDOMReady() { }
 }

@@ -43,6 +43,7 @@
 			$this->filterNames->put('manage_{$post_type}_posts_columns', 'manage_'.$this->posttype.'_posts_columns');
 			$this->filterNames->put('manage_{$post_type}_posts_custom_column', 'manage_'.$this->posttype.'_posts_custom_column');
 			$this->filterNames->put('manage_edit-{$post_type}_sortable_columns', 'manage_edit-'.$this->posttype.'_sortable_columns');
+			$this->filterNames->put('manage_edit-{$post_type}_columns', 'manage_edit-'.$this->posttype.'_columns');
 		}
 		
 		/**
@@ -58,8 +59,8 @@
 		 */
 		public function addACFColumn(string $name, string $type = 'default', string $acffield, bool $filterable = false ,string $colwidth = '')
 		{
-			//Sanitize name for GET
-			$safename = sanitize_title($name);
+			//Uniq sanitize name for GET
+			$safename = sanitize_title($name).'-'.uniqid();
 
 			//On ne peut pas ajouter une colonne avec un nom réservé
 			if(in_array($safename,$this->predefinedColumnsNames)){
@@ -81,15 +82,33 @@
 				{
 					switch ($type) {
 						case 'taxonomy':
-							$tax = get_field($acffield, $post->ID);
-							if(is_object($tax)){
-								echo($tax->name);								
+							$taxs = get_field($acffield, $post->ID);							
+							if(is_object($taxs)){
+								echo($taxs->name);								
+							}else if(is_array($taxs)){
+								$i = 0;
+								$l = count($taxs);
+								foreach($taxs as $tax){
+									echo($tax->name);
+									echo (($i != ($l - 1)) ? ', ' : '');
+									$i++;
+								}
 							}
 							break;
 						case 'image':
-							$img = get_field($acffield, $post->ID);
-							if($img != false){
-								echo '<img src="'.$img['url'].'" style="max-width:100%;" />';
+							$img = get_field($acffield, $post->ID);							
+							if($img){								
+								if(is_array($img)){									
+									$src = $img['url'];
+								}else{								
+									$imgAttachement = wp_get_attachment_image_src($img,'full');
+									if($imgAttachement != false){
+										$src = $imgAttachement[0];
+									}
+								}
+								if(isset($src)){
+									echo '<img src="'.$src.'" style="max-width:100%;" />';
+								}
 							}
 							break;
 						case 'select':
@@ -174,7 +193,7 @@
 			$name = sanitize_title($name);
 
 			//On supprime une colonne
-			add_filter($this->filterNames->get('manage_{$post_type}_posts_columns'), function($columns) use ($name)
+			add_filter($this->filterNames->get('manage_edit-{$post_type}_columns'), function($columns) use ($name)
 			{
 				unset($columns[$name]);
 				return $columns;

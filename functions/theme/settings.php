@@ -13,6 +13,9 @@
 	use Doublefou\Core\Config;
 	use Doublefou\Helper\Login;
 
+	//Sprite SVG PATH
+	Config::set('svg-path',wp_make_link_relative(get_stylesheet_directory_uri().'/src/assets/svg/generated/sprite.svg'));
+
 	//On cache l'admin bar sur le front 
 	Theme::hideAdminBar();
 
@@ -95,7 +98,10 @@
 		);
 
 		//Charger le css du projet
-		wp_enqueue_style('dfwp_index');
+        wp_enqueue_style('dfwp_index');
+    
+        //On decharge la css pour l'admin bar du front de SeoPress
+		//wp_dequeue_style('seopress-admin-bar');
 		
 		//Pour la page pattern uniquement
 		if(is_page_Template('page-styleguide.php'))

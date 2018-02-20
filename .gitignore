@@ -1,9 +1,8 @@
-# Nodes module #
+# Vendors #
 ###################
-#build/node_modules/
-
-# Pour versionner un node module
-# !build/node_modules/mon_module/
+build/node_modules/
+src/vendor/filp/
+src/vendor/php-ds/
 
 # IDE #
 ###################
