@@ -33,6 +33,7 @@
 		 */
 		public static function setDebug($pDebug)
 		{
+            $pDebug = (is_string($pDebug) === true ? boolval($pDebug) : $pDebug);
 			self::$_debug = $pDebug;
 			
 			if($pDebug === true){				

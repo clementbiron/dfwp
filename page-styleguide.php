@@ -4,7 +4,6 @@
 	*/
 	
 	use Doublefou\Core\Debug;
-	use Doublefou\Core\Config;
 
 	//Config
 	$styleguidePath = __DIR__.'/styleguide/styleguide.html';
@@ -25,7 +24,7 @@
 
 		//On parcoure les composants à afficher
 		foreach($queryComponents as $queryComponent)
-		{			
+		{
 			$componentPath = $componentsPath.$queryComponent.'.html';
 			if(is_file($componentPath)){
 				$file = file_get_contents($componentPath);
@@ -43,11 +42,6 @@
 			//Pour trouver et récupérer le composant dans la DOM
 			$nodes = $finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $queryComponent ')]");
 			$componentDom = $nodes->item(0)->ownerDocument->saveHTML( $nodes->item(0));
-
-			//On remplace les '{}' qui vont bien
-			$componentDom = str_replace('{svg-path}',Config::get('svg-path'),$componentDom);
-
-			//On stocke
 			array_push($domComponents, $componentDom);
 			
 			//Si c'est le dernier composant chargé
@@ -59,8 +53,10 @@
 
 				//Si on veut ajouter des class sur le body
 				$queryBodyClass = explode(',',get_query_var('bodyclass'));	
-				if(!empty($queryBodyClass)){
-					foreach($queryBodyClass as $bodyclass){
+				if(!empty($queryBodyClass))
+				{
+					foreach($queryBodyClass as $bodyclass)
+					{
 						$body->setAttribute('class', $body->getAttribute('class').' '.$bodyclass);
 					}
 				}
@@ -72,9 +68,9 @@
 				foreach($domComponents as $component)
 				{
 					//Et on la ajoute au body
-					$fragment = $dom->createDocumentFragment();	
-					$fragment->appendXML(htmlspecialchars($component));
-					$body->appendChild($fragment);
+					$fragment = $dom->createDocumentFragment();
+                    $fragment->appendXML(htmlspecialchars($component));
+                    $body->appendChild($fragment);
 				}
 			}
 

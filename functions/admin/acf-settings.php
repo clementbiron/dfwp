@@ -3,10 +3,11 @@
 	if (!defined('ABSPATH')) exit; 
 
     /* ACF Google Maps API KEY */
-	/*add_action('acf/init', 'dfwp_acf_init');
-	function dfwp_acf_init() {
-		acf_update_setting('google_api_key', 'APIKEY');
-	}*/
+	function dfwp_acf_init( $api ){
+        $api['key'] = 'xxx';
+        return $api;
+    }
+    add_filter('acf/fields/google_map/api', 'dfwp_acf_init');
 
 	//On ajoute une configuration Tinymce pour ACF
 	add_filter('acf/fields/wysiwyg/toolbars','dfwp_acfToolbars' );
