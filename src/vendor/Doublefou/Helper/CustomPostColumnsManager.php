@@ -110,6 +110,13 @@
 									echo '<img src="'.$src.'" style="max-width:100%;" />';
 								}
 							}
+                            break;
+                        case 'date':
+							$date = get_field($acffield, $post->ID, false, false);							
+							if($date){								
+                                $date = strtotime($date);
+                                echo date_i18n('d M Y',$date);
+							}
 							break;
 						case 'select':
 						case 'default':
