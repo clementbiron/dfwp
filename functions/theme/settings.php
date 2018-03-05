@@ -63,8 +63,7 @@
 			true
 		);
 
-		//Charger des fichiers js du projet
-		wp_enqueue_script('svg4everybody');
+		//Charger des fichiers js du projet 
 		wp_enqueue_script('dfwp_index');
 
 		//Décharger les scripts non nécéssaires

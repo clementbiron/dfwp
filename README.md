@@ -2,7 +2,6 @@
 WordPress theme framework ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
 
 **Requirements**
-- Choco (https://chocolatey.org/)
 - Yarn (https://yarnpkg.com/fr/)
 - Composer (https://getcomposer.org/)
 - Advanced Custom Fileds Pro (https://www.advancedcustomfields.com)
@@ -11,7 +10,6 @@ WordPress theme framework ([Changelog](https://github.com/posykrat/dfwp/blob/mas
 ```
 cd build
 composer install
-choco install yarn
 yarn install
 ```
 
