@@ -1,3 +1,11 @@
+# changelog  (05/03/2017)
+- acf google map keys update setting 
+- readme update
+- ajout du reset css de Eric Meyer
+- ajout d'un fichier base.scss
+- amélioration de CustomPostColumnsManager.php
+- amélioration de page-styleguide.php
+- minor fix
 
 # changelog  (18/12/2017)
 - désactivation de la compression JPEG par défaut
