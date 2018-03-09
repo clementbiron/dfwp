@@ -1,8 +1,8 @@
 # Vendors #
 ###################
-build/node_modules/
-src/vendor/filp/
-src/vendor/php-ds/
+#build/node_modules/
+#src/vendor/filp/
+#src/vendor/php-ds/
 
 # IDE #
 ###################
