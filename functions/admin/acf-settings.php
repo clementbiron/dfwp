@@ -36,19 +36,19 @@
 	}
 
 	//Path d'enregistrement des fichiers acf json
-	add_filter('acf/settings/save_json', 'my_acf_json_save_point');
-	function my_acf_json_save_point( $path ) {
+	add_filter('acf/settings/save_json', 'dfwp_acf_json_save_point');
+	function dfwp_acf_json_save_point( $path ) {
 		$path = get_stylesheet_directory() . '/functions/admin/acf-json';
 		return $path;
 	}
 	
 	//Path de chargement des fichiers acf json
-	/*add_filter('acf/settings/load_json', 'my_acf_json_load_point');
-	function my_acf_json_load_point( $paths ) {
+	add_filter('acf/settings/load_json', 'dfwp_acf_json_load_point');
+	function dfwp_acf_json_load_point( $paths ) {
 		unset($paths[0]);
 		$paths[] = get_stylesheet_directory() . '/functions/admin/acf-json';
 		return $paths;
-	}*/
+	}
 
 	//Ajouter la gestion des pages d'options pour ACF
 	if( function_exists('acf_add_options_page') ) 
