@@ -1,12 +1,12 @@
 # DFWP 
-WordPress theme framework ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
+WordPress theme framework & starter ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
 
 **Requirements**
 - Yarn (https://yarnpkg.com/fr/)
 - Composer (https://getcomposer.org/)
 - Advanced Custom Fileds Pro (https://www.advancedcustomfields.com)
 
-**Install**
+**Installation**
 ```
 cd build
 composer install
@@ -23,7 +23,7 @@ yarn install
 git remote set-url origin git://new.url.here
 ```
 
-**Build tasks**
+**Gulp tasks**
 - `gulp styles-project`
 - `gulp styles-styleguide`
 - `gulp styles-maintenance`
@@ -35,22 +35,25 @@ git remote set-url origin git://new.url.here
 
 **ACF**
 
-Les champs sont sauvegarder sous forme de fichiers `json` dans le dossier `functions/admin/acf-json`, cela permet de les ré-importer au besoin. Il est recommandé d'exporter les champs en PHP et de copier le code génré dans le fichier `functions/admin/settings.php`
+Les champs sont sauvegarder sous forme de fichiers `json` dans le dossier `functions/admin/acf-json`, cela permet de les ré-importer au besoin. Il est recommandé d'exporter les champs en PHP et de copier le code généré dans le fichier `functions/admin/settings.php`
 
 
-**MAINTENANCE**
+**Maintenance**
 
-Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration.
-Le fichier maintenance.css est chargé uniquement pour cette page.
+Le fichier page-maintenance.php est utilisé pour les utilisateurs non loggé si l'option de maintenance est activée dans DFWP options en administration. Le fichier maintenance.css est chargé uniquement pour cette page.
 
-**STYLEGUIDE**
+**Styleguide**
 
-En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide. Le fichier styleguide.css est chargé uniquement pour cette page.
-Variables disponibles dans les fichiers .md de composants : {svg-path}
+En administration, créer une page nommée styleguide et l'associé au template styleguide. Le styleguide est accessible via www.exemple.com/styleguide. Le fichier styleguide.css est chargé uniquement pour cette page. Variables disponibles dans les fichiers .md de composants : 
+
+```
+{svg-path}
+```
 
 **PHP components**
 
-****Breadcrumb****
+##### ****Breadcrumb****
+
 ```php
 use Doublefou\Components\Breadcrumb;
 use Doublefou\Components\BreadcrumbLink;
@@ -73,6 +76,7 @@ foreach ($breadcrumbLinks as $breadcrumbLink) {
 ```
 
 ****CustomMenuCollection****
+
 ```php
 use Doublefou\Components\CustomMenuCollection;
 use Doublefou\Components\CustomMenuItem;

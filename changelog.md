@@ -1,4 +1,12 @@
-# changelog  (05/03/2017)
+# changelog  (12/05/2018)
+
+- readme update
+- fix du fichier .po par défaut
+- new cpt.php, fields.php files 
+- minor fix and folders 
+
+# changelog  (05/03/2018)
+
 - acf google map keys update setting 
 - readme update
 - ajout du reset css de Eric Meyer

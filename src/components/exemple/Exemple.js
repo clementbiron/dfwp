@@ -3,7 +3,7 @@ import { DOMReadyObject } from '../../utils/DOMReadyObject.js';
 /**
  * Exemple component
  */
-export class Exemple {
+export class Exemple extends DOMReadyObject{
 	constructor() {
         console.log('Exemple.constructor()');
         super();
