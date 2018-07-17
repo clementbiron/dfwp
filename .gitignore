@@ -1,8 +1,7 @@
 # Vendors #
 ###################
-build/node_modules/
-src/vendor/filp/
-src/vendor/php-ds/
+#build/node_modules/
+src/vendor/
 
 # IDE #
 ###################
@@ -21,7 +20,6 @@ src/vendor/php-ds/
 .idea/libraries
 .idea/mongoSettings.xml
 .idea_modules/atlassian-ide-plugin.xml
-
 
 # Compiled source #
 ###################

@@ -14,7 +14,9 @@
 	if(!function_exists('get_field')) return;
 
 	//On configure le debug
-	Config::setDebug(get_field('dfwp_options_is_debug','option'));
+    add_action('acf/init', function (){
+        Config::setDebug(get_field('dfwp_options_is_debug','option'));
+    });
 
 	//Template include filter
 	add_filter( 'template_include', 'dfwp_pageTemplateMaintenance', 99 );
