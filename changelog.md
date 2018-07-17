@@ -1,3 +1,8 @@
+# changelog  (17/07/2018)
+
+- /vendor/Doublefou est maintenant un dépôt git à part entière
+- c'est une dépendance qui s'installe à l'initialisation du projet avec `composer install`
+
 # changelog  (12/05/2018)
 
 - readme update
