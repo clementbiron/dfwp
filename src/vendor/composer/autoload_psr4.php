@@ -7,6 +7,7 @@ $baseDir = dirname(dirname($vendorDir)).'/build';
 
 return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Ds\\' => array($vendorDir . '/php-ds/php-ds/src'),
-    'Doublefou\\' => array($vendorDir . '/Doublefou'),
+    'Doublefou\\' => array($vendorDir . '/dfwp/doublefou'),
 );

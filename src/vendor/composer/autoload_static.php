@@ -11,6 +11,10 @@ class ComposerStaticInit178a279eddf57a796a768267175c1780
         array (
             'Whoops\\' => 7,
         ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
         'D' => 
         array (
             'Ds\\' => 3,
@@ -23,13 +27,17 @@ class ComposerStaticInit178a279eddf57a796a768267175c1780
         array (
             0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Ds\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-ds/php-ds/src',
         ),
         'Doublefou\\' => 
         array (
-            0 => __DIR__ . '/..' . '/Doublefou',
+            0 => __DIR__ . '/..' . '/dfwp/doublefou',
         ),
     );
 
