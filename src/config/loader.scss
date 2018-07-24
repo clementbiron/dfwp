@@ -1,14 +1,16 @@
 // ****
 //Config
 // ****
-@import '../utils/reset.scss';
+@import '../../build/node_modules/reset-css/sass/_reset.scss';
 @import '../utils/base.scss';
 @import 'config.scss';
 
 //utils DFWP
 @import '../utils/mixins.scss';
-@import '../utils/ease.scss';
 @import '../utils/wordpress.scss';
+
+//Easings & animations
+@import '../../build/node_modules/easing-sass-function/_easing_vars.scss';
 
 //Sprite svg
 @import '../assets/svg/generated/sprite.scss';

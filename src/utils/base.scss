@@ -1,15 +1,22 @@
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: inherit;
+  /* avoid min-width: auto on flex and grid children */
+  min-width: 0;
+  min-height: 0;
 }
 
+
 html {
-    /* set base font-size to equiv "10px", which is adapted to rem unit */
-    font-size: 62.5%;
-    
-    /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
-    font-size: calc(1em * 0.625);
+  /* set base font-size to equiv "10px", which is adapted to rem unit */
+  font-size: 62.5%;
+  /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+  font-size: calc(1em * 0.625);
 }
 
 body {
@@ -17,6 +24,7 @@ body {
     line-height: 1.5;
 }
 
+/* Max values */
 img,
 table,
 td,
@@ -27,13 +35,9 @@ textarea,
 input,
 video,
 svg {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 img {
-    height: auto;
-}
-
-img {
-    vertical-align: middle;
+  height: auto;
 }
