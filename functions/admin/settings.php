@@ -5,18 +5,11 @@
 
 	/*******************************
 	 * GESTION DE LA CONFIGURATION DE L'ADMINISTRATION
-	 */
-	
+	 */	
 	use Doublefou\Helper\Admin;
 	use Doublefou\Core\Debug;
 	use Doublefou\Helper\Page;
 	use Doublefou\Helper\Yoast;
-	
-	//Retirer les accents des fichiers uploadés
-	Admin::removeAccentsToUploadFiles();
-
-	//Supprimer	la ponctuation française des noms de fichiers
-	Admin::removeFrenchPonctuationToUploadFiles();
 
 	//Modifier les formats authorisés dans tinymce
 	Admin::modifyTinyMceBlockFormat('Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5');

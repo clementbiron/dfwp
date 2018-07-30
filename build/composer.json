@@ -7,18 +7,31 @@
         }
     ],
     "config": {
-        "vendor-dir": "../src/vendor",
+        "vendor-dir": "../vendor",
         "disable-tls": true,
         "secure-http": false
     },
     "autoload": {
         "psr-4": {
-            "Doublefou\\": "../src/vendor/dfwp/doublefou"
+            "Doublefou\\": "../vendor/dfwp/doublefou"
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/BeAPI/bea-sanitize-filename"
+        }
+    ],
     "require": {
+        "composer/installers": "~1.0",
         "dfwp/doublefou" : "dev-master",
         "filp/whoops": "^2.1",
-        "php-ds/php-ds": "^1.2"
-	}
+        "php-ds/php-ds": "^1.2",
+        "bea/sanitize-filename": "dev-master"
+    },
+    "extra": {
+        "installer-paths": {
+            "../../../plugins/{$name}": ["bea/sanitize-filename"]
+        }
+    }
 }

@@ -1,5 +1,5 @@
 # DFWP 
-WordPress theme framework & starter ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
+WordPress theme starter ([Changelog](https://github.com/posykrat/dfwp/blob/master/changelog.md))
 
 **Requirements**
 - Yarn (https://yarnpkg.com/fr/)
