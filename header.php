@@ -1,10 +1,5 @@
-<?php
-	//On récupère les languages attributes
-	use Doublefou\Helper\Theme;
-	$languagesAttributes = Theme::getLanguageAttributes();
-?>
 <!DOCTYPE html>
-<html <?php echo $languagesAttributes; ?>>
+<html <?php language_attributes(); ?>>
 <head>
 	<meta name="Author" content="Clément Biron" />
 	<meta name="Robots" content="all" />
@@ -15,6 +10,7 @@
 		// For plugins 
 		wp_head();
 	?>
+    
 </head>
 <body class="<?php echo join(' ', get_body_class()); ?>">
 

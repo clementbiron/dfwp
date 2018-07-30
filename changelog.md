@@ -1,3 +1,8 @@
+# changelog  (31/07/2018)
+- `Admin::removeAccentsToUploadFiles()` et  `Admin::removeFrenchPonctuationToUploadFiles()` 
+- ajout dans composer.json de `composer/installers` et `bea/sanitize-filename`
+- déplacement de src/vendor vers /vendor
+
 # changelog  (27/07/2018)
 - les easing functions (easing-sass-function) et le reset (reset-css) sont maintenant des dépendances
 - mise à jour de base.scss

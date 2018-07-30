@@ -2,7 +2,7 @@
 	/**
 	 * Autoloader
 	 */
-	$loader = require __DIR__ . '/src/vendor/autoload.php';
+	$loader = require __DIR__ . '/vendor/autoload.php';
 
 	/**
 	 * Configuration
