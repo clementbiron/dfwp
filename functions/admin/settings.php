@@ -5,8 +5,7 @@
 
 	/*******************************
 	 * GESTION DE LA CONFIGURATION DE L'ADMINISTRATION
-	 */
-	
+	 */	
 	use Doublefou\Helper\Admin;
 	use Doublefou\Core\Debug;
 	use Doublefou\Helper\Page;
