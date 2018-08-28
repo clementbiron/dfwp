@@ -70,5 +70,9 @@
 	// $test->addACFColumn('Note','select','recette_stars',true,'10%');
 	// $test->addACFColumn('Date de parution','default','recette_date',true,'10%');
 	// $test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
-	// $test->removeColumn('date');
+    // $test->removeColumn('date');
+
+    //Disable “Create Audio Playlist” and “Create Video Playlist” in Add Media
+    add_filter( 'media_library_show_audio_playlist', '__return_false');
+    add_filter( 'media_library_show_video_playlist', '__return_false');
 ?>
