@@ -73,6 +73,6 @@
     // $test->removeColumn('date');
 
     //Disable “Create Audio Playlist” and “Create Video Playlist” in Add Media
-    add_filter( 'media_library_show_audio_playlist', '__return_false');
-    add_filter( 'media_library_show_video_playlist', '__return_false');
+    add_filter( 'media_library_show_audio_playlist', function() { return false; });
+    add_filter( 'media_library_show_video_playlist', function() { return false; });
 ?>
