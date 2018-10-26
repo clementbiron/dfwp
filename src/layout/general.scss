@@ -2,6 +2,8 @@
 // GENERAL LAYOUT
 // ****
 body{
-	font-size: $defaultFontSize;
+    font-size: $defaultFontSize;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
