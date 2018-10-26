@@ -49,6 +49,7 @@ yarn install
 ## Gulp tasks
 - `gulp` : defaut task (`styles-project` `styles-styleguide` `scripts` `svg-sprite` `styleguide` `browser-sync`) + watch  
 - `wc3css` : validation W3C CSS avec reporting warnings + errors
+
 Tips : `--silent` pour une sortie console moins encombrée 
 
 ## ACF
