@@ -7,10 +7,10 @@
 
 //utils DFWP
 @import '../utils/mixins.scss';
-@import '../utils/wordpress.scss';
+@import '../utils/wordpress.scss'; 
 
 //Easings & animations
-@import '../../build/node_modules/easing-sass-function/_easing_vars.scss';
+@import '../../build/node_modules/easing-sass-function/src/easing-var.scss';
 
 //Sprite svg
 @import '../assets/svg/generated/sprite.scss';
@@ -31,7 +31,6 @@
 //Importer les composants
 @import '../components/header/header.scss';
 @import '../components/footer/footer.scss';
-@import '../components/exemple/exemple.scss';
 
 //Importer les styles de pages
 @import '../pages/home/home.scss';

@@ -3,11 +3,11 @@
 	if (!defined('ABSPATH')) exit; 
 
     /* ACF Google Maps API KEY */
-	function dfwp_acf_init( $api ){
-        $api['key'] = 'xxx';
-        return $api;
-    }
-    add_filter('acf/fields/google_map/api', 'dfwp_acf_init');
+	// function dfwp_acf_init( $api ){
+    //     $api['key'] = 'xxx';
+    //     return $api;
+    // }
+    // add_filter('acf/fields/google_map/api', 'dfwp_acf_init');
 
 	//On ajoute une configuration Tinymce pour ACF
 	add_filter('acf/fields/wysiwyg/toolbars','dfwp_acfToolbars' );
@@ -51,13 +51,6 @@
 
 	//Ajouter la gestion des pages d'options pour ACF
 	if( function_exists('acf_add_options_page') ) {
-
-        //DFWP options
-		acf_add_options_page(array(
-			'page_title' => 'DFWP options',
-			'capability' => 'activate_plugins',
-			'icon_url' => 'dashicons-admin-generic',
-        ));
 
         //Configuration client
         acf_add_options_page(array(

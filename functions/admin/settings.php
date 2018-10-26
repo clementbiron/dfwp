@@ -59,7 +59,40 @@
 			'dashboard_primary' => 'side',
 			'dashboard_secondary' => 'side',
 		)
-	);
+    );
+    
+    //On cache le menu pour ajouter une page pour l'éditeur
+	// Admin::hideSubMenu(
+	// 	'install_plugins',
+    //     'edit.php?post_type=page',
+    //     array('post-new.php?post_type=page')
+    // );
+
+    //On cache le bouton ajouter une page pour l'éditeurs
+    /*add_action('admin_head', 'hideAddNewpage');
+	function hideAddNewpage() {
+        global $current_screen;
+        if($current_screen->id === "edit-page"){
+            if(current_user_can('editor')){
+                ?>
+                <style>
+                    .wrap .page-title-action{
+                        display:none;
+                    }
+                </style>
+                <?php
+            }
+        }
+    }*/
+    
+
+    //On supprime la méta box d'attribut de page pour les roles en dessous d'admin
+    // add_action( 'admin_menu', 'dfwp_admin_menu' );
+    // function dfwp_admin_menu(){
+    //     if(!current_user_can('administrator')){
+    //         remove_meta_box( 'pageparentdiv', 'page', 'normal' );
+    //     }
+    // }
 
 	//On masque le styleguide pour les roles à partir de editor
 	Page::hideInAdminByPageTemplate('page-styleguide.php','install_plugins');
@@ -72,7 +105,20 @@
 	// $test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
     // $test->removeColumn('date');
 
+    //On supprime le callout Gutemberg
+    remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
+
     //Disable “Create Audio Playlist” and “Create Video Playlist” in Add Media
-    add_filter( 'media_library_show_audio_playlist', function() { return false; });
-    add_filter( 'media_library_show_video_playlist', function() { return false; });
+    add_filter( 'media_library_show_audio_playlist', '__return_false');
+    add_filter( 'media_library_show_video_playlist', '__return_false');
+
+    //Unset "Create Gallery" in Add Media
+    add_filter( 'media_view_strings', 'custom_media_uploader' );
+    function custom_media_uploader( $strings ) {
+        unset( $strings['createGalleryTitle'] ); //Create Gallery
+        return $strings;
+    };
+
+    //On cache la métabox d'analyse de contenu de SEOPress
+    //add_filter('seopress_metaboxe_content_analysis', '__return_false');
 ?>

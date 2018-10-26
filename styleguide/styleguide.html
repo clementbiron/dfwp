@@ -49,7 +49,23 @@
   <div id="styleguides">
     <section class="sg-section sg-section-colors">
       <h2 id="colors" class="sg">Colors</h2>
+      <section class="sg-block sg-section-white-to-black">
+        <div class="sg-text">
+          <h3 id="white-to-black" class="sg">White to black</h3>
+          <p class="sg">
+            <code class="sg">$color1-100 | $color1-1000</code>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div style="background-color:#ffffff;">$color1-100 | #ffffff</div>
+            <div style="background-color:#000000; color:white;">$color1-1000 | #000000</div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#ffffff;&quot;</span>&gt;</span>$color1-100 | #ffffff<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#000000; color:white;&quot;</span>&gt;</span>$color1-1000 | #000000<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
     </section>
+
     <section class="sg-section sg-section-fonts">
       <h2 id="fonts" class="sg">Fonts</h2>
       <section class="sg-block sg-section-font-1">
@@ -154,13 +170,13 @@
           <h3 id="h1" class="sg">H1</h3>
           <p class="sg">
             <code class="sg">&lt;h1&gt;</code>
-            <code class="sg">.H1-like</code>
+            <code class="sg">.h1</code>
           </p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <h1 class="H1-like">Lorem</h1>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;H1-like&quot;</span>&gt;</span>Lorem<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span></pre>
+            <h1 class="h1">Lorem</h1>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;h1&quot;</span>&gt;</span>Lorem<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span></pre>
         </div>
       </section>
     </section>

@@ -3,30 +3,23 @@
 // @size {string}
 // @color {string}
 // ****
-@mixin debug($size:1px, $color:red)
-{
+@mixin debug($size:1px, $color:red){
 	outline: $size solid $color;
 }
 
-
-@mixin responsiveMaxWidth($maxWidth)
-{
-	@media only screen and (max-width: $maxWidth)
-	{
+@mixin responsiveMaxWidth($maxWidth){
+	@media only screen and (max-width: $maxWidth){
 		@content;
 	}
 }
 
-@mixin responsiveMinWidth($minWidth)
-{
-	@media only screen and (min-width: $minWidth)
-	{
+@mixin responsiveMinWidth($minWidth){
+	@media only screen and (min-width: $minWidth){
 		@content;
 	}
 }
 
-@mixin grid($colNumber, $gutterNumber)
-{
+@mixin grid($colNumber, $gutterNumber){
 	$maxWidth: ($gridColWidth * $colNumber) + ($gridGutterWidth * $gutterNumber);
 	max-width: $maxWidth;
 	width: 100%;
