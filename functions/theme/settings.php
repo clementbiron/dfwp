@@ -14,7 +14,7 @@
 	use Doublefou\Helper\Login;
 
 	//Sprite SVG PATH
-	Config::set('svg-path',wp_make_link_relative(get_stylesheet_directory_uri().'/src/assets/svg/generated/sprite.svg'));
+	Config::set('svg-path',wp_make_link_relative(get_stylesheet_directory_uri().'/src/assets/svg/sprite.svg'));
 
 	//On cache l'admin bar sur le front 
 	Theme::hideAdminBar('install_plugins');

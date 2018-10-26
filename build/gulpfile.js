@@ -27,8 +27,8 @@ const emoji        = require('node-emoji');
  * Path
  */
 const path = {
-    src: '../src',
-    dist: '../dist',
+    src       : '../src',
+    dist      : '../dist',
     styleguide: '../styleguide'
 }
 
@@ -127,10 +127,10 @@ const path = {
             },
             mode: {
                 symbol: {
-                    dest  : "generated",
+                    dest  : ".",
                     sprite: "sprite.svg",
                     render: {
-                        scss: true
+                        scss: true,
                     }
                 }
             }
@@ -143,7 +143,7 @@ const path = {
  */
 gulp.task('browser-sync', () => {
     browserSync.init(config.browsersync, function () {
-        console.log(emoji.emojify(' :fire: '), "Start browser-sync : " + browserSync.getOption('urls').get('external'));
+        console.log(emoji.emojify(' :fire: '), "Start browser-sync ", browserSync.getOption('urls'));
         console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
     });
 });
@@ -282,6 +282,9 @@ gulp.task('svg-sprite', () => {
     });
 });
 
+/**
+ * W3C CSS validation
+ */
 gulp.task('w3ccss',() => {
     console.log(emoji.emojify(' :fire: '), "w3ccss");
     return gulp.src(path.dist + '/css/'+ config.styles.project.name + '.css')
