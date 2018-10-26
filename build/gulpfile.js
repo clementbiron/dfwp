@@ -1,236 +1,268 @@
 /**
  * Charger les dépendances
  */
-const gulp           = require('gulp');
-const sass           = require('gulp-sass');
-const csso           = require('gulp-csso');
-const autoprefixer   = require('gulp-autoprefixer');
-const concat         = require('gulp-concat');
-const uglify         = require('gulp-uglify-es').default;
-const plumber        = require('gulp-plumber');
-const rename         = require('gulp-rename');
-const styledown      = require('gulp-styledown');
-const foreachFiles   = require('gulp-foreach');
-const browserSync    = require('browser-sync').create();
-const svgSprite      = require('gulp-svg-sprite');
-const browserify     = require('browserify');
-const babelify       = require('babelify');
-const babelpresetenv = require("babel-preset-env");
-const buffer         = require('vinyl-buffer');
-const source         = require('vinyl-source-stream');
-const sourcemaps     = require('gulp-sourcemaps');
+const gulp         = require('gulp');
+const sass         = require('gulp-sass');
+const csso         = require('gulp-csso');
+const autoprefixer = require('gulp-autoprefixer');
+const concat       = require('gulp-concat');
+const uglify       = require('gulp-uglify-es').default;
+const plumber      = require('gulp-plumber');
+const rename       = require('gulp-rename');
+const styledown    = require('gulp-styledown');
+const flatmap      = require('gulp-flatmap');
+const svgSprite    = require('gulp-svg-sprite');
+const sourcemaps   = require('gulp-sourcemaps');
+const w3ccss       = require('gulp-w3c-css');
+const browserSync  = require('browser-sync').create();
+const browserify   = require('browserify');
+const babelify     = require('babelify');
+const buffer       = require('vinyl-buffer');
+const source       = require('vinyl-source-stream');
+
+//https://www.webpagefx.com/tools/emoji-cheat-sheet/              
+const emoji        = require('node-emoji');
+
+/**
+ * Path
+ */
+const path = {
+    src       : '../src',
+    dist      : '../dist',
+    styleguide: '../styleguide'
+}
 
 /**
  * Configuration 
  */
-
-//Configuration des css à générer
-//On génère 3 feuille de styles différentes
-const appStyles = new Map();
-appStyles.set(1, { name: 'index', src: '../src/config/loader.scss' });
-appStyles.set(2, { name: 'styleguide', src: '../src/layout/styleguide.scss' });
-appStyles.set(3, { name: 'maintenance', src: '../src/layout/maintenance.scss' });
-
-//Configuration de Browsersync
-const browserSyncConf = {
-    proxy        : "http://192.168.0.27/_lab/dfwp",
-    host         : "192.168.0.27",
-    open         : "external",
-    injectChanges: true
-}
-
-//Configuration des sources nécessaire pour la génération du styleguide.html
-const styleguideConf = {
-    filename      : 'styleguide.html', //Nom du fichier généré
-    configPath    : '../styleguide/config.md', //Chemin du fichier de config markdown
-    primarySrc : [
-        '../src/config/*.scss',
-        '../src/elements/*.scss',
-        '../src/utils/*.scss'
-    ], // Tableau des fichiers 
-    componentsPath: '../src/components/**/*.md',   //Chemin des fichiers markdown des composants
-    primaryDest   : '../styleguide',               //Dossier de destination du fichier styleguide.html
-    componentsDest: '../styleguide/components'     //Dossier de destination des composants
-}
-
-//Config scripts
-const scriptsConf = {
-    src: [
-        '../src/utils/*.js', //utils files
-        '../src/layout/*.js', //layout files
-        '../src/components/**/*.js', //Components js
-        '../src/pages/**/*.js', //Pages js
-    ],
-    filename: 'bundle',
-    destPath: '../dist/js',
-    uglify  : {
-        mangle  : true,
-        compress: {
-            sequences   : true,   // join consecutive statemets with the “comma operator”
-            dead_code   : true,   // discard unreachable code
-            conditionals: true,   // optimize if-s and conditional expressions
-            booleans    : true,   // optimize boolean expressions
-            unused      : true,   // drop unused variables/functions
-            if_return   : true,   // optimize if-s followed by return/continue
-            join_vars   : true,   // join var declarations
-            drop_console: true    // drop console
+ const config = {
+    styles:{
+        project:{
+            name: 'index',                        //Nom du fichier généré
+            src : path.src+'/config/loader.scss'
+        },
+        styleguide:{
+            name: 'styleguide',                       //Nom du fichier généré
+            src : path.src+'/layout/styleguide.scss'
         }
-    }
-}
-
-//Config svg
-const svgConfig = {
-    src      : '../src/assets/svg/src/*.svg',
-    dest     : '../src/assets/svg/',
-    svgSprite: {
-        log  : 'info',
-        shape: {
-            transform: [{
-                svgo: {
-                    plugins: [{
-                        removeXMLNS: true
-                    }]
-                }
-            }]
+    },
+    autoprefixer:{ 
+        browsers: ['last 2 versions', 'ie 11', '>= 1%']
+    },
+    browsersync:{
+        proxy        : "dfwp.local",
+        host         : "192.168.0.27",
+        open         : false,
+        notify       : false,
+        minify       : false,
+        logLevel     : "silent",
+        injectChanges: true
+    },
+    styleguide:{
+        filename: 'styleguide.html',              //Nom du fichier généré
+        markdown: path.styleguide+'/config.md',   //Chemin du fichier de config markdown
+        src     : {
+            styles:[
+                path.src + '/config/*.scss',
+                path.src + '/elements/*.scss',
+                path.src + '/utils/*.scss'
+            ],
+            components: path.src + '/components/**/*.md'  //Chemin des fichiers markdown des composants
         },
-        svg: {
-            xmlDeclaration     : false,
-            doctypeDeclaration : false,
-            dimensionAttributes: false,
-            namespaceClassnames: false
-        },
-        mode: {
-            symbol: {
-                dest  : "generated",
-                sprite: "sprite.svg",
-                render: {
-                    scss: true
+        dest:{
+            components: path.styleguide + '/components'  //Dossier de destination des composants
+        } 
+    },
+    browserify:{
+        'entries': path.src+'/config/main.js',
+        'debug'    : true,
+        'transform': [
+            babelify.configure({
+                'presets': ["@babel/preset-env"]
+            })
+        ]
+    },
+    scripts:{
+        src: [
+            path.src+'/utils/*.js', //utils files
+            path.src+'/layout/*.js', //layout files
+            path.src+'/components/**/*.js', //Components js
+            path.src+'/pages/**/*.js', //Pages js
+        ],
+        name  : 'bundle',
+        dest: path.dist+'/js',
+        uglify: {
+            mangle  : true,
+            compress: {
+                sequences   : true,   // join consecutive statemets with the “comma operator”
+                dead_code   : true,   // discard unreachable code
+                conditionals: true,   // optimize if-s and conditional expressions
+                booleans    : true,   // optimize boolean expressions
+                unused      : true,   // drop unused variables/functions
+                if_return   : true,   // optimize if-s followed by return/continue
+                join_vars   : true,   // join var declarations
+                drop_console: true    // drop console
+            }
+        }
+    },
+    svg:{
+        src: path.src+'/assets/svg/src/*.svg',
+        dest: path.src+'/assets/svg/',
+        sprite: {
+            log  : false,
+            shape: {
+                transform: [{
+                    svgo: {
+                        plugins: [{
+                            removeXMLNS: true
+                        }]
+                    }
+                }]
+            },
+            svg: {
+                xmlDeclaration     : false,
+                doctypeDeclaration : false,
+                dimensionAttributes: false,
+                namespaceClassnames: false
+            },
+            mode: {
+                symbol: {
+                    dest  : ".",
+                    sprite: "sprite.svg",
+                    render: {
+                        scss: true,
+                    }
                 }
             }
         }
     }
-};
+ }
 
 /**
  * Browser sync
  */
-gulp.task('browser-sync', function () 
-{
-    console.log("----------- Brower sync -----------");
-    browserSync.init(browserSyncConf);
+gulp.task('browser-sync', () => {
+    browserSync.init(config.browsersync, function () {
+        console.log(emoji.emojify(' :fire: '), "Start browser-sync ", browserSync.getOption('urls'));
+        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+    });
 });
 
 /**
  * Styles du projet
  */
-gulp.task('styles-project', function () 
-{
-    console.log("----------- Styles du projet -----------");
-    return gulp.src(appStyles.get(1).src)
+gulp.task('styles-project', () => {    
+    return gulp.src(config.styles.project.src)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))    
-    .pipe(autoprefixer({ browsers: ['last 2 versions', 'ie 11', 'Android 4', '>= 4%']}))
+    .pipe(autoprefixer(config.autoprefixer))
     .pipe(sourcemaps.write())
-    .pipe(concat(appStyles.get(1).name + '.css'))
-    .pipe(gulp.dest('../dist/css/'))
+    .pipe(concat(config.styles.project.name + '.css'))
+    .pipe(gulp.dest(path.dist+'/css/'))
     .pipe(browserSync.stream())
     .pipe(csso())
-    .pipe(concat(appStyles.get(1).name + '.min.css'))
-    .pipe(gulp.dest('../dist/css/'));
+    .pipe(concat(config.styles.project.name + '.min.css'))
+    .pipe(gulp.dest(path.dist+'/css/'))
+    .on('finish', () => {
+
+        //Console
+        let generatedFiles = [];
+        generatedFiles.push(config.styles.project.name + '.css')
+        generatedFiles.push(config.styles.project.name + '.min.css')
+        console.log(emoji.emojify(' :fire: '), "styles-project");
+        console.log(generatedFiles);
+        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+    })
+    .pipe(browserSync.stream());
 });
 
 /**
  * Styles du styleguide
  */
-gulp.task('styles-styleguide', function () 
-{
-    console.log("----------- Styles du styleguide -----------");
-    return gulp.src(appStyles.get(2).src)
+gulp.task('styles-styleguide', ()  => {
+    return gulp.src(config.styles.styleguide.src)
     .pipe(sass().on('error', sass.logError))
     .pipe(csso())
-    .pipe(concat(appStyles.get(2).name + '.min.css'))
-    .pipe(gulp.dest('../dist/css/'))
-    .pipe(browserSync.stream());
-});
+    .pipe(concat(config.styles.styleguide.name + '.min.css'))
+    .pipe(gulp.dest(path.dist+'/css/'))
+    .on('finish', () => {
 
-/**
- * Styles du maintenace
- */
-gulp.task('styles-maintenance', function () 
-{
-    console.log("----------- Styles de la maintenance -----------");
-    return gulp.src(appStyles.get(3).src)
-    .pipe(sass())
-    .pipe(autoprefixer("> 4%"))
-    .pipe(csso())
-    .pipe(concat(appStyles.get(3).name + '.min.css'))
-    .pipe(gulp.dest('../dist/css/'))
+        //Console
+        let generatedFiles = [];
+        generatedFiles.push(config.styles.styleguide.name + '.css')
+        generatedFiles.push(config.styles.styleguide.name + '.min.css')
+        console.log(emoji.emojify(' :fire: '), "styles-styleguide");
+        console.log(generatedFiles);
+        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+    })
     .pipe(browserSync.stream());
 });
 
 /**
  * Styleguide
  */
-gulp.task('styleguide', function () 
-{
-    console.log("----------- Styleguide -----------");
-    console.log("--> création du fichier styleguide.html");
-    return gulp.src(styleguideConf.primarySrc)        
+gulp.task('styleguide', () => {
+    let generatedFiles = [];
+    generatedFiles.push(config.styleguide.filename)
+    return gulp.src(config.styleguide.src.styles)        
     .pipe(styledown({
-        config: styleguideConf.configPath,
-        filename: styleguideConf.filename
+        config: config.styleguide.markdown,
+        filename: config.styleguide.filename
     }))
-    .pipe(gulp.dest(styleguideConf.primaryDest))
-    .on('finish', function () {
-
-        console.log("--> créations des fichiers de composants");
-        gulp.src(styleguideConf.componentsPath)
-        .pipe(foreachFiles(function (stream, file) {        
-            var filePath = file.path;
-            var filename = filePath.replace(/^.*[\\\/]/, '').replace('.md', '');
-            console.log('--> création du fichier '+ filename + '.html');
-            return stream
-                .pipe(styledown({
-                    config: styleguideConf.configPath,
+    .pipe(gulp.dest(path.styleguide))
+    .on('finish', () => {
+        gulp.src(config.styleguide.src.components)
+            .pipe(flatmap((stream, file) => {
+                let filename = file.path.replace(/^.*[\\\/]/, '').replace('.md', '');
+                generatedFiles.push(filename + '.html')
+                return stream.pipe(styledown({
+                    config: config.styleguide.markdown,
                     filename: filename + '.html'
                 }))
-        }))
-        .pipe(gulp.dest(styleguideConf.componentsDest));
-    
-        browserSync.reload();
-    });
+            }))
+            .pipe(gulp.dest(config.styleguide.dest.components))
+        .on('finish', () => {
 
+            //Console
+            console.log(emoji.emojify(' :fire: '), "styleguide");
+            console.log(generatedFiles);
+            console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+
+            browserSync.reload();
+        });
+    });
 });
 
 /**
  * JS
  */
-gulp.task('scripts', function () {
-    console.log("----------- Scripts -----------");
-    
-    console.log('--> création de ' + scriptsConf.filename + '.js + sourcemaps');
-    return browserify({
-        'entries': '../src/config/main.js',
-        'debug': true,
-        'transform': [
-            babelify.configure({
-                'presets': [babelpresetenv]
-            })
-        ]
-    })
+gulp.task('scripts', () => {    
+    return browserify(config.browserify)
     .bundle()
-    .pipe(source(scriptsConf.filename+'.js'))
+    .pipe(source(config.scripts.name+'.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(scriptsConf.destPath))
-    .on('finish', function () {
+    .pipe(gulp.dest(config.scripts.dest))
+    .on('finish', () => {
         
-        console.log('--> création de ' + scriptsConf.filename + '.min.js ');
-        gulp.src(scriptsConf.destPath + '/' + scriptsConf.filename + '.js')
+        //console
+        let generatedFiles = [];
+        generatedFiles.push(config.scripts.name + '.js')
+        generatedFiles.push(config.scripts.name + '.js.map')
+
+        gulp.src(config.scripts.dest + '/' + config.scripts.name + '.js')
         .pipe(rename({ extname: '.min.js' }))
-        .pipe(uglify(scriptsConf.uglify))
-        .pipe(gulp.dest(scriptsConf.destPath))
+        .pipe(uglify(config.scripts.uglify))
+        .pipe(gulp.dest(config.scripts.dest))
+        .on('finish', () => {
+
+            //Console
+            generatedFiles.push(config.scripts.name + '.min.js')
+            console.log(emoji.emojify(' :fire: '), "scripts");
+            console.log(generatedFiles);
+            console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+        })
         .pipe(browserSync.stream());
     })
 });
@@ -238,13 +270,41 @@ gulp.task('scripts', function () {
 /**
  * SVG Sprite
  */
-gulp.task('svg-sprite', function () 
-{
-    console.log("----------- SVG Sprite -----------");
-    return gulp.src(svgConfig.src)
-    .pipe(svgSprite(svgConfig.svgSprite))
-    .pipe(gulp.dest(svgConfig.dest))
-    .on('finish', () => { browserSync.reload(); });
+gulp.task('svg-sprite', () => {
+    return gulp.src(config.svg.src)
+    .pipe(svgSprite(config.svg.sprite))
+    .pipe(gulp.dest(config.svg.dest))
+    .on('finish', () => { 
+        console.log(emoji.emojify(' :fire: '), "svg-sprite");
+        console.log(['sprite.svg','sprite.scss']);
+        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+        browserSync.reload(); 
+    });
+});
+
+/**
+ * W3C CSS validation
+ */
+gulp.task('w3ccss',() => {
+    console.log(emoji.emojify(' :fire: '), "w3ccss");
+    return gulp.src(path.dist + '/css/'+ config.styles.project.name + '.css')
+        .pipe(w3ccss())
+        .pipe(flatmap((stream, file) => {
+            if (file.contents.length == 0) {
+                console.log(emoji.emojify(' :clap: :facepunch:  :punch: ') + 'w3ccss validate');
+            }else{  
+                let results = JSON.parse(file.contents.toString());
+                results.errors.forEach( (error) => {
+                    console.log(emoji.emojify(' :x: ') + ' Error ' + config.styles.project.name + '.css line ' + error.line + ' : '+ error.message);
+                    console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+                });
+                results.warnings.forEach( (warning) => {
+                    console.log(emoji.emojify(' :warning: ') + ' Warning ' + config.styles.project.name + '.css line ' + warning.line + ' : ' + warning.message);
+                    console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+                });
+            }
+            return stream;
+        }));
 });
 
 /**
@@ -255,7 +315,6 @@ gulp.task('default',
         'browser-sync', 
         'svg-sprite', 
         'styles-project', 
-        'styles-maintenance', 
         'styles-styleguide', 
         'scripts', 
         'styleguide'
@@ -271,11 +330,6 @@ gulp.task('default',
             '../src/components/**/*.scss',
             '../src/pages/**/*.scss',
         ], ['styles-project']);
-
-        //Sass maintenance layout
-        gulp.watch([
-            '../src/layout/maintenance.scss',
-        ], ['styles-maintenance']);
 
         //Sass styleguide layout
         gulp.watch([

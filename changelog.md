@@ -1,3 +1,14 @@
+# changelog  (26/10/2018)
+- readme update
+- gulpfile update
+- package.json update
+- composer.json update (wpppackagist, ...)
+- suppression de la gestion de la maintenance
+- suppression de la page d'option DFWP options
+- Le mode debug n'est plus lié à un champs ACF mais à la constance `WP_DEBUG`
+- ajout d'une task gulp pour la validation W3C CSS
+- changement du path des fichiers sprite.svg et sprite.scss générés
+
 # changelog  (31/07/2018)
 - `Admin::removeAccentsToUploadFiles()` et  `Admin::removeFrenchPonctuationToUploadFiles()` 
 - ajout dans composer.json de `composer/installers` et `bea/sanitize-filename`

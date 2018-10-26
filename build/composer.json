@@ -8,8 +8,9 @@
     ],
     "config": {
         "vendor-dir": "../vendor",
-        "disable-tls": true,
-        "secure-http": false
+        "github-oauth": {
+            "github.com": "2dccb9201890da2002d72152b648b5c191ed61f6"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -18,20 +19,61 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/BeAPI/bea-sanitize-filename"
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/BeAPI/wp-mu-loader/"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/BeAPI/bea-disable-xmlrpc"
         }
     ],
     "require": {
-        "composer/installers": "~1.0",
+        "composer/installers": "*@stable",
         "dfwp/doublefou" : "dev-master",
-        "filp/whoops": "^2.1",
-        "php-ds/php-ds": "^1.2",
-        "bea/sanitize-filename": "dev-master"
+        "filp/whoops": "dev-master",
+        "php-ds/php-ds": "dev-master",
+        "wemakecustom/wp-mu-loader": "dev-master",
+        "bea/disable-xmlrpc": "dev-master",
+        "wpackagist-plugin/debug-bar": "*@stable",
+        "wpackagist-plugin/debug-bar-actions-and-filters-addon": "*@stable",
+        "wpackagist-plugin/debug-bar-constants": "*@stable",
+        "wpackagist-plugin/debug-bar-extender": "*@stable",
+        "wpackagist-plugin/debug-bar-list-dependencies": "*@stable",
+        "wpackagist-plugin/debug-bar-post-types": "*@stable",
+        "wpackagist-plugin/debug-bar-taxonomies": "*@stable",
+        "wpackagist-plugin/debug-bar-slow-actions": "*@stable",
+        "wpackagist-plugin/log-deprecated-notices": "*@stable",
+        "wpackagist-plugin/rewrite-rules-inspector": "*@stable",
+        "wpackagist-plugin/user-switching": "*@stable",
+        "wpackagist-plugin/duplicate-post": "*@stable",
+        "wpackagist-plugin/classic-editor": "*@stable",
+        "wpackagist-plugin/disable-json-api": "*@stable",
+        "wpackagist-plugin/custom-post-type-ui": "*@stable",
+        "wpackagist-plugin/manage-privacy-options": "*@stable",
+        "wpackagist-plugin/post-types-order": "*@stable",
+        "wpackagist-plugin/bea-sanitize-filename": "*@stable"
     },
     "extra": {
         "installer-paths": {
-            "../../../plugins/{$name}": ["bea/sanitize-filename"]
+            "../../../mu-plugins/{$name}/": [
+                "type:wordpress-muplugin",
+                "bea-disable-xmlrpc"
+            ],
+            "../../../plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
         }
+    },
+    "scripts": {
+        "post-install-cmd":[
+            "composer move-mu-loader"
+        ],
+        "move-mu-loader": [
+            "mv ../../../mu-plugins/mu-loader/mu-require.php ../../../mu-plugins/"
+        ]
     }
 }
