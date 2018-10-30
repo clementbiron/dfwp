@@ -8,7 +8,9 @@ WordPress theme starter ([Changelog](https://github.com/posykrat/dfwp/blob/maste
 
 ## Installation
 ```
-cd build
+cd wp-content/themes/
+git clone https://github.com/posykrat/dfwp.git foldername
+cd foldername/build
 composer install
 yarn install
 ```
@@ -33,12 +35,12 @@ yarn install
 
 ### Apache VHOST 
 ```
-#dfwp.local
+#projectname.local
 <VirtualHost *:80>
-	DocumentRoot "h:/www/_lab/dfwp"
-	ServerName dfwp.local
-	ServerAlias www.dfwp.local
-	<Directory "h:/www/_lab/dfwp/">
+	DocumentRoot "h:/www/projectname"
+	ServerName projectname.local
+	ServerAlias www.projectname.local
+	<Directory "h:/www/projectname/">
 		Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Require local
