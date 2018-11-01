@@ -10,7 +10,9 @@ WordPress theme starter ([Changelog](https://github.com/posykrat/dfwp/blob/maste
 ```
 cd wp-content/themes/
 git clone https://github.com/posykrat/dfwp.git foldername
-cd foldername/build
+cd foldername
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+cd build
 composer install
 yarn install
 ```
@@ -24,14 +26,12 @@ yarn install
 - Config: `src/config/config.scss`
 - Files loader : `src/config/loader.scss`
 
-### JavasScript
+### JavaScript
 - Build entrie point : `src/config/main.js` 
 
 ### Styleguide
 - Config `styleguide/config.md`
 
-### Git 
-- `git remote set-url origin git://new.url.here`
 
 ### Apache VHOST 
 ```

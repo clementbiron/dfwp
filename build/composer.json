@@ -54,7 +54,7 @@
         "wpackagist-plugin/disable-json-api": "*@stable",
         "wpackagist-plugin/custom-post-type-ui": "*@stable",
         "wpackagist-plugin/manage-privacy-options": "*@stable",
-        "wpackagist-plugin/post-types-order": "*@stable",
+        "wpackagist-plugin/simple-custom-post-order": "*@stable",
         "wpackagist-plugin/bea-sanitize-filename": "*@stable"
     },
     "extra": {

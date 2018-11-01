@@ -104,6 +104,8 @@
 	// $test->addACFColumn('Date de parution','default','recette_date',true,'10%');
 	// $test->addACFColumn('Miniature','image','recette_miniature',false,'15%');
     // $test->removeColumn('date');
+    // $test->removeColumn('seopress_title');
+	// $test->removeColumn('seopress_desc');
 
     //On supprime le callout Gutemberg
     remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
