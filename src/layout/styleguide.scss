@@ -17,12 +17,23 @@ h2.sg{
 	}
 }
 
+.sg-canvas{
+    padding:1rem;
+}
+
 .sg-dark > .sg-canvas{
     background-color: #000;
 }
 
 .sg-section{
 	margin:2rem 0;
+}
+
+.sg-expando{
+    top:0;
+    left:0;
+    padding:0;
+    margin-bottom: 0;
 }
 
 .sg-section-components{
