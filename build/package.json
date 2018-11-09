@@ -31,7 +31,7 @@
   "dependencies": {
     "easing-sass-function": "latest",
     "reset-css": "latest",
-    "svg4everybody": "latest",
+    "svgxuse": "latest",
     "vanilla-lazyload": "latest"
   },
   "main": "gulpfile.js"

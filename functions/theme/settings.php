@@ -46,6 +46,15 @@
 		wp_register_script(
 			'dfwp_index',
 			get_stylesheet_directory_uri().'/dist/js/'.$projectJsName,
+			array('svgxuse'),
+			1,
+			true
+        );
+        
+        //SVGXUSE
+		wp_register_script(
+			'svgxuse',
+			get_stylesheet_directory_uri().'/build/node_modules/svgxuse/svgxuse.min.js',
 			array(),
 			1,
 			true
