@@ -328,12 +328,14 @@ gulp.task('default',
             '../src/layout/general.scss',
             '../src/utils/*.scss',
             '../src/components/**/*.scss',
+            '../src/components/**/**/*.scss',
             '../src/pages/**/*.scss',
         ], ['styles-project']);
 
         //Sass styleguide layout
         gulp.watch([
             '../src/layout/styleguide.scss',
+            '../styleguide/config.md',
         ], ['styles-styleguide']);
 
         //JS

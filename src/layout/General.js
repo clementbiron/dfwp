@@ -1,4 +1,5 @@
 import Lazyload from "../../build/node_modules/vanilla-lazyload/dist/lazyload.min.js";
+import "../utils/VHMobile.js";
 import { DOMReadyObject } from "../utils/DOMReadyObject.js";
 
 /**

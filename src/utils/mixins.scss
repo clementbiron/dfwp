@@ -38,3 +38,10 @@
 @mixin photoshopLineHeight($font-size, $line-height: $font-size) {
     line-height: $line-height / $font-size;
 }
+
+
+//Read https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+@mixin height100vh(){
+    height:100vh;
+    height: calc(var(--vh, 1vh) * 100);
+}
