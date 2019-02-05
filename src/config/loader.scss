@@ -1,11 +1,12 @@
 // ****
 //Config
 // ****
-@import '../../build/node_modules/reset-css/sass/_reset.scss';
+@import '../../build/node_modules/minireset.css/minireset.sass';
 @import '../utils/base.scss';
 @import 'config.scss';
 
-//utils DFWP
+//utils 
+@import '../../build/node_modules/family.scss/source/src/family.scss';
 @import '../utils/mixins.scss';
 @import '../utils/wordpress.scss'; 
 

@@ -24,7 +24,7 @@ export class DOMReadyObject {
 
         document.ready().then(() => {
             this.isDOMReady();
-        });
+        }).catch(err => console.warn(err));
     }
 
     isDOMReady() { }

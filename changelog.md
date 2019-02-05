@@ -1,3 +1,10 @@
+# changelog  (04/02/2019)
+- Gulp v 3.x.x to 4.x.x and gulpfile updated
+- Svg4everybody deleted, SVGXUSE added
+- Sass mixin added : photoshopLetterSpacing, photoshopLineHeigh, height100vh
+- Ajout de family.scss : collectinons de mixins pour :nth-child
+- Deleted meyer reset, added minireset.css
+
 # changelog  (26/10/2018)
 - readme update
 - gulpfile update
@@ -10,7 +17,7 @@
 - changement du path des fichiers sprite.svg et sprite.scss générés
 
 # changelog  (31/07/2018)
-- `Admin::removeAccentsToUploadFiles()` et  `Admin::removeFrenchPonctuationToUploadFiles()` 
+- `Admin::removeAccentsToUploadFiles()` et `Admin::removeFrenchPonctuationToUploadFiles()` 
 - ajout dans composer.json de `composer/installers` et `bea/sanitize-filename`
 - déplacement de `src/vendor` vers `/vendor`
 

@@ -24,3 +24,23 @@
 	max-width: $maxWidth;
 	width: 100%;
 }
+
+/*
+* Letter spacing from photoshop
+*/
+@mixin photoshopLetterSpacing($letterspacing) {
+    letter-spacing : #{$letterspacing / 1000}em;
+}
+
+/*
+* Line height from photoshop
+*/
+@mixin photoshopLineHeight($font-size, $line-height: $font-size) {
+    line-height: $line-height / $font-size;
+}
+
+//Read https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+@mixin height100vh(){
+    height:100vh;
+    height: calc(var(--vh, 1vh) * 100);
+}

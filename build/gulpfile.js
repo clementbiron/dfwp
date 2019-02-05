@@ -1,368 +1,264 @@
 /**
  * Charger les dépendances
  */
-const gulp         = require('gulp');
-const sass         = require('gulp-sass');
-const csso         = require('gulp-csso');
-const autoprefixer = require('gulp-autoprefixer');
-const concat       = require('gulp-concat');
-const uglify       = require('gulp-uglify-es').default;
-const plumber      = require('gulp-plumber');
-const rename       = require('gulp-rename');
-const styledown    = require('gulp-styledown');
-const flatmap      = require('gulp-flatmap');
-const svgSprite    = require('gulp-svg-sprite');
-const sourcemaps   = require('gulp-sourcemaps');
-const w3ccss       = require('gulp-w3c-css');
-const browserSync  = require('browser-sync').create();
-const browserify   = require('browserify');
-const babelify     = require('babelify');
-const buffer       = require('vinyl-buffer');
-const source       = require('vinyl-source-stream');
 
-//https://www.webpagefx.com/tools/emoji-cheat-sheet/              
-const emoji        = require('node-emoji');
+const { src, dest, task, series, parallel, watch, lastRun, registry } = require('gulp');
+const sass                                         = require('gulp-sass');
+const csso                                         = require('gulp-csso');
+//const autoprefixer                                 = require('gulp-autoprefixer');
+const concat                                       = require('gulp-concat');
+const uglify                                       = require('gulp-uglify-es').default;
+const plumber                                      = require('gulp-plumber');
+const rename                                       = require('gulp-rename');
+const styledown                                    = require('gulp-styledown');
+const flatmap                                      = require('gulp-flatmap');
+const svgSprite                                    = require('gulp-svg-sprite');
+const sourcemaps                                   = require('gulp-sourcemaps');
+const browserSync                                  = require('browser-sync');
+const bs                                           = browserSync.create();
+const browserify                                   = require('browserify');
+const babelify                                     = require('babelify');
+const babel                                        = require('gulp-babel');
+const buffer                                       = require('vinyl-buffer');
+const source                                       = require('vinyl-source-stream');
+
+
+const postcss              = require('gulp-postcss');
+const cssnano              = require('gulp-cssnano');
+const autoprefixer         = require('autoprefixer');
+const postcssEasyImport    = require('postcss-easy-import');
+const postcssPresetEnv     = require('postcss-preset-env');
+const postcssEasings       = require('postcss-easings');
+const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
+const postcssSprites       = require('postcss-sprites');
+const postcssNested        = require('postcss-nested');
+const clone                = require('gulp-clone');
+const merge = require('merge-stream');
+const ignore = require('gulp-ignore');
 
 /**
  * Path
  */
 const path = {
-    src       : '../src',
-    dist      : '../dist',
+    src: '../src',
+    dist: '../dist',
     styleguide: '../styleguide'
 }
 
 /**
  * Configuration 
  */
- const config = {
-    styles:{
-        project:{
-            name: 'index',                        //Nom du fichier généré
-            src : path.src+'/config/loader.scss'
-        },
-        styleguide:{
-            name: 'styleguide',                       //Nom du fichier généré
-            src : path.src+'/layout/styleguide.scss'
-        }
-    },
-    autoprefixer:{ 
-        browsers: ['last 2 versions', 'ie 11', '>= 1%']
-    },
-    browsersync:{
-        proxy        : "dfwp.local",
-        host         : "192.168.0.27",
-        open         : false,
-        notify       : false,
-        minify       : false,
-        logLevel     : "silent",
+const config = {
+    browsersync: {
+        proxy: "dfwp.local",
+        host: "192.168.0.27",
+        open: false,
+        notify: false,
+        minify: false,
+        logLevel: "info",
         injectChanges: true
     },
-    styleguide:{
-        filename: 'styleguide.html',              //Nom du fichier généré
-        markdown: path.styleguide+'/config.md',   //Chemin du fichier de config markdown
-        src     : {
-            styles:[
-                path.src + '/config/*.scss',
-                path.src + '/elements/*.scss',
-                path.src + '/utils/*.scss'
-            ],
-            components: path.src + '/components/**/*.md'  //Chemin des fichiers markdown des composants
+    styles: {
+        name: 'index',                        
+        src: [path.src + '/config/loader.css'],
+        dest: path.dist + '/css',
+        postcss: {
+            plugins: [
+                postcssEasyImport,
+                postcssNested,
+                postcssEasings,
+                postcssFlexbugsFixes,
+                postcssSprites({
+                    spritePath: path.dist + '/svg/',
+                }),
+                postcssPresetEnv({
+                    stage: 1,
+                    browsers: ['last 2 versions', 'ie 11', '>= 1%']
+                })
+            ], 
         },
-        dest:{
-            components: path.styleguide + '/components'  //Dossier de destination des composants
-        } 
+        cssnano: {
+            optimisations: {
+                discardComments: { 
+                    removeAll: true 
+                } 
+            } 
+        }
     },
-    browserify:{
-        'entries': path.src+'/config/main.js',
-        'debug'    : true,
-        'transform': [
-            babelify.configure({
-                'presets': ["@babel/preset-env"]
-            })
-        ]
-    },
-    scripts:{
-        src: [
-            path.src+'/utils/*.js', //utils files
-            path.src+'/layout/*.js', //layout files
-            path.src+'/components/**/*.js', //Components js
-            path.src+'/pages/**/*.js', //Pages js
-        ],
-        name  : 'bundle',
-        dest: path.dist+'/js',
+    scripts: {
+        name: 'bundle',
+        dest: path.dist + '/js',
+        browserify: {
+            'entries': path.src + '/config/main.js',
+            'debug': true //Enable sourcemaps 
+        },
+        babelify: {
+            sourceType: 'unambiguous',
+            presets: [
+                ["@babel/preset-env",
+                    {
+                        useBuiltIns: "entry",
+                        targets: {
+                            ie: "11"
+                        }
+                    }
+                ]
+            ],
+        },
         uglify: {
-            mangle  : true,
+            mangle: true,
             compress: {
-                sequences   : true,   // join consecutive statemets with the “comma operator”
-                dead_code   : true,   // discard unreachable code
+                sequences: true,   // join consecutive statemets with the “comma operator”
+                dead_code: true,   // discard unreachable code
                 conditionals: true,   // optimize if-s and conditional expressions
-                booleans    : true,   // optimize boolean expressions
-                unused      : true,   // drop unused variables/functions
-                if_return   : true,   // optimize if-s followed by return/continue
-                join_vars   : true,   // join var declarations
+                booleans: true,   // optimize boolean expressions
+                unused: true,   // drop unused variables/functions
+                if_return: true,   // optimize if-s followed by return/continue
+                join_vars: true,   // join var declarations
                 drop_console: true    // drop console
             }
         }
     },
-    svg:{
-        src: path.src+'/assets/svg/src/*.svg',
-        dest: path.src+'/assets/svg/',
-        sprite: {
-            log  : false,
-            shape: {
-                transform: [{
-                    svgo: {
-                        plugins: [{
-                            removeXMLNS: true
-                        }]
-                    }
-                }]
-            },
-            svg: {
-                xmlDeclaration     : false,
-                doctypeDeclaration : false,
-                dimensionAttributes: false,
-                namespaceClassnames: false
-            },
-            mode: {
-                symbol: {
-                    dest  : ".",
-                    sprite: "sprite.svg",
-                    render: {
-                        scss: true,
-                    }
-                }
-            }
+    styleguide: {
+        style: {
+            name: 'styleguide',
+            src: path.src + '/layout/styleguide.scss',
+            dest: path.dist + '/css'
+        },
+        filename: 'styleguide.html',              //Nom du fichier généré
+        markdown: path.styleguide + '/config.md',   //Chemin du fichier de config markdown
+        src: {
+            styles: [
+                path.src + '/config/*.scss',
+                path.src + '/elements/*.scss',
+                path.src + '/utils/*.scss',
+                path.src + '/elements/*.md'
+            ],
+            components: path.src + '/components/**/*.md'  //Chemin des fichiers markdown des composants
+        },
+        components: {
+            dest: path.styleguide + '/components'  //Dossier de destination des composants
         }
-    }
- }
+    },
+}
 
 /**
- * Browser sync
+ * Initialisation de browser sync
  */
-gulp.task('browser-sync', () => {
-    browserSync.init(config.browsersync, function () {
-        console.log(emoji.emojify(' :fire: '), "Start browser-sync ", browserSync.getOption('urls'));
-        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-    });
-});
+task('serve', (cb) => {
+    bs.init(config.browsersync);
+    cb();
+})
+const serve = task('serve');
 
 /**
- * Styles du projet
+ * Browser sync reload
  */
-gulp.task('styles-project', () => {    
-    return gulp.src(config.styles.project.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))    
-    .pipe(autoprefixer(config.autoprefixer))
-    .pipe(sourcemaps.write())
-    .pipe(concat(config.styles.project.name + '.css'))
-    .pipe(gulp.dest(path.dist+'/css/'))
-    .pipe(browserSync.stream())
-    .pipe(csso())
-    .pipe(concat(config.styles.project.name + '.min.css'))
-    .pipe(gulp.dest(path.dist+'/css/'))
-    .on('finish', () => {
-
-        //Console
-        let generatedFiles = [];
-        generatedFiles.push(config.styles.project.name + '.css')
-        generatedFiles.push(config.styles.project.name + '.min.css')
-        console.log(emoji.emojify(' :fire: '), "styles-project");
-        console.log(generatedFiles);
-        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-    })
-    .pipe(browserSync.stream());
-});
+bsReload = (cb) => {
+    bs.reload();
+    cb();
+}
 
 /**
- * Styles du styleguide
+ * Styles task
+ * @todo : tester { since: lastRun(styles) }
  */
-gulp.task('styles-styleguide', ()  => {
-    return gulp.src(config.styles.styleguide.src)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(csso())
-    .pipe(concat(config.styles.styleguide.name + '.min.css'))
-    .pipe(gulp.dest(path.dist+'/css/'))
-    .on('finish', () => {
+task('styles', () => {
+    return src(config.styles.src, { since: lastRun(styles), sourcemaps: true })
 
-        //Console
-        let generatedFiles = [];
-        generatedFiles.push(config.styles.styleguide.name + '.css')
-        generatedFiles.push(config.styles.styleguide.name + '.min.css')
-        console.log(emoji.emojify(' :fire: '), "styles-styleguide");
-        console.log(generatedFiles);
-        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-    })
-    .pipe(browserSync.stream());
-});
+        //Postcsss
+        .pipe(postcss(config.styles.postcss.plugins))
+
+        //Rename file
+        .pipe(rename({ basename: config.styles.name }))    
+
+        //Output dest with sourcemaps
+        .pipe(dest(path.dist + '/css/', { sourcemaps: '.' }))
+
+        //Remove sourcemaps from stream
+        .pipe(ignore.exclude(config.styles.name + '.css.map'))
+
+        //Rename 
+        .pipe(rename({ extname: '.min.css' }))
+
+        //Compressor
+        .pipe(cssnano(config.styles.cssnano.optimisations))
+
+        //Output dest
+        .pipe(dest(path.dist + '/css/'))
+
+        //Stream to browsersync
+        .pipe(bs.stream());
+})
+const styles = task('styles');
+
+//Ajouter une tache de clean du répertoire dist
+
 
 /**
- * Styleguide
+ * Scripts task
  */
-gulp.task('styleguide', () => {
-    let generatedFiles = [];
-    generatedFiles.push(config.styleguide.filename)
-    return gulp.src(config.styleguide.src.styles)        
-    .pipe(styledown({
-        config: config.styleguide.markdown,
-        filename: config.styleguide.filename
-    }))
-    .pipe(gulp.dest(path.styleguide))
-    .on('finish', () => {
-        gulp.src(config.styleguide.src.components)
-            .pipe(flatmap((stream, file) => {
-                let filename = file.path.replace(/^.*[\\\/]/, '').replace('.md', '');
-                generatedFiles.push(filename + '.html')
-                return stream.pipe(styledown({
-                    config: config.styleguide.markdown,
-                    filename: filename + '.html'
-                }))
-            }))
-            .pipe(gulp.dest(config.styleguide.dest.components))
-        .on('finish', () => {
+task('scripts', () => {
 
-            //Console
-            console.log(emoji.emojify(' :fire: '), "styleguide");
-            console.log(generatedFiles);
-            console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
+    //Browserify lets you require('modules') in the browser
+    return browserify(config.scripts.browserify)
 
-            browserSync.reload();
-        });
-    });
-});
+        //Transform source code before parsing with Babel
+        .transform(babelify.configure(config.scripts.babelify))
 
-/**
- * JS
- */
-gulp.task('scripts', () => {    
-    return browserify(config.browserify)
-    .bundle()
-    .pipe(source(config.scripts.name+'.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.scripts.dest))
-    .on('finish', () => {
-        
-        //console
-        let generatedFiles = [];
-        generatedFiles.push(config.scripts.name + '.js')
-        generatedFiles.push(config.scripts.name + '.js.map')
+        //Bundle the files and their dependencies into a single javascript file
+        .bundle()
 
-        gulp.src(config.scripts.dest + '/' + config.scripts.name + '.js')
+        //Convert the readable stream you get from browserify to vinyl stream that is what gulp is expecting to get.
+        .pipe(source(config.scripts.name + '.js'))
+
+        //Buffer stream
+        .pipe(buffer())
+
+        //Output dest
+        .pipe(dest(config.scripts.dest))
+
+        //Rename 
         .pipe(rename({ extname: '.min.js' }))
+        
+        //Compressor
         .pipe(uglify(config.scripts.uglify))
-        .pipe(gulp.dest(config.scripts.dest))
-        .on('finish', () => {
 
-            //Console
-            generatedFiles.push(config.scripts.name + '.min.js')
-            console.log(emoji.emojify(' :fire: '), "scripts");
-            console.log(generatedFiles);
-            console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-        })
-        .pipe(browserSync.stream());
-    })
+        //Output dest
+        .pipe(dest(config.scripts.dest))
+
+        //Stream to browsersync
+        .pipe(bs.stream());
 });
+const scripts = task('scripts');
 
 /**
- * SVG Sprite
+ * Watcher
+ * @todo : watch gulfile itself
  */
-gulp.task('svg-sprite', () => {
-    return gulp.src(config.svg.src)
-    .pipe(svgSprite(config.svg.sprite))
-    .pipe(gulp.dest(config.svg.dest))
-    .on('finish', () => { 
-        console.log(emoji.emojify(' :fire: '), "svg-sprite");
-        console.log(['sprite.svg','sprite.scss']);
-        console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-        browserSync.reload(); 
-    });
-});
+const watcher = () => {
 
-/**
- * W3C CSS validation
- */
-gulp.task('w3ccss',() => {
-    console.log(emoji.emojify(' :fire: '), "w3ccss");
-    return gulp.src(path.dist + '/css/'+ config.styles.project.name + '.css')
-        .pipe(w3ccss())
-        .pipe(flatmap((stream, file) => {
-            if (file.contents.length == 0) {
-                console.log(emoji.emojify(' :clap: :facepunch:  :punch: ') + 'w3ccss validate');
-            }else{  
-                let results = JSON.parse(file.contents.toString());
-                results.errors.forEach( (error) => {
-                    console.log(emoji.emojify(' :x: ') + ' Error ' + config.styles.project.name + '.css line ' + error.line + ' : '+ error.message);
-                    console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-                });
-                results.warnings.forEach( (warning) => {
-                    console.log(emoji.emojify(' :warning: ') + ' Warning ' + config.styles.project.name + '.css line ' + warning.line + ' : ' + warning.message);
-                    console.log(emoji.emojify(' :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: '));
-                });
-            }
-            return stream;
-        }));
-});
+    //Watch styles
+    watch([
+        '../src/*.css',
+        '../src/**/*.css',
+        '../src/**/**/*.css',
+        '../src/**/**/**/*.css',
+    ], styles);
+
+    //Watch scripts
+    watch([
+        '../src/*.js',
+        '../src/**/*.js',
+        '../src/**/**/*.js'
+    ], scripts);
+}
 
 /**
  * Default task
  */
-gulp.task('default', 
-    [
-        'browser-sync', 
-        'svg-sprite', 
-        'styles-project', 
-        'styles-styleguide', 
-        'scripts', 
-        'styleguide'
-    ], 
-    function () {
+task('default', parallel(
+    serve,
+    watcher,
+));
 
-        //Sass project
-        gulp.watch([
-            '../src/config/*.scss',
-            '../src/elements/*.scss',
-            '../src/layout/general.scss',
-            '../src/utils/*.scss',
-            '../src/components/**/*.scss',
-            '../src/pages/**/*.scss',
-        ], ['styles-project']);
-
-        //Sass styleguide layout
-        gulp.watch([
-            '../src/layout/styleguide.scss',
-        ], ['styles-styleguide']);
-
-        //JS
-        gulp.watch([
-            '../src/*.js',
-            '../src/**/*.js',
-            '../src/**/**/*.js'
-        ], ['scripts']);
-
-        //Styleguide
-        gulp.watch([
-            '../styleguide/config.md',
-            '../src/components/**/*.md',
-            '../src/config/*.scss',
-            '../src/elements/*.scss',
-            '../src/utils/*.scss'
-        ], ['styleguide']);
-
-        //Sprite svg
-        gulp.watch([
-            '../src/assets/svg/src/*.svg',
-            '../src/assets/svg/src'
-        ], ['svg-sprite']);
-
-        //PHP files browsersync reload
-        gulp.watch([
-            '../*.php',
-            '../template/*.php',
-            '../template/*.php',
-            '../src/components/**/*.php'
-        ], browserSync.reload);
-});
