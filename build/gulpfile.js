@@ -6,28 +6,21 @@
  * - watch du gulpfile itself
  */
 
-// const sass                                         = require('gulp-sass');
-// const csso                                         = require('gulp-csso');
-// const autoprefixer                                 = require('gulp-autoprefixer');
-// const plumber                                      = require('gulp-plumber');
-// const svgSprite                                    = require('gulp-svg-sprite');
-// const sourcemaps                                   = require('gulp-sourcemaps');
-// const babel                                        = require('gulp-babel');
 const { src, dest, task, series, parallel, watch } = require('gulp');
 const uglify                                       = require('gulp-uglify-es').default;
-const concat                                       = require('gulp-concat');
 const rename                                       = require('gulp-rename');
 const styledown                                    = require('gulp-styledown');
 const flatmap                                      = require('gulp-flatmap');
+const ignore                                       = require('gulp-ignore');
+const postcss                                      = require('gulp-postcss');
+const cssnano                                      = require('gulp-cssnano');
 const browserSync                                  = require('browser-sync');
 const bs                                           = browserSync.create();
 const browserify                                   = require('browserify');
 const babelify                                     = require('babelify');
+const mergestream                                  = require('merge-stream');
 const buffer                                       = require('vinyl-buffer');
 const source                                       = require('vinyl-source-stream');
-const postcss                                      = require('gulp-postcss');
-const cssnano                                      = require('gulp-cssnano');
-const autoprefixer                                 = require('autoprefixer');
 const postcssEasyImport                            = require('postcss-easy-import');
 const postcssPresetEnv                             = require('postcss-preset-env');
 const postcssEasings                               = require('postcss-easings');
@@ -36,8 +29,6 @@ const postcssSprites                               = require('postcss-sprites');
 const postcssNested                                = require('postcss-nested');
 const postcssMixins                                = require('postcss-mixins');
 const postcssCalc                                  = require('postcss-calc');
-const mergestream                                  = require('merge-stream');
-const ignore                                       = require('gulp-ignore');
 
 /**
  * Path
@@ -58,7 +49,7 @@ const config = {
         open: false, // Stop the browser from automatically opening
         notify: false, // Don't show any notifications in the browser.
         minify: false, // Don't minify the client-side JS
-        logLevel: "info", //log level info / debug / warn / silent,
+        logLevel: "silent", //log level info / debug / warn / silent,
     },
     styles: {
         name: 'index',                        
