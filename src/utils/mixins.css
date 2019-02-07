@@ -1,0 +1,23 @@
+@define-mixin debug $size:1px, $color:red {
+	outline: $size solid $color;
+}
+
+@define-mixin grid $colNumber, $gutterNumber{
+	max-width: calc((var(--gridColWidth) * $(colNumber)) + (var(--gridGutterWidth) * $(gutterNumber)));
+	width: 100%;
+}
+
+/* Letter spacing from photoshop */
+@define-mixin photoshopLetterSpacing $letterspacing {
+    letter-spacing: calc(($(letterspacing) / 1000) * 1em);
+}
+
+/* Line height from photoshop */
+@define-mixin photoshopLineHeight $font-size, $line-height{
+    line-height: calc($(line-height) / $(font-size));
+}
+
+/* Read https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
+@define-mixin height100vh {
+    height: calc(var(--vh, 1vh) * 100);
+}

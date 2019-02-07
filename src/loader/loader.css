@@ -1,0 +1,27 @@
+/* Minireset */
+@import '../../build/node_modules/minireset.css/minireset.min.css';
+
+/* Utils */
+@import '../utils/mixins.css';
+@import '../utils/wordpress.css';
+
+/* Layout */
+@import "../layout/default/default.css";
+
+/* Elements */
+@import '../elements/0_colors.css';
+@import '../elements/1_fonts.css';
+@import '../elements/2_icons.css';
+@import '../elements/3_inline.css';
+@import '../elements/4_links.css';
+@import '../elements/5_title.css';
+@import '../elements/6_buttons.css';
+@import '../elements/7_form.css';
+
+/* Composants */
+@import '../components/header/header.css';
+@import '../components/footer/footer.css';
+@import '../components/exemple/exemple.css';
+
+/* Pages */
+@import '../pages/home/home.css';

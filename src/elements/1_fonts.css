@@ -1,0 +1,27 @@
+/***
+ * Fonts:
+ */
+
+/* @font-face {
+    font-family: 'Arquitecta-Bold';
+    src: url('../../src/assets/fonts/Arquitecta-Bold.eot');
+    src: url('../../src/assets/fonts/Arquitecta-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../../src/assets/fonts/Arquitecta-Bold.woff2') format('woff2'),
+        url('../../src/assets/fonts/Arquitecta-Bold.woff') format('woff'),
+        url('../../src/assets/fonts/Arquitecta-Bold.ttf') format('truetype'),
+        url('../../src/assets/fonts/Arquitecta-Bold.svg#Arquitecta-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} */
+/**
+ * Font 1:
+ * `.font_1`
+ *
+ *     @example
+ *     div.font_1 lorem
+ */
+.font_1{
+    
+}
+
+

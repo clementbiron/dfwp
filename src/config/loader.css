@@ -1,5 +1,0 @@
-/* Minireset */
-@import '../../build/node_modules/minireset.css/minireset.min.css';
-
-/* Importer le layout general du projet */
-@import "../layout/general.css";

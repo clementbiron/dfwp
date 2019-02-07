@@ -1,0 +1,36 @@
+:root {
+    /* Font */
+    --defaultFontSize: 15px;
+    --defaultLineHeight: 1.5;
+
+    /* Grid */
+    --gridColsNumber   : 12;
+    --gridColWidth     : 100px;
+    --gridGuttersNumber: 11;
+    --gridGutterWidth  : 20px;
+}
+
+/* custom media queries  */
+@custom-media --mobileSmall (max-width: 320px);
+@custom-media --mobileLarge (max-width: 480px);
+@custom-media --mobileExtraLarge (max-width: 620px);
+@custom-media --tabletSmall (max-width: 768px);
+@custom-media --tabletLarge (max-width: 1024px);
+
+/* @media (--mobileSmall) {} */
+
+html {
+    font-size: 62.5%; /* set base font-size to equiv "10px", which is adapted to rem unit */
+    font-size: calc(1em * 0.625); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+}
+
+body{
+    font-size: var(--defaultFontSize);
+    line-height: var(--defaultLineHeight);
+    margin:0 auto;
+    @mixin grid 12,11;
+    @mixin debug;
+    @mixin photoshopLetterSpacing 25;
+    @mixin photoshopLineHeight 30,40;
+    @mixin height100vh;
+}

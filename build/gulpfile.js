@@ -1,40 +1,43 @@
 /**
- * Charger les dépendances
+ * @todo
+ * - Ajouter une tache de clean du répertoire dist
+ * - clean des dépendances
+ * - vérifier le browsersync.stream()
+ * - watch du gulpfile itself
  */
 
-const { src, dest, task, series, parallel, watch, lastRun, registry } = require('gulp');
-const sass                                         = require('gulp-sass');
-const csso                                         = require('gulp-csso');
-//const autoprefixer                                 = require('gulp-autoprefixer');
-const concat                                       = require('gulp-concat');
+// const sass                                         = require('gulp-sass');
+// const csso                                         = require('gulp-csso');
+// const autoprefixer                                 = require('gulp-autoprefixer');
+// const plumber                                      = require('gulp-plumber');
+// const svgSprite                                    = require('gulp-svg-sprite');
+// const sourcemaps                                   = require('gulp-sourcemaps');
+// const babel                                        = require('gulp-babel');
+const { src, dest, task, series, parallel, watch } = require('gulp');
 const uglify                                       = require('gulp-uglify-es').default;
-const plumber                                      = require('gulp-plumber');
+const concat                                       = require('gulp-concat');
 const rename                                       = require('gulp-rename');
 const styledown                                    = require('gulp-styledown');
 const flatmap                                      = require('gulp-flatmap');
-const svgSprite                                    = require('gulp-svg-sprite');
-const sourcemaps                                   = require('gulp-sourcemaps');
 const browserSync                                  = require('browser-sync');
 const bs                                           = browserSync.create();
 const browserify                                   = require('browserify');
 const babelify                                     = require('babelify');
-const babel                                        = require('gulp-babel');
 const buffer                                       = require('vinyl-buffer');
 const source                                       = require('vinyl-source-stream');
-
-
-const postcss              = require('gulp-postcss');
-const cssnano              = require('gulp-cssnano');
-const autoprefixer         = require('autoprefixer');
-const postcssEasyImport    = require('postcss-easy-import');
-const postcssPresetEnv     = require('postcss-preset-env');
-const postcssEasings       = require('postcss-easings');
-const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
-const postcssSprites       = require('postcss-sprites');
-const postcssNested        = require('postcss-nested');
-const clone                = require('gulp-clone');
-const merge = require('merge-stream');
-const ignore = require('gulp-ignore');
+const postcss                                      = require('gulp-postcss');
+const cssnano                                      = require('gulp-cssnano');
+const autoprefixer                                 = require('autoprefixer');
+const postcssEasyImport                            = require('postcss-easy-import');
+const postcssPresetEnv                             = require('postcss-preset-env');
+const postcssEasings                               = require('postcss-easings');
+const postcssFlexbugsFixes                         = require('postcss-flexbugs-fixes');
+const postcssSprites                               = require('postcss-sprites');
+const postcssNested                                = require('postcss-nested');
+const postcssMixins                                = require('postcss-mixins');
+const postcssCalc                                  = require('postcss-calc');
+const mergestream                                  = require('merge-stream');
+const ignore                                       = require('gulp-ignore');
 
 /**
  * Path
@@ -50,24 +53,25 @@ const path = {
  */
 const config = {
     browsersync: {
-        proxy: "dfwp.local",
-        host: "192.168.0.27",
-        open: false,
-        notify: false,
-        minify: false,
-        logLevel: "info",
-        injectChanges: true
+        proxy: "dfwp.local", // Using a vhost-based url
+        host: "192.168.0.27", // Override host detection if you know the correct IP to use
+        open: false, // Stop the browser from automatically opening
+        notify: false, // Don't show any notifications in the browser.
+        minify: false, // Don't minify the client-side JS
+        logLevel: "info", //log level info / debug / warn / silent,
     },
     styles: {
         name: 'index',                        
-        src: [path.src + '/config/loader.css'],
+        src: [path.src + '/loader/loader.css'],
         dest: path.dist + '/css',
         postcss: {
             plugins: [
                 postcssEasyImport,
+                postcssMixins,
                 postcssNested,
                 postcssEasings,
                 postcssFlexbugsFixes,
+                postcssCalc,
                 postcssSprites({
                     spritePath: path.dist + '/svg/',
                 }),
@@ -89,7 +93,7 @@ const config = {
         name: 'bundle',
         dest: path.dist + '/js',
         browserify: {
-            'entries': path.src + '/config/main.js',
+            'entries': path.src + '/loader/main.js',
             'debug': true //Enable sourcemaps 
         },
         babelify: {
@@ -122,21 +126,16 @@ const config = {
     styleguide: {
         style: {
             name: 'styleguide',
-            src: path.src + '/layout/styleguide.scss',
+            src: path.src + '/layout/styleguide/styleguide.css',
             dest: path.dist + '/css'
         },
         filename: 'styleguide.html',              //Nom du fichier généré
         markdown: path.styleguide + '/config.md',   //Chemin du fichier de config markdown
-        src: {
-            styles: [
-                path.src + '/config/*.scss',
-                path.src + '/elements/*.scss',
-                path.src + '/utils/*.scss',
-                path.src + '/elements/*.md'
-            ],
-            components: path.src + '/components/**/*.md'  //Chemin des fichiers markdown des composants
+        elements:{
+            src: path.dist + '/css/index.css',
         },
         components: {
+            src: path.src + '/components/**/*.md',  //Chemin des fichiers markdown des composants
             dest: path.styleguide + '/components'  //Dossier de destination des composants
         }
     },
@@ -154,17 +153,18 @@ const serve = task('serve');
 /**
  * Browser sync reload
  */
-bsReload = (cb) => {
+task('reload', (cb) => {
     bs.reload();
     cb();
-}
+})
+const reload = task('reload');
 
 /**
  * Styles task
- * @todo : tester { since: lastRun(styles) }
+ * 
  */
 task('styles', () => {
-    return src(config.styles.src, { since: lastRun(styles), sourcemaps: true })
+    return src(config.styles.src, { sourcemaps: true })
 
         //Postcsss
         .pipe(postcss(config.styles.postcss.plugins))
@@ -186,13 +186,8 @@ task('styles', () => {
 
         //Output dest
         .pipe(dest(path.dist + '/css/'))
-
-        //Stream to browsersync
-        .pipe(bs.stream());
 })
 const styles = task('styles');
-
-//Ajouter une tache de clean du répertoire dist
 
 
 /**
@@ -225,34 +220,92 @@ task('scripts', () => {
         .pipe(uglify(config.scripts.uglify))
 
         //Output dest
-        .pipe(dest(config.scripts.dest))
-
-        //Stream to browsersync
-        .pipe(bs.stream());
+        .pipe(dest(config.scripts.dest));
 });
 const scripts = task('scripts');
 
+
+/**
+ * Générer les éléments du styleguide
+ */
+task('styleguide', () => {
+
+    let style = src(config.styleguide.style.src)
+        .pipe(postcss(config.styles.postcss.plugins))
+        .pipe(rename({ basename: config.styleguide.style.name }))
+        .pipe(dest(path.dist + '/css/'))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(cssnano(config.styles.cssnano.optimisations))
+        .pipe(dest(path.dist + '/css/'));
+
+    let elements = src(config.styleguide.elements.src)
+        .pipe(styledown({
+            config: config.styleguide.markdown,
+            filename: config.styleguide.filename
+        }))
+        .pipe(dest(path.styleguide));
+    
+    let components = src(config.styleguide.components.src)
+        .pipe(flatmap((stream, file) => {
+            let filename = file.path.replace(/^.*[\\\/]/, '').replace('.md', '');
+            return stream.pipe(styledown({
+                config: config.styleguide.markdown,
+                filename: filename + '.html'
+            }))
+        }))
+        .pipe(dest(config.styleguide.components.dest));
+    
+    let mergedstream = mergestream(elements, components);
+    mergedstream.add(style);
+    return mergedstream;
+});
+const styleguide = task('styleguide');
+
+
 /**
  * Watcher
- * @todo : watch gulfile itself
  */
-const watcher = () => {
+task('watcher', (cb) => {
 
     //Watch styles
     watch([
-        '../src/*.css',
-        '../src/**/*.css',
-        '../src/**/**/*.css',
-        '../src/**/**/**/*.css',
-    ], styles);
+        '../src/loader/*.css',
+        '../src/elements/*.css',
+        '../src/components/**/*.css',
+        '../src/layout/default/*.css',
+        '../src/pages/**/*.css',
+    ], { events: 'all', ignoreInitial: false }, series(styles, reload)); 
 
     //Watch scripts
     watch([
         '../src/*.js',
         '../src/**/*.js',
         '../src/**/**/*.js'
-    ], scripts);
-}
+    ], { events: 'all', ignoreInitial: false }, series(scripts, reload));
+
+    //Watch styleguide files
+    watch([
+        config.styleguide.style.src,
+        '../src/loader/*.css',
+        '../src/elements/*.css',
+        '../src/components/**/*.css',
+        '../src/layout/default/*.css',
+        '../src/pages/**/*.css',
+        '../styleguide/config.md',
+        '../src/components/**/*.md',
+    ], { events: 'all', ignoreInitial: false }, series(styleguide, reload));
+
+    //Watch PHP files
+    watch([
+        '../*.php',
+        '../template/*.php',
+        '../template/*.php',
+        '../src/components/**/*.php'
+    ], { events: 'all', ignoreInitial: false }, reload);
+
+    cb();
+});
+const watcher = task('watcher');
 
 /**
  * Default task

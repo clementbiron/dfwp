@@ -11,68 +11,256 @@ audio{max-width:100%}
 iframe{border:0}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0;text-align:left}
-/* Importer le layout general du projet */
+/* Utils */
+/* Letter spacing from photoshop */
+/* Line height from photoshop */
+/* Read https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
+/* the main classes used for alignment */
+.alignnone {}
+.alignleft {}
+.alignright {}
+.aligncenter {}
+img.alignnone {}
+img.alignleft {}
+img.alignright {}
+img.aligncenter {}
+/* img caption */
+.wp-caption {}
+.gallery {}
+.gallery-caption {}
+/* styles for img sizes */
+img.size-full {}
+img.size-large {}
+img.size-medium {}
+img.size-thumbnail {}
+/* Layout */
 :root {
-  --mainColor: rgba(18,52,86,0.47059);
+    /* Font */
+    --defaultFontSize: 15px;
+    --defaultLineHeight: 1.5;
+
+    /* Grid */
+    --gridColsNumber   : 12;
+    --gridColWidth     : 100px;
+    --gridGuttersNumber: 11;
+    --gridGutterWidth  : 20px;
 }
-body {
-  color: rgba(18,52,86,0.47059);
-  color: var(--mainColor);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-  word-wrap: break-word;
-  -webkit-transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
-  transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
-    -webkit-box-flex:1;
-        -ms-flex-positive:1;
-            flex-grow:1;
-    -ms-flex-negative:0;
-        flex-shrink:0;
-    -ms-flex-preferred-size:calc(1vw - 1px);
-        flex-basis:calc(1vw - 1px);
-    background-color: red;
+/* custom media queries  */
+/* @media (--mobileSmall) {} */
+html {
+    font-size: 62.5%; /* set base font-size to equiv "10px", which is adapted to rem unit */
+    font-size: 0.625em; /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
 }
-h1,h2,h3,h4,h5,h6 {
-  background-image: url(img/heading.png);
+body{
+    font-size: 15px;
+    font-size: var(--defaultFontSize);
+    line-height: 1.5;
+    line-height: var(--defaultLineHeight);
+    margin:0 auto;
+    max-width: calc(100px*12 + 20px*11);
+    max-width: calc(var(--gridColWidth)*12 + var(--gridGutterWidth)*11);
+    width: 100%;
+    outline: 1px solid red;
+    letter-spacing: 0.025em;
+    line-height: 1.33333;
+    height: calc(1vh*100);
+    height: calc(var(--vh, 1vh)*100);
 }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){
-h1,h2,h3,h4,h5,h6 {
-  background-image:  url(img/heading@2x.png);
-}}
-h1,h2,h3,h4,h5,h6 {
-  background-image: -webkit-image-set(url(img/heading.png) 1x, url(img/heading@2x.png) 2x);
-  background-image: image-set(url(img/heading.png) 1x, url(img/heading@2x.png) 2x);
+/* Elements */
+/***
+ * Colors:
+ */
+:root {
+    --color1-100: #ffffff;
+    --color1-1000: #000000;
 }
-@media (max-width: 50rem) {
-h1,h2,h3,h4,h5,h6 {
-    margin-top: 0;
-    margin-bottom: 0
+/**
+ * White to black :
+ *  `--color1-100 | --color1-1000`
+ *
+ *     @example
+ *     div(style='background-color:#ffffff;') --color1-100 | #ffffff 
+ *     div(style='background-color:#000000; color:white;') --color1-1000 | #000000 
+ *
+ */
+/***
+ * Fonts:
+ */
+/* @font-face {
+    font-family: 'Arquitecta-Bold';
+    src: url('../../src/assets/fonts/Arquitecta-Bold.eot');
+    src: url('../../src/assets/fonts/Arquitecta-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../../src/assets/fonts/Arquitecta-Bold.woff2') format('woff2'),
+        url('../../src/assets/fonts/Arquitecta-Bold.woff') format('woff'),
+        url('../../src/assets/fonts/Arquitecta-Bold.ttf') format('truetype'),
+        url('../../src/assets/fonts/Arquitecta-Bold.svg#Arquitecta-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} */
+/**
+ * Font 1:
+ * `.font_1`
+ *
+ *     @example
+ *     div.font_1 lorem
+ */
+.font_1{
+    
 }
-    }
-a {
-  color: rgba(0, 0, 255, 0.9);
+/***
+ * Icons:
+ */
+/**
+ * Icon 1:
+ * `.icon_1`
+ *
+ *     @example
+ *     div(class="icon_1")
+ */
+.icon_1{
+	background-image: url(../../dist/svg/sprite.svg);
+	background-position: 0px 0px;
+	background-size: 66px 39px;
+	width: 39px;
+	height: 39px;
 }
-a:hover {
-    color: #639;
-  }
-.comment { 
-    background-image: url(../../dist/svg/sprite.svg); 
-    background-position: 0px 0px; 
-    background-size: 39px 39px;  
-    width: 39px; 
-    height: 39px;
+/**
+ * Icon 2:
+ * `.icon_2`
+ *
+ *     @example
+ *     div(class="icon_2")
+ */
+.icon_2 {
+	background-image: url(../../dist/svg/sprite.svg);
+	background-position: -39px 0px;
+	background-size: 66px 39px;
+	width: 27px;
+	height: 22px;
 }
-.phone_title {
-        width: 500px;
-    }
-@media (max-width: 500px) {
-.phone_title {
-            width: auto
-    }
-        }
-body.is_dark .phone_title {
-            color: white;
-        }
-.phone img {
-        display: block;
-    }
+/***
+ * Inline :
+ */
+/**
+ * Paragraphe:
+ * `<p>`
+ *
+ *     @example
+ *     p lorem ispum
+ *
+ */
+p{
+
+}
+/***
+ * Links:
+ */
+/**
+ * Lien 1:
+ * `<a href="http://www.google.com">lorem</a>`
+ *
+ *     @example
+ *     a(href='google.com') lorem
+ */
+a{
+
+}
+/***
+ * Title:
+ */
+/**
+ * h1:
+ * `<h1>` `.h1`
+ *
+ *     @example
+ *     h1 Titre de niveau 1
+ */
+h1, .h1{
+
+}
+/**
+ * h2:
+ * `<h2>` `.h2`
+ *
+ *     @example
+ *     h2 Titre de niveau 2
+ */
+h2, .h2{
+
+}
+/**
+ * h3:
+ * `<h3>` `.h3`
+ *
+ *     @example
+ *     h3 Titre de niveau 3
+ */
+h3, .h3{
+
+}
+/**
+ * h4:
+ * `<h4>` `.h4`
+ *
+ *     @example
+ *     h4 Titre de niveau 4
+ */
+h4, .h4{
+
+}
+/**
+ * h5:
+ * `<h5>` `.h5`
+ *
+ *     @example
+ *     h5 Titre de niveau 5
+ */
+h5, .h5{
+
+}
+/**
+ * h6:
+ * `<h6>` `.h6`
+ *
+ *     @example
+ *     h6 Titre de niveau 6
+ */
+h6, .h6{
+
+}
+/***
+ * Buttons:
+ */
+/**
+ * Button exemple:
+ * `.exemple`
+ *
+ *     @example
+ *     div.button1 lorem
+ */
+/***
+ * Form:
+ */
+/* Composants */
+.header{
+
+}
+.footer{
+
+}
+.exemple{
+    border:1px solid black;
+    width:500px;
+    height:500px;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    margin:auto;
+    -webkit-transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+/* Pages */
+.home{
+    
+}
 /*# sourceMappingURL=index.css.map */

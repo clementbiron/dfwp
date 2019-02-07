@@ -69,7 +69,8 @@
 				{
 					//Et on la ajoute au body
 					$fragment = $dom->createDocumentFragment();
-                    $fragment->appendXML(htmlspecialchars($component));
+                    //$fragment->appendXML(htmlspecialchars($component));
+                    $fragment->appendXML($component);
                     $body->appendChild($fragment);
 				}
 			}
@@ -89,5 +90,8 @@
 	//On réactive les erreurs
 	libxml_use_internal_errors($internalErrors);
 
-	echo html_entity_decode($dom->saveHTML());
+    //echo html_entity_decode($dom->saveHTML());
+
+    echo $dom->saveHTML();
+
 ?>
