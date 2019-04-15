@@ -2,7 +2,7 @@
  * @todo
  * - Ajouter une tache de clean du répertoire dist
  * - clean des dépendances
- * - vérifier le browsersync.stream()
+ * - vérfier les tasks du styleguide
  * - watch du gulpfile itself
  */
 
@@ -15,8 +15,7 @@ const ignore                                       = require('gulp-ignore');
 const postcss                                      = require('gulp-postcss');
 const svgSprite                                    = require('gulp-svg-sprite');
 const cssnano                                      = require('gulp-cssnano');
-const browserSync                                  = require('browser-sync');
-const bs                                           = browserSync.create();
+const bs                                           = require('browser-sync').create();
 const browserify                                   = require('browserify');
 const babelify                                     = require('babelify');
 const mergestream                                  = require('merge-stream');
@@ -31,7 +30,7 @@ const postcssNested                                = require('postcss-nested');
 const postcssMixins                                = require('postcss-mixins');
 const postcssCalc                                  = require('postcss-calc');
 const postcssSimpleExtend                          = require('postcss-simple-extend');
-// const postcssSvg                                   = require('postcss-svg');
+
 
 /**
  * Path
@@ -67,7 +66,6 @@ const config = {
                 postcssEasings,
                 postcssFlexbugsFixes,
                 postcssCalc,
-                // postcssSvg,
                 postcssPresetEnv({
                     stage: 1,
                     browsers: ['last 2 versions', 'ie 11', '>= 1%']
@@ -171,6 +169,7 @@ const config = {
  * Initialisation de browser sync
  */
 task('serve', (cb) => {
+	console.log('serve');
     bs.init(config.browsersync);
     cb();
 })
@@ -184,7 +183,7 @@ task('reload', (cb) => {
     bs.reload();
     cb();
 })
-let reload = task('reload');
+const reload = task('reload');
 
 
 /**
@@ -201,7 +200,10 @@ task('styles', () => {
         .pipe(rename({ basename: config.styles.name }))    
 
         //Output dest with sourcemaps
-        .pipe(dest(path.dist + '/css/', { sourcemaps: '.' }))
+		.pipe(dest(path.dist + '/css/', { sourcemaps: '.' }))
+		
+		//BS Stream
+		.pipe(bs.stream({ match: '**/*.css' }))
 
         //Remove sourcemaps from stream
         .pipe(ignore.exclude(config.styles.name + '.css.map'))
@@ -214,9 +216,6 @@ task('styles', () => {
 
         //Output dest
 		.pipe(dest(path.dist + '/css/'))
-		
-		//BS Stream
-		.pipe(bs.stream({ match: '**/*.css' }));
 })
 const styles = task('styles');
 
@@ -267,40 +266,45 @@ const scripts = task('scripts');
 
 
 /**
- * Générer les éléments du styleguide
+ * Générer les styles du styleguide
  */
-task('styleguide', () => {
-
-    let style = src(config.styleguide.style.src)
+task('styleguideStyles', () => {
+    return src(config.styleguide.style.src)
         .pipe(postcss(config.styles.postcss.plugins))
         .pipe(rename({ basename: config.styleguide.style.name }))
         .pipe(dest(path.dist + '/css/'))
         .pipe(rename({ extname: '.min.css' }))
         .pipe(cssnano(config.styles.cssnano.optimisations))
-        .pipe(dest(path.dist + '/css/'));
-
-    let elements = src(config.styleguide.elements.src)
-        .pipe(styledown({
-            config: config.styleguide.markdown,
-            filename: config.styleguide.filename
-        }))
-        .pipe(dest(path.styleguide));
-    
-    let components = src(config.styleguide.components.src)
-        .pipe(flatmap((stream, file) => {
-            let filename = file.path.replace(/^.*[\\\/]/, '').replace('.md', '');
-            return stream.pipe(styledown({
-                config: config.styleguide.markdown,
-                filename: filename + '.html'
-            }))
-        }))
-        .pipe(dest(config.styleguide.components.dest));
-    
-    let mergedstream = mergestream(elements, components);
-    mergedstream.add(style);
-    return mergedstream;
+		.pipe(dest(path.dist + '/css/'))
+		.pipe(bs.stream({ match: '**/*.css' }));
 });
-const styleguide = task('styleguide');
+const styleguideStyles = task('styleguideStyles');
+
+/**
+ * Générer les fichiers du styleguide
+ */
+task('styleguideFiles', () => {
+
+	let elements = src(config.styleguide.elements.src)
+		.pipe(styledown({
+			config: config.styleguide.markdown,
+			filename: config.styleguide.filename
+		}))
+		.pipe(dest(path.styleguide));
+
+	let components = src(config.styleguide.components.src)
+		.pipe(flatmap((stream, file) => {
+			let filename = file.path.replace(/^.*[\\\/]/, '').replace('.md', '');
+			return stream.pipe(styledown({
+				config: config.styleguide.markdown,
+				filename: filename + '.html'
+			}))
+		}))
+		.pipe(dest(config.styleguide.components.dest));
+
+	return mergestream(elements, components);
+});
+const styleguideFiles = task('styleguideFiles');
 
 
 /**
@@ -316,7 +320,7 @@ task('watcher', (cb) => {
         '../src/components/**/*.css',
         '../src/layout/default/*.css',
         '../src/pages/**/*.css',
-	], { events: 'all', ignoreInitial: false }, series(sprites, styles, reload)); 
+	], { events: 'all', ignoreInitial: false }, series(sprites, styles)); 
 
     //Watch scripts
     watch([
@@ -325,17 +329,16 @@ task('watcher', (cb) => {
         '../src/**/**/*.js'
     ], { events: 'all', ignoreInitial: false }, series(scripts, reload));
 
-    //Watch styleguide files
+    //Watch styleguide styles
     watch([
         config.styleguide.style.src,
-        '../src/loader/*.css',
-        '../src/elements/*.css',
-        '../src/components/**/*.css',
-        '../src/layout/default/*.css',
-        '../src/pages/**/*.css',
+	], { events: 'all', ignoreInitial: false }, styleguideStyles);
+	
+	//Watch styleguide files
+    watch([
         '../styleguide/config.md',
         '../src/components/**/*.md',
-    ], { events: 'all', ignoreInitial: false }, series(styleguide, reload));
+	], { events: 'all', ignoreInitial: false }, series(styleguideFiles, reload));
 
     //Watch PHP files
     watch([
