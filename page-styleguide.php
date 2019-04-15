@@ -41,8 +41,8 @@
 
 			//Pour trouver et récupérer le composant dans la DOM
 			$nodes = $finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' $queryComponent ')]");
-			$componentDom = $nodes->item(0)->ownerDocument->saveHTML( $nodes->item(0));
-			array_push($domComponents, $componentDom);
+            $componentDom = $nodes->item(0)->ownerDocument->saveHTML( $nodes->item(0));
+            array_push($domComponents, $componentDom);
 			
 			//Si c'est le dernier composant chargé
 			if($i == $l)
@@ -69,9 +69,17 @@
 				{
 					//Et on la ajoute au body
 					$fragment = $dom->createDocumentFragment();
-                    //$fragment->appendXML(htmlspecialchars($component));
-                    $fragment->appendXML($component);
-                    $body->appendChild($fragment);
+
+					//On ajoute notre html au fragment 
+					//en convertissant les caractères spéciaux en entités HTML, sinon ça plante
+					$result = $fragment->appendXML(htmlspecialchars($component));
+
+					//Si tout c'est bien passé on ajoute le framgent au body
+					if($result){
+						$body->appendChild($fragment);
+					}else{
+						throw new Exception("Impossible d'ajouter le composant au fragment", 1);
+					}
 				}
 			}
 
@@ -90,8 +98,6 @@
 	//On réactive les erreurs
 	libxml_use_internal_errors($internalErrors);
 
-    //echo html_entity_decode($dom->saveHTML());
-
-    echo $dom->saveHTML();
-
+	//Et on output en convertissant  les entités HTML spéciales en caractères  
+    echo htmlspecialchars_decode($dom->saveHTML());
 ?>

@@ -25,6 +25,7 @@ html {
 }
 
 body{
+	background-color:var(--color1-100);
     font-size: var(--defaultFontSize);
     line-height: var(--defaultLineHeight);
     margin:0 auto;
@@ -33,4 +34,10 @@ body{
     @mixin photoshopLetterSpacing 25;
     @mixin photoshopLineHeight 30,40;
     @mixin height100vh;
+	
+	/* Improve font rendering on HiDPI devices (opinionated) */
+	@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+	}
 }

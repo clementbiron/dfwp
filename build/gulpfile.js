@@ -13,6 +13,7 @@ const styledown                                    = require('gulp-styledown');
 const flatmap                                      = require('gulp-flatmap');
 const ignore                                       = require('gulp-ignore');
 const postcss                                      = require('gulp-postcss');
+const svgSprite                                    = require('gulp-svg-sprite');
 const cssnano                                      = require('gulp-cssnano');
 const browserSync                                  = require('browser-sync');
 const bs                                           = browserSync.create();
@@ -29,6 +30,8 @@ const postcssSprites                               = require('postcss-sprites');
 const postcssNested                                = require('postcss-nested');
 const postcssMixins                                = require('postcss-mixins');
 const postcssCalc                                  = require('postcss-calc');
+const postcssSimpleExtend                          = require('postcss-simple-extend');
+// const postcssSvg                                   = require('postcss-svg');
 
 /**
  * Path
@@ -60,12 +63,11 @@ const config = {
                 postcssEasyImport,
                 postcssMixins,
                 postcssNested,
+                postcssSimpleExtend,
                 postcssEasings,
                 postcssFlexbugsFixes,
                 postcssCalc,
-                postcssSprites({
-                    spritePath: path.dist + '/svg/',
-                }),
+                // postcssSvg,
                 postcssPresetEnv({
                     stage: 1,
                     browsers: ['last 2 versions', 'ie 11', '>= 1%']
@@ -114,6 +116,39 @@ const config = {
             }
         }
     },
+    sprites: {
+        svg: {
+            src: path.src + '/assets/svg/src/*.svg',
+            dest: path.src + '/assets/svg/',
+            svgsprite: {
+                log: false,
+                shape: {
+                    transform: [{
+                        svgo: {
+                            plugins: [{
+                                removeXMLNS: true
+                            }]
+                        }
+                    }]
+                },
+                svg: {
+                    xmlDeclaration: false,
+                    doctypeDeclaration: false,
+                    dimensionAttributes: false,
+                    namespaceClassnames: false
+                },
+                mode: {
+                    symbol: {
+                        dest: ".",
+                        sprite: "sprite.svg",
+                        render: {
+                            css: true,
+                        }
+                    }
+                }
+            }
+        }
+    },
     styleguide: {
         style: {
             name: 'styleguide',
@@ -145,10 +180,12 @@ const serve = task('serve');
  * Browser sync reload
  */
 task('reload', (cb) => {
+	console.log('reload');
     bs.reload();
     cb();
 })
-const reload = task('reload');
+let reload = task('reload');
+
 
 /**
  * Styles task
@@ -176,10 +213,23 @@ task('styles', () => {
         .pipe(cssnano(config.styles.cssnano.optimisations))
 
         //Output dest
-        .pipe(dest(path.dist + '/css/'))
+		.pipe(dest(path.dist + '/css/'))
+		
+		//BS Stream
+		.pipe(bs.stream({ match: '**/*.css' }));
 })
 const styles = task('styles');
 
+/**
+ * Sprites task
+ * 
+ */
+task('sprites', () => {
+    return src(config.sprites.svg.src)
+        .pipe(svgSprite(config.sprites.svg.svgsprite))
+        .pipe(dest(config.sprites.svg.dest))
+});
+const sprites = task('sprites');
 
 /**
  * Scripts task
@@ -258,14 +308,15 @@ const styleguide = task('styleguide');
  */
 task('watcher', (cb) => {
 
-    //Watch styles
+    //Watch styles and SVG files
     watch([
+        '../src/assets/svg/src/*.svg',
         '../src/loader/*.css',
         '../src/elements/*.css',
         '../src/components/**/*.css',
         '../src/layout/default/*.css',
         '../src/pages/**/*.css',
-    ], { events: 'all', ignoreInitial: false }, series(styles, reload)); 
+	], { events: 'all', ignoreInitial: false }, series(sprites, styles, reload)); 
 
     //Watch scripts
     watch([

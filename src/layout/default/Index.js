@@ -22,7 +22,7 @@ class Index extends DOMReadyObject {
     }
 
     isDOMReady() {
-        console.log('Index.isDOMReady()');
+		console.log('Index.isDOMReady()');
         super.isDOMReady();
     }
 }

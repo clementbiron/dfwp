@@ -15,6 +15,9 @@ td,th{padding:0;text-align:left}
 /* Letter spacing from photoshop */
 /* Line height from photoshop */
 /* Read https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
+/* Read https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid */
+/* Read https://ismamz.github.io/postcss-utilities/docs#word-wrap */
+/* Read https://codepen.io/raphaelgoetter/pen/KMgBJd?editors=1100 */
 /* the main classes used for alignment */
 .alignnone {}
 .alignleft {}
@@ -52,6 +55,8 @@ html {
     font-size: 0.625em; /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
 }
 body{
+	background-color:#ffffff;
+	background-color:var(--color1-100);
     font-size: 15px;
     font-size: var(--defaultFontSize);
     line-height: 1.5;
@@ -66,6 +71,13 @@ body{
     height: calc(1vh*100);
     height: calc(var(--vh, 1vh)*100);
 }
+/* Improve font rendering on HiDPI devices (opinionated) */
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+body{
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased
+}
+	}
 /* Elements */
 /***
  * Colors:
@@ -118,9 +130,7 @@ body{
  *     div(class="icon_1")
  */
 .icon_1{
-	background-image: url(../../dist/svg/sprite.svg);
-	background-position: 0px 0px;
-	background-size: 66px 39px;
+	background: url('../assets/svg/src/icon_behance.svg');
 	width: 39px;
 	height: 39px;
 }
@@ -132,9 +142,7 @@ body{
  *     div(class="icon_2")
  */
 .icon_2 {
-	background-image: url(../../dist/svg/sprite.svg);
-	background-position: -39px 0px;
-	background-size: 66px 39px;
+	background: url('../assets/svg/src/icon_burger.svg');
 	width: 27px;
 	height: 22px;
 }
@@ -176,7 +184,7 @@ a{
  *     h1 Titre de niveau 1
  */
 h1, .h1{
-
+    
 }
 /**
  * h2:
@@ -249,7 +257,7 @@ h6, .h6{
 
 }
 .exemple{
-    border:1px solid black;
+    border:1px solid red;
     width:500px;
     height:500px;
     display:-webkit-box;

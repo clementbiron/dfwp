@@ -1,3 +1,7 @@
+# changelog  (08/02/2019)
+- Gulpfile refactoring
+- Postcss
+
 # changelog  (04/02/2019)
 - Gulp v 3.x.x to 4.x.x and gulpfile updated
 - Svg4everybody deleted, SVGXUSE added
