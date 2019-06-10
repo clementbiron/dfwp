@@ -17,7 +17,7 @@
 	Config::set('svg-path',wp_make_link_relative(get_stylesheet_directory_uri().'/src/assets/svg/sprite.svg'));
 
 	//On cache l'admin bar sur le front 
-	Theme::hideAdminBar('install_plugins');
+	Theme::hideAdminBar();
 
 	//On clean le head
 	Theme::cleanHeader();
@@ -47,6 +47,7 @@
 			'dfwp_index',
 			get_stylesheet_directory_uri().'/dist/js/'.$projectJsName,
 			array('svgxuse'),
+<<<<<<< HEAD
 			1,
 			true
         );
@@ -56,18 +57,34 @@
 			'svgxuse',
 			get_stylesheet_directory_uri().'/build/node_modules/svgxuse/svgxuse.min.js',
 			array(),
+=======
+>>>>>>> develop
 			1,
 			true
+        );
+        
+        //Svgxuse
+		wp_register_script(
+			'svgxuse',
+			get_stylesheet_directory_uri().'/build/node_modules/svgxuse/svgxuse.min.js',
+			array(),
+			false,
+			false
 		);
 
 		//Charger des fichiers js du projet 
 		wp_enqueue_script('dfwp_index');
 
-		//Décharger les scripts non nécéssaires
+        //Décharger les scripts non nécéssaires
 		wp_dequeue_script('jquery');
-		wp_dequeue_script('wp-embed');
+		wp_dequeue_script('jquery-migrate');
 	}
-	add_action('wp_enqueue_scripts', 'dfwp_enqueueScripts');
+    add_action('wp_enqueue_scripts', 'dfwp_enqueueScripts');
+    
+    //Dequeue wp embed
+    add_action( 'wp_footer', function(){
+        wp_dequeue_script('wp-embed');
+    });
 
 	//Chargement styles en front
 	function dfwp_enqueueStyle()

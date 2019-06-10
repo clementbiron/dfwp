@@ -1,0 +1,30 @@
+/***
+ * Icons:
+ */
+
+/**
+ * Icon 1:
+ * `.icon_1`
+ *
+ *     @example
+ *     div(class="icon_1")
+ */
+.icon_1{
+	background: url('../assets/svg/src/icon_behance.svg');
+	width: 39px;
+	height: 39px;
+}
+
+ /**
+ * Icon 2:
+ * `.icon_2`
+ *
+ *     @example
+ *     div(class="icon_2")
+ */
+.icon_2 {
+	background: url('../assets/svg/src/icon_burger.svg');
+	width: 27px;
+	height: 22px;
+}
+ 

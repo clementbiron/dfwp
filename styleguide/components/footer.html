@@ -4,49 +4,67 @@
 <head>
   <meta charset="utf-8">
   <title>Styledown</title>
-  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css">
-  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css">
-  <script src="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js"></script>
-  <script src="../wp-content/themes/dfwp//build/node_modules/svg4everybody/dist/svg4everybody.min.js"></script>
-  <script src="../wp-content/themes/dfwp/dist/js/bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <div id="link" href="https://fonts.googleapis.com/css?family=..." rel="stylesheet"></div>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css">
+  <script src="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js"></script>
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css">
+  <link rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css">
+  <script src="../wp-content/themes/dfwp/dist/js/bundle.js"></script>
+  <script src="../wp-content/themes/dfwp/src/utils/Styleguide.js"></script>
+  <script defer="defer" src="../wp-content/themes/dfwp/build/node_modules/svgxuse/svgxuse.min.js"></script>
 </head>
 
 <body class="sg">
-  <h1 id="dfwp_styleguide_title">Styleguide</h1>
-  <div id="dfwp_styleguide_menucomponents">
-    <p>
-      <strong>Composants</strong>
-    </p>
-    <a href="?components=header">Header</a>
-    <br>
-    <a href="?components=footer">Footer</a>
-    <br>
-    <a href="?components=header,exemple,footer&amp;bodyclass=home">Exemple avec multiple chargement de components + body class</a>
+  <div class="dfwp_styleguide_sidebar">
+    <h1>Styleguide</h1>
+    <div class="dfwp_styleguide_menu">
+      <h2>Elements</h2>
+      <ul>
+        <li>
+          <a href="#colors">Colors</a>
+        </li>
+        <li>
+          <a href="#fonts">Fonts</a>
+        </li>
+        <li>
+          <a href="#icons">Icons</a>
+        </li>
+        <li>
+          <a href="#inline">Inline</a>
+        </li>
+        <li>
+          <a href="#links">Links</a>
+        </li>
+        <li>
+          <a href="#title">Title</a>
+        </li>
+        <li>
+          <a href="#buttons">Buttons</a>
+        </li>
+        <li>
+          <a href="#form">Form elements</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dfwp_styleguide_menu">
+      <h2>Composants</h2>
+      <ul>
+        <li>
+          <a href="?components=header">Header</a>
+        </li>
+        <li>
+          <a href="?components=footer">Footer</a>
+        </li>
+        <li>
+          <a href="?components=exemple">Exemple</a>
+        </li>
+        <li>
+          <a href="?components=header,exemple,footer&amp;bodyclass=home">Exemple avec multiple chargement de components + body class</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div id="dfwp_styleguide_menuelements">
-    <p>
-      <strong>Elements</strong>
-    </p>
-    <a href="#colors">Colors</a>
-    <br>
-    <a href="#fonts">Fonts</a>
-    <br>
-    <a href="#icons">Icons</a>
-    <br>
-    <a href="#inline">Inline</a>
-    <br>
-    <a href="#links">Links</a>
-    <br>
-    <a href="#title">Title</a>
-    <br>
-    <a href="#buttons">Buttons</a>
-    <br>
-    <a href="#form">Form elements</a>
-  </div>
-  <div id="styleguides">
+  <div id="dfwp_styleguide_content">
     <section class="sg-block sg-section-components">
       <div class="sg-text">
         <h3 id="components" class="sg">Components</h3>

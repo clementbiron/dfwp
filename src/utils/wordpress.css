@@ -1,4 +1,4 @@
-// the main classes used for alignment
+/* the main classes used for alignment */
 .alignnone {}
 .alignleft {}
 .alignright {}
@@ -8,12 +8,12 @@ img.alignleft {}
 img.alignright {}
 img.aligncenter {}
 
-// img caption
+/* img caption */
 .wp-caption {} 
 .gallery {}
 .gallery-caption {}
 
-// styles for img sizes
+/* styles for img sizes */
 img.size-full {}
 img.size-large {}
 img.size-medium {}
