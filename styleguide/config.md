@@ -3,21 +3,12 @@
 ### Head
 
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-<<<<<<< HEAD
-    link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css")
-    link(rel='stylesheet' href='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css')
-    script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
-    link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css")
-    script(src='../wp-content/themes/dfwp/dist/js/bundle.js')
-    script(src='../wp-content/themes/dfwp/src/utils/styleguide.js')
-=======
     link(rel='stylesheet' href='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.css')
     script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css")
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css")
     script(src='../wp-content/themes/dfwp/dist/js/bundle.js')
     script(src='../wp-content/themes/dfwp/src/utils/Styleguide.js')
->>>>>>> develop
     script(defer src="../wp-content/themes/dfwp/build/node_modules/svgxuse/svgxuse.min.js")
 
 ### Body

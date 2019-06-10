@@ -353,69 +353,8 @@ const watcher = task('watcher');
 /**
  * Default task
  */
-<<<<<<< HEAD
-gulp.task('default', 
-    [
-        'browser-sync', 
-        'svg-sprite', 
-        'styles-project', 
-        'styles-styleguide', 
-        'scripts', 
-        'styleguide'
-    ], 
-    function () {
-
-        //Sass project
-        gulp.watch([
-            '../src/config/*.scss',
-            '../src/elements/*.scss',
-            '../src/layout/general.scss',
-            '../src/utils/*.scss',
-            '../src/components/**/*.scss',
-            '../src/components/**/**/*.scss',
-            '../src/pages/**/*.scss',
-        ], ['styles-project']);
-
-        //Sass styleguide layout
-        gulp.watch([
-            '../src/layout/styleguide.scss',
-            '../styleguide/config.md',
-        ], ['styles-styleguide']);
-
-        //JS
-        gulp.watch([
-            '../src/*.js',
-            '../src/**/*.js',
-            '../src/**/**/*.js'
-        ], ['scripts']);
-
-        //Styleguide
-        gulp.watch([
-            '../styleguide/config.md',
-            '../src/components/**/*.md',
-            '../src/config/*.scss',
-            '../src/elements/*.scss',
-            '../src/utils/*.scss'
-        ], ['styleguide']);
-
-        //Sprite svg
-        gulp.watch([
-            '../src/assets/svg/src/*.svg',
-            '../src/assets/svg/src'
-        ], ['svg-sprite']);
-
-        //PHP files browsersync reload
-        gulp.watch([
-            '../*.php',
-            '../template/*.php',
-            '../template/*.php',
-            '../src/components/**/*.php'
-        ], browserSync.reload);
-});
-=======
 task('default', parallel(
     serve,
     watcher,
 ));
 
->>>>>>> develop
