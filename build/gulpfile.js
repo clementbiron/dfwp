@@ -169,7 +169,6 @@ const config = {
  * Initialisation de browser sync
  */
 task('serve', (cb) => {
-	console.log('serve');
     bs.init(config.browsersync);
     cb();
 })
@@ -179,7 +178,6 @@ const serve = task('serve');
  * Browser sync reload
  */
 task('reload', (cb) => {
-	console.log('reload');
     bs.reload();
     cb();
 })

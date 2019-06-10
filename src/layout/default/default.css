@@ -34,7 +34,7 @@ body{
     @mixin photoshopLetterSpacing 25;
     @mixin photoshopLineHeight 30,40;
     @mixin height100vh;
-	
+
 	/* Improve font rendering on HiDPI devices (opinionated) */
 	@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
 		-moz-osx-font-smoothing: grayscale;

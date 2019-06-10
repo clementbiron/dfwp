@@ -1,3 +1,6 @@
+# changelog  (15/04/2019)
+- gulp stream fixed
+
 # changelog  (08/02/2019)
 - Gulpfile refactoring
 - Postcss
