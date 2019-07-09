@@ -9,7 +9,7 @@
     "config": {
         "vendor-dir": "../vendor",
         "github-oauth": {
-            "github.com": "2dccb9201890da2002d72152b648b5c191ed61f6"
+
         }
     },
     "autoload": {
