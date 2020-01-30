@@ -25,6 +25,9 @@
 
 	//On supprime la compression des jpeg par défaut
 	Admin::disableJPEGCompression();
+
+	//On désactive le big image threshold
+	Admin::disableBigImageTheshold();
 	
 	//Cacher certains menus de gauche pour l'éditeur
 	Admin::hideMenu(
