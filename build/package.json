@@ -34,9 +34,16 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "browserslist": "^4.6.3",
+    "core-js": "^3.1.4",
     "minireset.css": "latest",
     "svgxuse": "latest",
     "vanilla-lazyload": "latest"
   },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "ie 11"
+  ],
   "main": "gulpfile.js"
 }

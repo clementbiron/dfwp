@@ -22,12 +22,12 @@ yarn install
 ### Build and Browsersync
 - `build/gulpfile.js`
 
-### Sass
-- Config: `src/config/config.scss`
-- Files loader : `src/config/loader.scss`
+### PostCSS
+- Loader: `src/loader/loader.css`
+- Default layout conf : `src/layout/default/default.css`
 
-### JavaScript
-- Build entrie point : `src/config/main.js` 
+### JavasScript
+- Build entrie point : `src/loader/main.js` 
 
 ### Styleguide
 - Config `styleguide/config.md`

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be3313d23d3b24166e37811ac10f67cf",
+    "content-hash": "2572617b0a748fce13432d732f34082b",
     "packages": [
         {
             "name": "bea/disable-xmlrpc",
@@ -166,18 +166,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/posykrat/Doublefou.git",
-                "reference": "70ddcbf8ff8106cdb63b4cd25506e70c87d3f43a"
+                "reference": "6e375c6db761734b4ec5304ebc59f51ad46b0de7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/posykrat/Doublefou/zipball/70ddcbf8ff8106cdb63b4cd25506e70c87d3f43a",
-                "reference": "70ddcbf8ff8106cdb63b4cd25506e70c87d3f43a",
+                "url": "https://api.github.com/repos/posykrat/Doublefou/zipball/6e375c6db761734b4ec5304ebc59f51ad46b0de7",
+                "reference": "6e375c6db761734b4ec5304ebc59f51ad46b0de7",
                 "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "description": "dfwp theme framework lib",
-            "time": "2018-10-31T07:14:03+00:00"
+            "time": "2020-01-30T11:25:13+00:00"
         },
         {
             "name": "filp/whoops",
@@ -185,12 +185,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
+                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/6fb502c23885701a991b0bba974b1a8eb6673577",
+                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-10-23T09:00:00+00:00"
+            "time": "2019-07-04T09:00:00+00:00"
         },
         {
             "name": "php-ds/php-ds",
@@ -246,12 +246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-ds/polyfill.git",
-                "reference": "72301e845b6daf07a20a90e870d4c4c4b0e8cc2e"
+                "reference": "5af86a08d5a37239092a6f6066aafa00bdf37ea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/72301e845b6daf07a20a90e870d4c4c4b0e8cc2e",
-                "reference": "72301e845b6daf07a20a90e870d4c4c4b0e8cc2e",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/5af86a08d5a37239092a6f6066aafa00bdf37ea0",
+                "reference": "5af86a08d5a37239092a6f6066aafa00bdf37ea0",
                 "shasum": ""
             },
             "require": {
@@ -285,20 +285,20 @@
                 "php",
                 "polyfill"
             ],
-            "time": "2018-09-17T23:32:04+00:00"
+            "time": "2019-05-28T19:52:55+00:00"
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "wemakecustom/wp-mu-loader",
@@ -386,9 +386,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/bea-sanitize-filename.2.0.6.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/bea-sanitize-filename.2.0.6.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -398,17 +396,15 @@
         },
         {
             "name": "wpackagist-plugin/classic-editor",
-            "version": "0.5",
+            "version": "1.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/classic-editor/",
-                "reference": "tags/0.5"
+                "reference": "tags/1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/classic-editor.0.5.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.5.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -418,17 +414,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.6.0",
+            "version": "1.6.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.6.0"
+                "reference": "tags/1.6.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.6.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.6.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -438,17 +432,15 @@
         },
         {
             "name": "wpackagist-plugin/debug-bar",
-            "version": "0.9",
+            "version": "1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/debug-bar/",
-                "reference": "tags/0.9"
+                "reference": "tags/1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar.0.9.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -466,9 +458,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-actions-and-filters-addon.1.5.4.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-actions-and-filters-addon.1.5.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -486,9 +476,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-constants.2.0.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-constants.2.0.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -506,9 +494,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-extender.zip?timestamp=1314968773",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-extender.zip?timestamp=1314968773"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -526,9 +512,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-list-dependencies.1.1.2.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-list-dependencies.1.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -546,9 +530,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-post-types.2.0.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-post-types.2.0.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -566,9 +548,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-slow-actions.0.8.4.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-slow-actions.0.8.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -586,9 +566,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-taxonomies.2.0.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-taxonomies.2.0.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -606,9 +584,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-json-api.1.4.3.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/disable-json-api.1.4.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -626,9 +602,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.2.2.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.2.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -646,9 +620,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/log-deprecated-notices.0.4.1.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/log-deprecated-notices.0.4.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -666,15 +638,31 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/manage-privacy-options.1.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/manage-privacy-options.1.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/manage-privacy-options/"
+        },
+        {
+            "name": "wpackagist-plugin/post-types-order",
+            "version": "1.9.4.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/post-types-order/",
+                "reference": "tags/1.9.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/post-types-order.1.9.4.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/post-types-order/"
         },
         {
             "name": "wpackagist-plugin/rewrite-rules-inspector",
@@ -686,9 +674,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/rewrite-rules-inspector.1.2.1.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/rewrite-rules-inspector.1.2.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -697,38 +683,16 @@
             "homepage": "https://wordpress.org/plugins/rewrite-rules-inspector/"
         },
         {
-            "name": "wpackagist-plugin/simple-custom-post-order",
-            "version": "2.3.5",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/simple-custom-post-order/",
-                "reference": "tags/2.3.5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/simple-custom-post-order.2.3.5.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/simple-custom-post-order/"
-        },
-        {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.4.0",
+            "version": "1.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.4.0"
+                "reference": "tags/1.5.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.4.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.5.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -747,14 +711,6 @@
         "php-ds/php-ds": 20,
         "wemakecustom/wp-mu-loader": 20,
         "bea/disable-xmlrpc": 20,
-        "wpackagist-plugin/debug-bar": 0,
-        "wpackagist-plugin/debug-bar-actions-and-filters-addon": 0,
-        "wpackagist-plugin/debug-bar-constants": 0,
-        "wpackagist-plugin/debug-bar-extender": 0,
-        "wpackagist-plugin/debug-bar-list-dependencies": 0,
-        "wpackagist-plugin/debug-bar-post-types": 0,
-        "wpackagist-plugin/debug-bar-taxonomies": 0,
-        "wpackagist-plugin/debug-bar-slow-actions": 0,
         "wpackagist-plugin/log-deprecated-notices": 0,
         "wpackagist-plugin/rewrite-rules-inspector": 0,
         "wpackagist-plugin/user-switching": 0,
@@ -763,7 +719,7 @@
         "wpackagist-plugin/disable-json-api": 0,
         "wpackagist-plugin/custom-post-type-ui": 0,
         "wpackagist-plugin/manage-privacy-options": 0,
-        "wpackagist-plugin/simple-custom-post-order": 0,
+        "wpackagist-plugin/post-types-order": 0,
         "wpackagist-plugin/bea-sanitize-filename": 0
     },
     "prefer-stable": false,
