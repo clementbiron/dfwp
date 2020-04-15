@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2572617b0a748fce13432d732f34082b",
+    "content-hash": "90ecb2d3afccb758900e6df31561273b",
     "packages": [
         {
             "name": "bea/disable-xmlrpc",
@@ -42,28 +42,31 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.6.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
-                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0"
             },
             "replace": {
                 "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "^4.8.36"
+                "composer/composer": "1.6.* || 2.0.*@dev",
+                "composer/semver": "1.0.* || 2.0.*@dev",
+                "phpunit/phpunit": "^4.8.36",
+                "sebastian/comparator": "^1.2.4",
+                "symfony/process": "^2.3"
             },
             "type": "composer-plugin",
             "extra": {
@@ -99,6 +102,7 @@
                 "Kanboard",
                 "Lan Management System",
                 "MODX Evo",
+                "MantisBT",
                 "Mautic",
                 "Maya",
                 "OXID",
@@ -107,6 +111,7 @@
                 "RadPHP",
                 "SMF",
                 "Thelia",
+                "Whmcs",
                 "WolfCMS",
                 "agl",
                 "aimeos",
@@ -129,6 +134,7 @@
                 "installer",
                 "itop",
                 "joomla",
+                "known",
                 "kohana",
                 "laravel",
                 "lavalite",
@@ -151,6 +157,7 @@
                 "shopware",
                 "silverstripe",
                 "sydes",
+                "sylius",
                 "symfony",
                 "typo3",
                 "wordpress",
@@ -158,7 +165,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27T06:10:37+00:00"
+            "time": "2020-04-07T06:57:05+00:00"
         },
         {
             "name": "dfwp/doublefou",
@@ -185,12 +192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577"
+                "reference": "91b85b409109eae1b9bb17089e9c3297fe7cfedc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/6fb502c23885701a991b0bba974b1a8eb6673577",
-                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/91b85b409109eae1b9bb17089e9c3297fe7cfedc",
+                "reference": "91b85b409109eae1b9bb17089e9c3297fe7cfedc",
                 "shasum": ""
             },
             "require": {
@@ -199,8 +206,8 @@
             },
             "require-dev": {
                 "mockery/mockery": "^0.9 || ^1.0",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0 || ^5.0"
             },
             "suggest": {
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
@@ -209,7 +216,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -238,7 +245,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2019-07-04T09:00:00+00:00"
+            "time": "2020-03-25T10:20:53+00:00"
         },
         {
             "name": "php-ds/php-ds",
@@ -246,12 +253,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-ds/polyfill.git",
-                "reference": "5af86a08d5a37239092a6f6066aafa00bdf37ea0"
+                "reference": "f6fd4ca9c16ca7c1bd9f3a95c9d95a827ccf702f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/5af86a08d5a37239092a6f6066aafa00bdf37ea0",
-                "reference": "5af86a08d5a37239092a6f6066aafa00bdf37ea0",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/f6fd4ca9c16ca7c1bd9f3a95c9d95a827ccf702f",
+                "reference": "f6fd4ca9c16ca7c1bd9f3a95c9d95a827ccf702f",
                 "shasum": ""
             },
             "require": {
@@ -285,20 +292,20 @@
                 "php",
                 "polyfill"
             ],
-            "time": "2019-05-28T19:52:55+00:00"
+            "time": "2019-12-28T00:09:45+00:00"
         },
         {
             "name": "psr/log",
-            "version": "1.1.0",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +314,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -332,7 +339,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2018-11-20T15:27:04+00:00"
+            "time": "2020-03-23T09:12:05+00:00"
         },
         {
             "name": "wemakecustom/wp-mu-loader",
@@ -377,6 +384,60 @@
             "time": "2017-04-08T15:05:50+00:00"
         },
         {
+            "name": "wp-migrate-db-pro-media-files/wp-migrate-db-pro-media-files",
+            "version": "1.4.15",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.altweb.fr/wp-migrate-db-pro-media-files/wp-migrate-db-pro-media-files-1.4.15.zip"
+            },
+            "require": {
+                "composer/installers": "^1.5"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "wp-migrate-db-pro/wp-migrate-db-pro",
+            "version": "1.9.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.altweb.fr/wp-migrate-db-pro/wp-migrate-db-pro-1.9.10.zip"
+            },
+            "require": {
+                "composer/installers": "^1.5"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "wp-seopress-pro/wp-seopress-pro",
+            "version": "3.8.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.altweb.fr/wp-seopress-pro/wp-seopress-pro-3.8.5.zip"
+            },
+            "require": {
+                "composer/installers": "^1.5"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "wpackagist-plugin/acf-extended",
+            "version": "0.8.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/acf-extended/",
+                "reference": "tags/0.8.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.8.5.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/acf-extended/"
+        },
+        {
             "name": "wpackagist-plugin/bea-sanitize-filename",
             "version": "2.0.6",
             "source": {
@@ -414,15 +475,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.6.2",
+            "version": "1.7.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.6.2"
+                "reference": "tags/1.7.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.7.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -431,160 +492,16 @@
             "homepage": "https://wordpress.org/plugins/custom-post-type-ui/"
         },
         {
-            "name": "wpackagist-plugin/debug-bar",
-            "version": "1.0",
+            "name": "wpackagist-plugin/disable-json-api",
+            "version": "1.5",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar/",
-                "reference": "tags/1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-actions-and-filters-addon",
-            "version": "1.5.4",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-actions-and-filters-addon/",
-                "reference": "tags/1.5.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-actions-and-filters-addon.1.5.4.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-actions-and-filters-addon/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-constants",
-            "version": "2.0.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-constants/",
-                "reference": "tags/2.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-constants.2.0.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-constants/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-extender",
-            "version": "0.5",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-extender/",
+                "url": "https://plugins.svn.wordpress.org/disable-json-api/",
                 "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-extender.zip?timestamp=1314968773"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-extender/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-list-dependencies",
-            "version": "1.1.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-list-dependencies/",
-                "reference": "tags/1.1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-list-dependencies.1.1.2.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-list-dependencies/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-post-types",
-            "version": "2.0.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-post-types/",
-                "reference": "tags/2.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-post-types.2.0.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-post-types/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-slow-actions",
-            "version": "0.8.4",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-slow-actions/",
-                "reference": "tags/0.8.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-slow-actions.0.8.4.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-slow-actions/"
-        },
-        {
-            "name": "wpackagist-plugin/debug-bar-taxonomies",
-            "version": "2.0.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/debug-bar-taxonomies/",
-                "reference": "tags/2.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar-taxonomies.2.0.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/debug-bar-taxonomies/"
-        },
-        {
-            "name": "wpackagist-plugin/disable-json-api",
-            "version": "1.4.3",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/disable-json-api/",
-                "reference": "tags/1.4.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-json-api.1.4.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/disable-json-api.zip?timestamp=1573698227"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -594,15 +511,15 @@
         },
         {
             "name": "wpackagist-plugin/duplicate-post",
-            "version": "3.2.2",
+            "version": "3.2.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duplicate-post/",
-                "reference": "tags/3.2.2"
+                "reference": "tags/3.2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.2.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/duplicate-post.3.2.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -648,21 +565,39 @@
         },
         {
             "name": "wpackagist-plugin/post-types-order",
-            "version": "1.9.4.1",
+            "version": "1.9.4.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-types-order/",
-                "reference": "tags/1.9.4.1"
+                "reference": "tags/1.9.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-types-order.1.9.4.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-types-order.1.9.4.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/post-types-order/"
+        },
+        {
+            "name": "wpackagist-plugin/query-monitor",
+            "version": "3.5.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/query-monitor/",
+                "reference": "tags/3.5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.5.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/query-monitor/"
         },
         {
             "name": "wpackagist-plugin/rewrite-rules-inspector",
@@ -684,15 +619,15 @@
         },
         {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.5.1",
+            "version": "1.5.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.5.1"
+                "reference": "tags/1.5.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.5.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.5.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -712,6 +647,7 @@
         "wemakecustom/wp-mu-loader": 20,
         "bea/disable-xmlrpc": 20,
         "wpackagist-plugin/log-deprecated-notices": 0,
+        "wpackagist-plugin/query-monitor": 0,
         "wpackagist-plugin/rewrite-rules-inspector": 0,
         "wpackagist-plugin/user-switching": 0,
         "wpackagist-plugin/duplicate-post": 0,
@@ -720,10 +656,12 @@
         "wpackagist-plugin/custom-post-type-ui": 0,
         "wpackagist-plugin/manage-privacy-options": 0,
         "wpackagist-plugin/post-types-order": 0,
+        "wpackagist-plugin/acf-extended": 0,
         "wpackagist-plugin/bea-sanitize-filename": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
