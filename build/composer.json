@@ -51,20 +51,8 @@
         "wpackagist-plugin/disable-json-api": "*@stable",
         "wpackagist-plugin/custom-post-type-ui": "*@stable",
         "wpackagist-plugin/manage-privacy-options": "*@stable",
-<<<<<<< HEAD
         "wpackagist-plugin/simple-custom-post-order": "*@stable",
         "wpackagist-plugin/bea-sanitize-filename": "*@stable"
-=======
-        "wpackagist-plugin/post-types-order": "*@stable",
-        "wpackagist-plugin/acf-extended": "*@stable",
-        "wpackagist-plugin/bea-sanitize-filename": "*@stable",
-        "wpackagist-plugin/wp-seopress": "*@stable",
-        "advanced-custom-fields-pro/advanced-custom-fields-pro": "^5.8.9",
-        "wp-rocket/wp-rocket": "^3.5.2",
-        "wp-migrate-db-pro/wp-migrate-db-pro": "^1.9.10",
-        "wp-migrate-db-pro-media-files/wp-migrate-db-pro-media-files": "^1.4.15",
-        "wp-seopress-pro/wp-seopress-pro": "^3.8.5"
->>>>>>> develop
     },
     "extra": {
         "installer-paths": {
