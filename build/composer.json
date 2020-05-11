@@ -53,6 +53,7 @@
         "wpackagist-plugin/manage-privacy-options": "*@stable",
         "wpackagist-plugin/simple-custom-post-order": "*@stable",
         "wpackagist-plugin/wp-seopress": "*@stable",
+        "wpackagist-plugin/acf-extended": "*@stable",
         "wpackagist-plugin/bea-sanitize-filename": "*@stable"
     },
     "extra": {
