@@ -7,9 +7,9 @@
     script(src='https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js')
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/index.css")
     link(rel="stylesheet" href="../wp-content/themes/dfwp/dist/css/styleguide.min.css")
-    script(src='../wp-content/themes/dfwp/dist/js/bundle.js')
-    script(src='../wp-content/themes/dfwp/src/utils/Styleguide.js')
-    script(defer src="../wp-content/themes/dfwp/build/node_modules/svgxuse/svgxuse.min.js")
+    script(defer src='../wp-content/themes/dfwp/dist/js/bundle.js')
+    script(defer src='../wp-content/themes/dfwp/src/utils/Styleguide.js')
+    script(async src="../wp-content/themes/dfwp/build/node_modules/svgxuse/svgxuse.min.js")
 
 ### Body
 

@@ -1,8 +1,6 @@
 .exemple{
-    border:1px solid red;
-    width:500px;
-    height:500px;
-    display:flex;
-    margin:auto;
-    transition: all 600ms ease-in-sine;
+    & > p{
+        margin:6rem auto;
+        max-width:500px;
+    }
 }

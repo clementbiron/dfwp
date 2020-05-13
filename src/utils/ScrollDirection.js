@@ -24,10 +24,13 @@ export class ScrollDirection {
         //Si on change de direction
         if (this.scrollData.direction != newScrollData.direction) {
             newScrollData.hasDirectionChange = true;
+
+            //On dispatch un event lorsque la direction du scroll a changée
+            window.dispatchEvent(new CustomEvent('ScrollDirection_direction', { detail: newScrollData }));
         }
 
-        //On dispatch un event
-        window.dispatchEvent(new CustomEvent('ScrollDirection_scrollchange', { detail: newScrollData }));
+        //On dispatch un event pour chaque mouvement du scroll
+        window.dispatchEvent(new CustomEvent('ScrollDirection_scroll', { detail: newScrollData }));
 
         //On stocke les données
         this.scrollData = newScrollData;

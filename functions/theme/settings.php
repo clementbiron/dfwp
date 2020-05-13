@@ -48,7 +48,7 @@
 			get_stylesheet_directory_uri().'/dist/js/'.$projectJsName,
 			array('svgxuse'),
 			1,
-			true
+			false
         );
         
         //Svgxuse
@@ -113,10 +113,24 @@
 	}
     add_filter( 'query_vars', 'dfwp_addQueryVars' );
     
-    //Pre get posts 
-    // add_action( 'pre_get_posts', function ( $q ) {
+    function add_defer_async_attribute($tag, $handle) {
+		$scripts_to_defer = array('dfwp_index');
+		$scripts_to_async = array('svgxuse');
 
-    // });
-
+		foreach($scripts_to_defer as $defer_script) {
+			if ($defer_script === $handle) {
+				return str_replace(' src', ' defer="defer" src', $tag);
+			}
+		}
+		
+		foreach($scripts_to_async as $async_script) {
+		   if ($async_script === $handle) {
+			  return str_replace(' src', ' async="async" src', $tag);
+		   }
+		}
+		
+		return $tag;
+	}
+	add_filter('script_loader_tag', 'add_defer_async_attribute', 10, 2);
     
 ?>
