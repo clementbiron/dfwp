@@ -1,4 +1,4 @@
-document.ready().then(() => {
+document.ready = () => {
     
     // Styledown FIX
     // Dans tous les sg-canvas
@@ -14,4 +14,4 @@ document.ready().then(() => {
         //On remplace
         elem.innerHTML = newHTML;
     });
-});
+};
