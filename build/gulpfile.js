@@ -30,6 +30,7 @@ const postcssNested                                = require('postcss-nested');
 const postcssMixins                                = require('postcss-mixins');
 const postcssCalc                                  = require('postcss-calc');
 const postcssSimpleExtend                          = require('postcss-simple-extend');
+const postcssEasingGradients                       = require('postcss-easing-gradients');
 
 
 /**
@@ -66,6 +67,7 @@ const config = {
                 postcssEasings,
                 postcssFlexbugsFixes,
                 postcssCalc,
+                postcssEasingGradients,
                 postcssPresetEnv({
                     stage: 1,
                     browsers: ['last 2 versions', 'ie 11', '>= 1%']
