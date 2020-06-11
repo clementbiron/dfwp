@@ -63,9 +63,11 @@
 		//Charger des fichiers js du projet 
 		wp_enqueue_script('dfwp_index');
 
-        //Décharger les scripts non nécéssaires
-		wp_dequeue_script('jquery');
-		wp_dequeue_script('jquery-migrate');
+        //Décharger les scripts non nécéssaires en front
+		if(!is_admin()){
+			wp_deregister_script('jquery');
+			wp_deregister_script('jquery-migrate');
+		}
 	}
     add_action('wp_enqueue_scripts', 'dfwp_enqueueScripts');
     
